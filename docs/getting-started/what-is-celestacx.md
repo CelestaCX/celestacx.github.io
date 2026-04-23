@@ -1,3 +1,4 @@
+# What is CelestaCX?
 ### What is CelestaCX?
  
 CelestaCX is an AI-powered omnichannel contact center platform that brings all your customer communication channels — voice calls, live chat, WhatsApp, email, social media, and video — into a single unified workspace for your agents and supervisors.
@@ -9,15 +10,15 @@ Rather than managing separate tools for each channel, CelestaCX gives your team 
 ### Who is CelestaCX for?
  
 CelestaCX is designed for organizations that run a customer-facing contact center — whether that's a small support team or a large enterprise operation. Within those organizations, different people use CelestaCX in different ways:
- | Role | What  they  do  in  CelestaCX |
+ | Role | What they do in CelestaCX |
 | --- | --- |
-| Agent | Handles  inbound  and  outbound  customer  conversations  across  all  channels  from  the  Agent  Desk |
-| Supervisor | Monitors  live  agent  activity,  manages  teams,  reviews  dashboards,  and  assists  agents  in  real  time |
-| Quality  Manager | Reviews  conversation  recordings,  scores  agent  performance,  and  runs  quality  evaluations |
-| Admin | Configures  channels,  routing  rules,  user  accounts,  and  system  settings  via  the  Unified  Admin  panel |
-| IT  /  DevOps | Deploys  and  maintains  the  CelestaCX  infrastructure  on  Kubernetes |
-| Developer | Builds  custom  integrations,  Agent  Desk  implementations,  and  channel  connectors  using  CelestaCX  APIs |
-| Partner | Resells  and  manages  CelestaCX  deployments  for  multiple  customer  organizations | 
+| Agent | Handles inbound and outbound customer conversations across all channels from the Agent Desk |
+| Supervisor | Monitors live agent activity, manages teams, reviews dashboards, and assists agents in real time |
+| Quality Manager | Reviews conversation recordings, scores agent performance, and runs quality evaluations |
+| Admin | Configures channels, routing rules, user accounts, and system settings via the Unified Admin panel |
+| IT / DevOps | Deploys and maintains the CelestaCX infrastructure on Kubernetes |
+| Developer | Builds custom integrations, Agent Desk implementations, and channel connectors using CelestaCX APIs |
+| Partner | Resells and manages CelestaCX deployments for multiple customer organizations | 
 ---
  
 ### What Can CelestaCX Do?
@@ -65,11 +66,11 @@ For partners managing multiple customers, CelestaCX 5.0 supports **multi-tenancy
 ---
  
 ### Where to Go Next
- | I  want  to… | Go  to… |
+ | I want to… | Go to… |
 | --- | --- |
-| Understand  the  platform  architecture | Platform  Architecture  Overview  → |
-| Learn  key  terms  and  concepts | Key  Concepts  &  Terminology  → |
-| Start  deploying  CelestaCX | Deployment  &  Infrastructure  → |
-| Set  up  channels  and  routing | Configuration  &  Administration  → |
-| Start  using  CelestaCX  as  an  agent | Agent  Guide  → | 
+| Understand the platform architecture | Platform Architecture Overview → |
+| Learn key terms and concepts | Key Concepts & Terminology → |
+| Start deploying CelestaCX | Deployment & Infrastructure → |
+| Set up channels and routing | Configuration & Administration → |
+| Start using CelestaCX as an agent | Agent Guide → | 
 ---

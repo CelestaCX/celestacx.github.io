@@ -1,3 +1,4 @@
+# YouTube & Google Play Store
 Here is the **YouTube & Google Play Store** page:
  
 ---
@@ -14,16 +15,16 @@ Both YouTube and Google Play Store are connected via the **Google APIs** . Celes
  ```
 Customer posts a YouTube comment
 or Google Play Store review
-        │
-        ▼
+ │
+ ▼
 Google API (YouTube Data API / Google Play Developer API)
-        │
-  Polled by CelestaCX
-        │
-        ▼
+ │
+ Polled by CelestaCX
+ │
+ ▼
 CelestaCX Channel Connector
-        │
-        ▼
+ │
+ ▼
 Routing Engine → Queue → Agent Desk
 ``` 
 Because these channels are publicly visible, responses posted by agents through CelestaCX are immediately visible to all users of the respective platform. Agents should be aware that their replies are public and represent your organisation's official position.
@@ -35,16 +36,16 @@ Because these channels are publicly visible, responses posted by agents through 
 #### Supported Features
  | Feature | Supported |
 | --- | --- |
-| Monitoring  video  comments | Yes |
-| Responding  to  video  comments | Yes |
-| Monitoring  comment  replies  (threads) | Yes |
-| Responding  to  comment  replies | Yes |
-| Liking  a  comment | No |
-| Hiding  or  holding  comments  for  review | No  —  via  CelestaCX |
-| Deleting  comments | No  —  via  CelestaCX |
-| Community  posts | No |
-| YouTube  Live  chat | No |
-| Private  messages | No  —  YouTube  does  not  support  business  DMs | 
+| Monitoring video comments | Yes |
+| Responding to video comments | Yes |
+| Monitoring comment replies (threads) | Yes |
+| Responding to comment replies | Yes |
+| Liking a comment | No |
+| Hiding or holding comments for review | No — via CelestaCX |
+| Deleting comments | No — via CelestaCX |
+| Community posts | No |
+| YouTube Live chat | No |
+| Private messages | No — YouTube does not support business DMs | 
 #### Prerequisites
  
 Before configuring YouTube in CelestaCX:
@@ -74,11 +75,11 @@ Before configuring YouTube in CelestaCX:
 6. Configure monitoring settings:
  | Setting | Description | Default |
 | --- | --- | --- |
-| Polling  Interval | How  frequently  CelestaCX  checks  for  new  comments  (seconds) | 120 |
-| Monitor  All  Videos | Monitor  comments  on  all  videos  on  the  channel | Enabled |
-| Specific  Video  IDs | If  Monitor  All  Videos  is  disabled,  enter  the  IDs  of  specific  videos  to  monitor | — |
-| Minimum  Comment  Length | Ignore  comments  shorter  than  this  character  count  —  useful  for  filtering  out  emoji-only  or  spam  comments | 5 |
-| Create  Interactions  for  Replies | Whether  to  create  interactions  for  replies  to  existing  comments,  not  just  top-level  comments | Enabled | 
+| Polling Interval | How frequently CelestaCX checks for new comments (seconds) | 120 |
+| Monitor All Videos | Monitor comments on all videos on the channel | Enabled |
+| Specific Video IDs | If Monitor All Videos is disabled, enter the IDs of specific videos to monitor | — |
+| Minimum Comment Length | Ignore comments shorter than this character count — useful for filtering out emoji-only or spam comments | 5 |
+| Create Interactions for Replies | Whether to create interactions for replies to existing comments, not just top-level comments | Enabled | 
 1. Create a routing rule for YouTube interactions: **Administration → Routing → Routing Rules → Add Rule** — set the trigger to this YouTube channel.
 2. Save and set the channel status to **Active** .
  
@@ -100,10 +101,10 @@ Agents cannot edit or delete comments through CelestaCX. Moderation actions (hid
 YouTube comment volumes can vary enormously depending on the nature of your content and audience. Consider the following when designing routing:
  | Scenario | Recommendation |
 | --- | --- |
-| Low  volume  —  occasional  comments  on  product  or  support  videos | Route  to  existing  social  or  support  queue,  blended  with  other  channels |
-| High  volume  —  active  brand  channel  with  many  comments | Dedicated  YouTube  queue  served  by  a  social  media  or  community  team |
-| Mixed  content  —  support  queries  and  general  comments | Use  subject  keyword  routing  to  separate  support-related  comments  from  general  engagement |
-| Viral  or  high-attention  periods | Configure  overflow  rules  to  manage  volume  spikes  —  consider  temporarily  increasing  queue  capacity | 
+| Low volume — occasional comments on product or support videos | Route to existing social or support queue, blended with other channels |
+| High volume — active brand channel with many comments | Dedicated YouTube queue served by a social media or community team |
+| Mixed content — support queries and general comments | Use subject keyword routing to separate support-related comments from general engagement |
+| Viral or high-attention periods | Configure overflow rules to manage volume spikes — consider temporarily increasing queue capacity | 
 ---
  
 ### Google Play Store
@@ -111,13 +112,13 @@ YouTube comment volumes can vary enormously depending on the nature of your cont
 #### Supported Features
  | Feature | Supported |
 | --- | --- |
-| Monitoring  app  reviews | Yes |
-| Responding  to  app  reviews | Yes |
-| Editing  a  previous  response | Yes |
-| Deleting  a  response | No  —  via  CelestaCX |
-| Monitoring  ratings  without  text | No  —  rating-only  reviews  without  text  are  not  converted  to  interactions |
-| Multiple  apps | Yes  —  one  connector  per  app |
-| iOS  App  Store | No  —  Apple  does  not  provide  a  public  API  for  review  responses | 
+| Monitoring app reviews | Yes |
+| Responding to app reviews | Yes |
+| Editing a previous response | Yes |
+| Deleting a response | No — via CelestaCX |
+| Monitoring ratings without text | No — rating-only reviews without text are not converted to interactions |
+| Multiple apps | Yes — one connector per app |
+| iOS App Store | No — Apple does not provide a public API for review responses | 
 #### Prerequisites
  
 Before configuring Google Play Store in CelestaCX:
@@ -151,10 +152,10 @@ Google Play Store uses **Service Account** authentication rather than OAuth 2.0 
 5. Configure monitoring settings:
  | Setting | Description | Default |
 | --- | --- | --- |
-| Polling  Interval | How  frequently  CelestaCX  checks  for  new  reviews  (seconds) | 300 |
-| Minimum  Star  Rating | Only  create  interactions  for  reviews  at  or  below  this  star  rating  —  useful  for  focusing  on  negative  reviews | 3 |
-| Include  4–5  Star  Reviews | Toggle  to  also  monitor  positive  reviews  for  acknowledgement  and  engagement | Disabled |
-| Language  Filter | Only  create  interactions  for  reviews  in  specific  languages  —  leave  blank  to  monitor  all  languages | All  languages | 
+| Polling Interval | How frequently CelestaCX checks for new reviews (seconds) | 300 |
+| Minimum Star Rating | Only create interactions for reviews at or below this star rating — useful for focusing on negative reviews | 3 |
+| Include 4–5 Star Reviews | Toggle to also monitor positive reviews for acknowledgement and engagement | Disabled |
+| Language Filter | Only create interactions for reviews in specific languages — leave blank to monitor all languages | All languages | 
 1. Create a routing rule for Google Play Store interactions.
 2. Save and set the channel status to **Active** .
  
@@ -184,10 +185,10 @@ Key points about Google Play responses:
 #### Routing Google Play Reviews
  | Scenario | Recommendation |
 | --- | --- |
-| Primarily  negative  review  management | Set  Minimum  Star  Rating  to  3  to  focus  on  1–3  star  reviews  requiring  response |
-| Full  review  engagement  including  positive | Enable  Include  4–5  Star  Reviews  and  route  all  ratings  to  a  community  or  CX  team |
-| Multi-language  app  with  global  reviews | Use  Language  Filter  to  route  reviews  by  language  to  appropriately  skilled  agents |
-| Multiple  apps | Create  one  connector  per  app,  each  with  its  own  routing  rules | 
+| Primarily negative review management | Set Minimum Star Rating to 3 to focus on 1–3 star reviews requiring response |
+| Full review engagement including positive | Enable Include 4–5 Star Reviews and route all ratings to a community or CX team |
+| Multi-language app with global reviews | Use Language Filter to route reviews by language to appropriately skilled agents |
+| Multiple apps | Create one connector per app, each with its own routing rules | 
 ---
  
 ### Managing Multiple YouTube Channels or Apps
@@ -218,20 +219,20 @@ Because YouTube comments and Google Play reviews are publicly visible, responses
 ### Troubleshooting
  
 #### YouTube
- | Symptom | Likely  Cause | Action |
+ | Symptom | Likely Cause | Action |
 | --- | --- | --- |
-| Comments  not  appearing  as  interactions | OAuth  token  expired  or  YouTube  Data  API  quota  exceeded | Reauthorise  the  channel  via  Administration  →  Channels  →  [Channel]  →  Reauthorise.  Check  Google  Cloud  Console  for  API  quota  usage. |
-| Replies  not  posting | Authorised  account  does  not  have  comment  management  permission  on  the  channel | Verify  the  Google  account  used  for  authorisation  has  appropriate  YouTube  channel  management  access. |
-| Only  some  videos  being  monitored | Monitor  All  Videos  disabled  and  video  IDs  not  listed | Enable  Monitor  All  Videos  or  add  the  relevant  video  IDs  under  channel  settings. |
-| High  volume  of  spam  or  short  comments  creating  interactions | Minimum  Comment  Length  too  low | Increase  Minimum  Comment  Length  under  channel  settings  to  filter  out  short  or  low-quality  comments. | 
+| Comments not appearing as interactions | OAuth token expired or YouTube Data API quota exceeded | Reauthorise the channel via Administration → Channels → [Channel] → Reauthorise. Check Google Cloud Console for API quota usage. |
+| Replies not posting | Authorised account does not have comment management permission on the channel | Verify the Google account used for authorisation has appropriate YouTube channel management access. |
+| Only some videos being monitored | Monitor All Videos disabled and video IDs not listed | Enable Monitor All Videos or add the relevant video IDs under channel settings. |
+| High volume of spam or short comments creating interactions | Minimum Comment Length too low | Increase Minimum Comment Length under channel settings to filter out short or low-quality comments. | 
 #### Google Play Store
- | Symptom | Likely  Cause | Action |
+ | Symptom | Likely Cause | Action |
 | --- | --- | --- |
-| Reviews  not  appearing  as  interactions | Service  account  not  linked  to  Play  Developer  account  or  insufficient  permissions | Verify  service  account  is  granted  Reply  to  Reviews  permission  in  Google  Play  Console  →  Setup  →  API  Access. |
-| "Permission  Denied"  error | Google  Play  Developer  API  not  enabled  or  service  account  key  invalid | Confirm  the  Google  Play  Developer  API  is  enabled  in  the  Google  Cloud  project  and  the  JSON  key  file  is  valid  and  not  expired. |
-| Responses  not  posting  to  Play  Store | Response  exceeds  350  character  limit | Check  response  length  in  the  Agent  Desk  composer.  Shorten  response  to  under  350  characters. |
-| Previous  response  overwritten  unexpectedly | Agent  submitted  a  new  response  to  a  review  that  already  had  a  response | Remind  agents  that  submitting  a  response  replaces  any  existing  developer  response.  Review  interaction  history  before  responding. |
-| Reviews  in  unexpected  languages  appearing | Language  Filter  not  configured | Set  Language  Filter  to  specific  languages  under  channel  settings  if  language-based  filtering  is  required. | 
+| Reviews not appearing as interactions | Service account not linked to Play Developer account or insufficient permissions | Verify service account is granted Reply to Reviews permission in Google Play Console → Setup → API Access. |
+| "Permission Denied" error | Google Play Developer API not enabled or service account key invalid | Confirm the Google Play Developer API is enabled in the Google Cloud project and the JSON key file is valid and not expired. |
+| Responses not posting to Play Store | Response exceeds 350 character limit | Check response length in the Agent Desk composer. Shorten response to under 350 characters. |
+| Previous response overwritten unexpectedly | Agent submitted a new response to a review that already had a response | Remind agents that submitting a response replaces any existing developer response. Review interaction history before responding. |
+| Reviews in unexpected languages appearing | Language Filter not configured | Set Language Filter to specific languages under channel settings if language-based filtering is required. | 
 For persistent issues, check connector logs under **Platform Administration → Logs → Channel Connectors** or refer to the [Troubleshooting Guide](#) .
  
 ---

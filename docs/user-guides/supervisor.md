@@ -1,3 +1,4 @@
+# Supervisor Guide
 #### Overview
  
 This guide is written for contact centre supervisors — the people responsible for keeping their team running smoothly, maintaining service levels, and supporting agents through their shift. It covers the full range of supervisor capabilities in CelestaCX: managing your team, monitoring conversations in real time, intervening when needed, tracking SLA, and analysing performance through historical reports.
@@ -11,18 +12,18 @@ If you are also responsible for quality evaluation, see the [Quality Manager Gui
 #### 1. What Supervisors Can Do
  | Capability | Description |
 | --- | --- |
-| Real-time  dashboards | Monitor  queue  health,  agent  states,  and  live  conversations  across  the  team |
-| Silent  monitoring | Join  an  active  conversation  as  an  invisible  observer  —  agent  and  customer  are  unaware |
-| Barge-in | Enter  a  live  conversation  to  assist  the  agent  or  speak  directly  to  the  customer |
-| Whisper | Send  a  private  message  to  an  agent  mid-conversation,  visible  only  to  them |
-| Respond  to  hand  raises | Receive  and  act  on  help  requests  raised  by  agents  during  conversations |
-| Team  management | Add  agents  and  supervisors  to  teams,  adjust  membership,  manage  assignments |
-| Force  logout | Remotely  log  out  any  agent  regardless  of  their  current  state |
-| Team  announcements | Broadcast  messages  visible  to  all  agents  on  the  team |
-| Customer  labels | Create  labels  to  categorise  customers  (e.g.  VIP,  Language,  Tier)  —  labels  can  also  drive  priority  routing |
-| Historical  reports | Access  full  reporting  suite:  agent  performance,  queue  productivity,  adherence,  SLA,  and  more |
-| Workforce  management | Use  the  WFM  module  for  scheduling,  forecasting,  and  shift  management |
-| Limited  admin  access | Perform  certain  configuration  tasks  in  Unified  Admin  (see  Supervisor  Access  to  Unified  Admin  ) | 
+| Real-time dashboards | Monitor queue health, agent states, and live conversations across the team |
+| Silent monitoring | Join an active conversation as an invisible observer — agent and customer are unaware |
+| Barge-in | Enter a live conversation to assist the agent or speak directly to the customer |
+| Whisper | Send a private message to an agent mid-conversation, visible only to them |
+| Respond to hand raises | Receive and act on help requests raised by agents during conversations |
+| Team management | Add agents and supervisors to teams, adjust membership, manage assignments |
+| Force logout | Remotely log out any agent regardless of their current state |
+| Team announcements | Broadcast messages visible to all agents on the team |
+| Customer labels | Create labels to categorise customers (e.g. VIP, Language, Tier) — labels can also drive priority routing |
+| Historical reports | Access full reporting suite: agent performance, queue productivity, adherence, SLA, and more |
+| Workforce management | Use the WFM module for scheduling, forecasting, and shift management |
+| Limited admin access | Perform certain configuration tasks in Unified Admin (see Supervisor Access to Unified Admin ) | 
 ---
  
 #### 2. Real-Time Monitoring
@@ -44,7 +45,9 @@ Drill-down views into active conversations, individual agent states, and live qu
 #### Ongoing Conversations Detail
  
 Lists every active conversation with the handling agent, channel, customer identity, and duration. This is the entry point for silent monitoring and barge-in.
- **Team structure matters:** The dashboards show data scoped to your assigned team. If an agent is not a member of your team, they will not appear in your dashboards. See [Impact of Team Structure on Dashboards](#) for details. 
+ 
+> **Team structure matters:** The dashboards show data scoped to your assigned team. If an agent is not a member of your team, they will not appear in your dashboards. See [Impact of Team Structure on Dashboards](#) for details.
+ 
 ---
  
 #### 3. Monitoring & Intervening in Live Conversations
@@ -126,23 +129,25 @@ CelestaCX tracks Service Level (SL) metrics per queue. As a supervisor, understa
 #### How SLA Is Calculated
  
 SLA is measured against a configurable threshold (set per queue by your administrator). For each conversation that enters the queue, the platform records whether it was answered, abandoned, or timed out relative to that threshold.
- | Scenario | Counts  Toward  SL? |
+ | Scenario | Counts Toward SL? |
 | --- | --- |
-| Offered  and  answered  within  threshold | ✅  Yes  —  ideal  outcome |
-| Customer  abandons  before  threshold  expires | ✅  Counted  as  abandoned  within  SL  window |
-| Answered  after  threshold | ❌  No  —  answered  but  outside  service  level |
-| Customer  abandons  after  threshold | ❌  No  —  not  counted  in  SL  metrics |
-| Agent  assigned  but  does  not  accept  (RONA)  within  threshold | ✅  Counted  as  SL  RONA  event |
-| No  agents  available | ❌  Tracked  separately  —  does  not  affect  SL  metrics | 
+| Offered and answered within threshold | ✅ Yes — ideal outcome |
+| Customer abandons before threshold expires | ✅ Counted as abandoned within SL window |
+| Answered after threshold | ❌ No — answered but outside service level |
+| Customer abandons after threshold | ❌ No — not counted in SL metrics |
+| Agent assigned but does not accept (RONA) within threshold | ✅ Counted as SL RONA event |
+| No agents available | ❌ Tracked separately — does not affect SL metrics | 
 The key SLA metrics you will see in dashboards and reports are:
- | Metric | What  It  Means |
+ | Metric | What It Means |
 | --- | --- |
-| chats_offered | Total  conversations  that  entered  the  queue |
-| chats_answered | Conversations  accepted  by  an  agent |
-| chats_abandoned | Conversations  where  the  customer  left  before  connecting |
-| chats_rona | Conversations  where  the  assigned  agent  did  not  accept |
-| service_level_answered | Conversations  answered  within  the  SL  threshold |
-| NoAgentAvailable | Conversations  where  no  agent  was  available  at  all | **Customer Inactivity SLA:** Separately from queue SLA, CelestaCX also tracks customer-side inactivity. If a customer stops responding for a configured period, the conversation may be automatically closed. This is configured by your administrator per channel. 
+| chats_offered | Total conversations that entered the queue |
+| chats_answered | Conversations accepted by an agent |
+| chats_abandoned | Conversations where the customer left before connecting |
+| chats_rona | Conversations where the assigned agent did not accept |
+| service_level_answered | Conversations answered within the SL threshold |
+| NoAgentAvailable | Conversations where no agent was available at all | 
+> **Customer Inactivity SLA:** Separately from queue SLA, CelestaCX also tracks customer-side inactivity. If a customer stops responding for a configured period, the conversation may be automatically closed. This is configured by your administrator per channel.
+ 
 ---
  
 #### 6. Historical Reporting
@@ -150,19 +155,21 @@ The key SLA metrics you will see in dashboards and reports are:
 CelestaCX provides a comprehensive reporting suite accessible to supervisors. Reports cover agent performance, queue productivity, SLA, adherence, campaign results, and more.
  
 #### Key Reports for Supervisors
- | Report | What  It  Shows |
+ | Report | What It Shows |
 | --- | --- |
-| Agent  Performance  Dashboard | Per-agent  handle  time,  response  time,  conversations  handled,  and  SLA  compliance |
-| Agent  Interaction  Log | Searchable  log  of  every  interaction  with  timestamps,  channel,  outcome,  and  wrap-up  codes |
-| Presence  &  Availability  Report | How  long  each  agent  spent  in  each  state  (Ready,  Not  Ready,  Away)  during  the  shift |
-| Agent  Adherence  Report | Scheduled  vs.  actual  login  and  availability  times |
-| Agent  &  Team  Leaderboard | Ranked  comparison  of  agents  and  teams  by  key  metrics |
-| Team  Comparison  Report | Side-by-side  metrics  across  multiple  teams |
-| Queue  Productivity  Report | Wait  times,  abandonment  rate,  and  throughput  per  queue |
-| Interval  Performance  Report | Metrics  broken  into  time  intervals  (15-min,  30-min,  hourly)  for  trend  analysis |
-| Digital  Channel  Traffic  Analysis | Volume  and  trends  across  digital  channels |
-| Channel  Session  Audit  Report | Session-level  audit  trail  for  compliance  and  quality  reviews |
-| Campaign  Performance  Report | Outbound  campaign  results  —  contact  rates,  dispositions,  agent  activity | Reports are powered by the CelestaCX analytics layer. Some reports may require specific configuration by your administrator. See the [Reports & Analytics](#) section for full field-level reference documentation. 
+| Agent Performance Dashboard | Per-agent handle time, response time, conversations handled, and SLA compliance |
+| Agent Interaction Log | Searchable log of every interaction with timestamps, channel, outcome, and wrap-up codes |
+| Presence & Availability Report | How long each agent spent in each state (Ready, Not Ready, Away) during the shift |
+| Agent Adherence Report | Scheduled vs. actual login and availability times |
+| Agent & Team Leaderboard | Ranked comparison of agents and teams by key metrics |
+| Team Comparison Report | Side-by-side metrics across multiple teams |
+| Queue Productivity Report | Wait times, abandonment rate, and throughput per queue |
+| Interval Performance Report | Metrics broken into time intervals (15-min, 30-min, hourly) for trend analysis |
+| Digital Channel Traffic Analysis | Volume and trends across digital channels |
+| Channel Session Audit Report | Session-level audit trail for compliance and quality reviews |
+| Campaign Performance Report | Outbound campaign results — contact rates, dispositions, agent activity | 
+> Reports are powered by the CelestaCX analytics layer. Some reports may require specific configuration by your administrator. See the [Reports & Analytics](#) section for full field-level reference documentation.
+ 
 ---
  
 #### 7. Workforce Management (WFM)
@@ -193,18 +200,18 @@ Your administrator controls which Unified Admin sections are accessible to your 
 ---
  
 #### Quick Reference: Supervisor Tools
- | Task | Where  to  Do  It |
+ | Task | Where to Do It |
 | --- | --- |
-| See  live  queue  health | Summary  Dashboard |
-| See  individual  agent  states | Team  Stats  Dashboard |
-| View  all  active  conversations | Ongoing  Conversations  Detail |
-| Silently  monitor  a  conversation | Ongoing  Conversations  Detail  →  Monitor  icon |
-| Barge  into  a  conversation | While  in  silent  monitoring  →  Barge-in  button |
-| Respond  to  a  hand  raise | Hand  Raise  notification  →  open  conversation |
-| Force  logout  an  agent | Available  Agents  Detail  Dashboard  →  Force  Logout |
-| Send  a  team  announcement | Team  Announcements  →  New  Announcement |
-| Add  an  agent  to  your  team | Unified  Admin  →  Teams  →  Add  Member |
-| View  agent  performance  reports | Reports  &  Analytics  →  Agent  Performance | 
+| See live queue health | Summary Dashboard |
+| See individual agent states | Team Stats Dashboard |
+| View all active conversations | Ongoing Conversations Detail |
+| Silently monitor a conversation | Ongoing Conversations Detail → Monitor icon |
+| Barge into a conversation | While in silent monitoring → Barge-in button |
+| Respond to a hand raise | Hand Raise notification → open conversation |
+| Force logout an agent | Available Agents Detail Dashboard → Force Logout |
+| Send a team announcement | Team Announcements → New Announcement |
+| Add an agent to your team | Unified Admin → Teams → Add Member |
+| View agent performance reports | Reports & Analytics → Agent Performance | 
 ---
  
 #### What's Next

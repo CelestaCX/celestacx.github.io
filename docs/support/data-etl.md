@@ -1,3 +1,4 @@
+# Data Platform & ETL
 #### Overview
  
 This page explains how interaction data flows through the CelestaCX reporting pipeline — from raw conversation events in MongoDB to the structured SQL tables that power Superset dashboards and historical reports. It covers the ETL architecture, how to set up and verify the pipeline, how to manage data freshness, and how to access the underlying data for custom reporting or external BI integrations.
@@ -17,24 +18,24 @@ CelestaCX uses a two-layer data architecture:
 **The bridge between the two is the CX Analyser ETL pipeline:**
  ```
 MongoDB (Operational)
-  └── Interaction events: conversations, tasks,
-      agent states, wrap-up, queue activity
-        │
-        ▼
-  CX Analyser (ETL Engine)
-  ├── Reporting Connector: reads from MongoDB
-  ├── Reporting Scheduler: runs on a configurable cron schedule
-  │   (default: every 5 minutes)
-  └── Transforms and writes to relational SQL tables
-        │
-        ▼
-  Relational SQL Database (MySQL / MSSQL)
-  └── Structured tables: ConversationActivities,
-      AgentStates, QueueStats, WrapupCodes, etc.
-        │
-        ▼
-  Apache Superset
-  └── Reads SQL tables → renders historical reports and dashboards
+ └── Interaction events: conversations, tasks,
+ agent states, wrap-up, queue activity
+ │
+ ▼
+ CX Analyser (ETL Engine)
+ ├── Reporting Connector: reads from MongoDB
+ ├── Reporting Scheduler: runs on a configurable cron schedule
+ │ (default: every 5 minutes)
+ └── Transforms and writes to relational SQL tables
+ │
+ ▼
+ Relational SQL Database (MySQL / MSSQL)
+ └── Structured tables: ConversationActivities,
+ AgentStates, QueueStats, WrapupCodes, etc.
+ │
+ ▼
+ Apache Superset
+ └── Reads SQL tables → renders historical reports and dashboards
 ``` 
 **Key consequence:** Historical reports only include interactions that have been fully closed **and** processed by the ETL pipeline. The pipeline runs every 5 minutes by default, so there is always a short lag between a conversation closing and it appearing in reports. Very recent data will not be visible until the next ETL cycle completes.
  
@@ -43,11 +44,11 @@ MongoDB (Operational)
 #### 2. Data Platform Components
  | Component | Role | Technology |
 | --- | --- | --- |
-| MongoDB | Primary  operational  data  store  —  all  live  interaction  data | MongoDB  with  Replica  Set  (recommended) |
-| Reporting  Connector | Reads  closed  interaction  data  from  MongoDB  and  passes  it  to  the  scheduler | Java-based  service,  deployed  as  a  Kubernetes  pod |
-| Reporting  Scheduler | Orchestrates  ETL  jobs  on  a  cron  schedule;  transforms  and  writes  data  to  SQL | Java-based  service,  deployed  as  a  Kubernetes  pod |
-| Relational  SQL  Database | Stores  structured  reporting  data  in  query-optimised  tables | MySQL  or  Microsoft  SQL  Server |
-| Apache  Superset | Reads  from  the  SQL  database;  renders  dashboards,  charts,  and  reports  for  users | Python-based,  deployed  as  a  Kubernetes  pod | 
+| MongoDB | Primary operational data store — all live interaction data | MongoDB with Replica Set (recommended) |
+| Reporting Connector | Reads closed interaction data from MongoDB and passes it to the scheduler | Java-based service, deployed as a Kubernetes pod |
+| Reporting Scheduler | Orchestrates ETL jobs on a cron schedule; transforms and writes data to SQL | Java-based service, deployed as a Kubernetes pod |
+| Relational SQL Database | Stores structured reporting data in query-optimised tables | MySQL or Microsoft SQL Server |
+| Apache Superset | Reads from the SQL database; renders dashboards, charts, and reports for users | Python-based, deployed as a Kubernetes pod | 
 ---
  
 #### 3. Setting Up the Data Pipeline
@@ -63,8 +64,8 @@ Before deploying the ETL components, the following must be in place:
 bash
  ```
 kubectl create configmap ef-reporting-connector-keystore-cm \
-  --from-file=mykeystore.jks \
-  -n <tenant-namespace>
+ --from-file=mykeystore.jks \
+ -n <tenant-namespace>
 ``` 
 - **SQL database schema initialised** for each tenant. Navigate to the `pre-deployment/reportingConnector/dbScripts/` directory in the release package and run the creation script for your target DBMS (MySQL or MSSQL). The database user must have permissions to create tables and execute stored procedures.
  
@@ -73,12 +74,12 @@ kubectl create configmap ef-reporting-connector-keystore-cm \
 Create the `reporting-connector.conf` configuration file for each tenant. Key parameters:
  | Parameter | Description |
 | --- | --- |
-| tenant_id | Must  match  the  tenant's  logical  ID  exactly |
-| db_host | IP  address  or  hostname  of  the  SQL  database |
-| db_port | SQL  database  port  (default:  3306  for  MySQL,  1433  for  MSSQL) |
-| db_username | Database  user  with  read/write  access  to  the  reporting  schema |
-| db_password | Database  password |
-| service_url | URL  of  the  historical  reports  service  (e.g.  http://ef-cx-historical-reports-svc:8081  ) | 
+| tenant_id | Must match the tenant's logical ID exactly |
+| db_host | IP address or hostname of the SQL database |
+| db_port | SQL database port (default: 3306 for MySQL, 1433 for MSSQL) |
+| db_username | Database user with read/write access to the reporting schema |
+| db_password | Database password |
+| service_url | URL of the historical reports service (e.g. http://ef-cx-historical-reports-svc:8081 ) | 
 #### Step 3: Deploy the Reporting Scheduler
  
 Once ConfigMaps and databases are ready, deploy via Helm:
@@ -86,10 +87,10 @@ Once ConfigMaps and databases are ready, deploy via Helm:
 bash
  ```
 helm upgrade --install \
-  --namespace <tenant-namespace> \
-  cx-reporting \
-  helm/Reporting \
-  --values=values.yaml
+ --namespace <tenant-namespace> \
+ cx-reporting \
+ helm/Reporting \
+ --values=values.yaml
 ``` 
 #### Step 4: Configure ETL Schedule
  
@@ -98,8 +99,8 @@ In `values.yaml` , configure the ETL cron intervals. The default — and recomme
 yaml
  ```
 reportingScheduler:
-  cronExpression: "0 */5 * * * *"   # Every 5 minutes
-  batchSize: 1000                    # Records per ETL batch
+ cronExpression: "0 */5 * * * *" # Every 5 minutes
+ batchSize: 1000 # Records per ETL batch
 ``` 
 For high-volume deployments processing many thousands of interactions per hour, consider tuning the batch size to prevent individual ETL runs from taking longer than the cron interval.
  
@@ -148,7 +149,7 @@ If Superset is not yet connected to the reporting SQL database:
 2. Select your database type (MySQL or MSSQL)
 3. Enter the connection string:
  ```
-mysql://<user>:<password>@<host>:<port>/<database>
+ mysql://<user>:<password>@<host>:<port>/<database>
 ``` 
 1. Test the connection and save
  
@@ -175,13 +176,13 @@ After importing reports, ensure the correct user groups can access them:
 #### 5. Managing Data Freshness
  
 #### Default ETL Cadence
- | Data  Type | Default  Refresh | Notes |
+ | Data Type | Default Refresh | Notes |
 | --- | --- | --- |
-| Conversation  records | Every  5  minutes | After  conversation  closes  and  ETL  runs |
-| Agent  state  history | Every  5  minutes | Aggregated  from  state  change  events |
-| Queue  statistics | Every  5  minutes | Derived  from  task  and  queue  event  data |
-| Quality  evaluation  scores | On  submission | Written  directly  when  evaluator  submits |
-| Campaign  results | On  call  completion  +  ETL | Combined  with  per-call  outcome  data | 
+| Conversation records | Every 5 minutes | After conversation closes and ETL runs |
+| Agent state history | Every 5 minutes | Aggregated from state change events |
+| Queue statistics | Every 5 minutes | Derived from task and queue event data |
+| Quality evaluation scores | On submission | Written directly when evaluator submits |
+| Campaign results | On call completion + ETL | Combined with per-call outcome data | 
 #### Adjusting ETL Frequency
  
 For operations that need more frequent report updates, reduce the cron interval:
@@ -213,7 +214,7 @@ kubectl logs <reporting-scheduler-pod> -n <tenant-namespace> | grep "ERROR"
 
 # Step 4: Verify the SQL database is reachable from the pod
 kubectl exec -it <reporting-scheduler-pod> -n <tenant-namespace> -- \
-  curl -v telnet://<db-host>:<db-port>
+ curl -v telnet://<db-host>:<db-port>
 
 # Step 5: Restart the scheduler if no errors are visible but jobs have stopped
 kubectl rollout restart deployment/reporting-scheduler -n <tenant-namespace>
@@ -225,16 +226,18 @@ kubectl rollout restart deployment/reporting-scheduler -n <tenant-namespace>
 For teams building custom reports in Superset or integrating CelestaCX data with an external BI tool (Power BI, Tableau, Looker, etc.), the underlying SQL tables are directly accessible.
  
 #### Primary Reporting Tables
- | Table | What  It  Contains |
+ | Table | What It Contains |
 | --- | --- |
-| ConversationActivities | One  record  per  conversation  —  direction,  queue,  channel,  agent,  duration,  disposition,  timestamps |
-| ChannelSessions | One  record  per  channel  session  within  a  conversation |
-| AgentStateLogs | Time-series  record  of  agent  state  transitions  with  timestamps  and  durations |
-| TaskActivities | Individual  task  records  —  routing,  assignment,  acceptance,  closure |
-| QueueStats | Aggregated  queue  metrics  per  interval  —  offered,  answered,  abandoned,  SLA |
-| WrapupCodes | Wrap-up  category  and  reason  code  selections  per  conversation |
-| EvaluationResults | QM  evaluation  scores  by  agent,  form,  section,  and  question |
-| OutboundCampaignCalls | Per-call  records  for  outbound  campaign  activity | For the complete table schema with column definitions and data types, see the **Reporting Database Schema** page. 
+| ConversationActivities | One record per conversation — direction, queue, channel, agent, duration, disposition, timestamps |
+| ChannelSessions | One record per channel session within a conversation |
+| AgentStateLogs | Time-series record of agent state transitions with timestamps and durations |
+| TaskActivities | Individual task records — routing, assignment, acceptance, closure |
+| QueueStats | Aggregated queue metrics per interval — offered, answered, abandoned, SLA |
+| WrapupCodes | Wrap-up category and reason code selections per conversation |
+| EvaluationResults | QM evaluation scores by agent, form, section, and question |
+| OutboundCampaignCalls | Per-call records for outbound campaign activity | 
+> For the complete table schema with column definitions and data types, see the **Reporting Database Schema** page.
+ 
 #### Connecting an External BI Tool
  
 Any BI tool that supports MySQL or MSSQL connections can read directly from the CelestaCX reporting database. Provide your BI team with:
@@ -262,14 +265,14 @@ See [Platform Administration → Data Archival](#) for archival configuration st
 ---
  
 #### Quick Reference: ETL Troubleshooting
- | Symptom | First  Check | Resolution |
+ | Symptom | First Check | Resolution |
 | --- | --- | --- |
-| Reports  show  no  data  for  today | Is  the  scheduler  pod  running? | `kubectl  get  pods |
-| Reports  stopped  updating | Last  successful  ETL  job  time | Check  logs  for  completed  then  ERROR  entries |
-| SQL  connection  errors | Database  reachability | Test  connectivity  from  pod;  verify  credentials  in  ConfigMap |
-| ETL  runs  but  data  missing | MongoDB  connectivity | Check  Reporting  Connector  logs  for  MongoDB  connection  errors |
-| Superset  shows  wrong  timezone | UTC  offset  setting | Configure  UTC  offset  per  report  in  Superset  edit  view |
-| High  database  load | ETL  frequency  too  high | Increase  cron  interval;  check  batch  size | 
+| Reports show no data for today | Is the scheduler pod running? | `kubectl get pods |
+| Reports stopped updating | Last successful ETL job time | Check logs for completed then ERROR entries |
+| SQL connection errors | Database reachability | Test connectivity from pod; verify credentials in ConfigMap |
+| ETL runs but data missing | MongoDB connectivity | Check Reporting Connector logs for MongoDB connection errors |
+| Superset shows wrong timezone | UTC offset setting | Configure UTC offset per report in Superset edit view |
+| High database load | ETL frequency too high | Increase cron interval; check batch size | 
 ---
  
 #### What's Next

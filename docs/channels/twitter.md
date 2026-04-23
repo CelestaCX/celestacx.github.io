@@ -1,3 +1,4 @@
+# Twitter / X
 Here is the **Twitter / X** page:
  
 ---
@@ -14,16 +15,16 @@ CelestaCX connects to Twitter/X via the **Twitter/X API v2** and the **Account A
  ```
 Customer sends Twitter/X
 Direct Message
-        │
-        ▼
+ │
+ ▼
 Twitter/X API v2 / Account Activity API
-        │
-  Webhook delivery
-        │
-        ▼
+ │
+ Webhook delivery
+ │
+ ▼
 CelestaCX Channel Connector
-        │
-        ▼
+ │
+ ▼
 Routing Engine → Queue → Agent Desk
 ``` 
 Public mentions — tweets that tag your account — are surfaced as notifications in CelestaCX but are not routed as full interactions in the same way as Direct Messages. See the section on Mention Monitoring below for details.
@@ -33,19 +34,19 @@ Public mentions — tweets that tag your account — are surfaced as notificatio
 ### Supported Features
  | Feature | Supported |
 | --- | --- |
-| Inbound  Direct  Messages | Yes |
-| Outbound  Direct  Messages | Yes |
-| Text  messages | Yes |
-| Inbound  image  attachments | Yes |
-| Outbound  image  attachments | Yes |
-| GIFs  (inbound) | Yes |
-| Video  (inbound) | Yes |
-| Public  mention  monitoring | Yes  —  notification  only |
-| Replying  to  public  mentions | No  —  via  CelestaCX |
-| Typing  indicators | No |
-| Read  receipts | No |
-| Bot  handoff | Limited |
-| Quick  reply  buttons | Yes  —  via  Direct  Message  CTA | 
+| Inbound Direct Messages | Yes |
+| Outbound Direct Messages | Yes |
+| Text messages | Yes |
+| Inbound image attachments | Yes |
+| Outbound image attachments | Yes |
+| GIFs (inbound) | Yes |
+| Video (inbound) | Yes |
+| Public mention monitoring | Yes — notification only |
+| Replying to public mentions | No — via CelestaCX |
+| Typing indicators | No |
+| Read receipts | No |
+| Bot handoff | Limited |
+| Quick reply buttons | Yes — via Direct Message CTA | 
 ---
  
 ### Prerequisites
@@ -61,10 +62,10 @@ Before configuring Twitter/X in CelestaCX:
 #### Twitter/X API Access Tiers
  
 Twitter/X restructured its API access in 2023. CelestaCX requires access at the **Basic tier or above** to use the Account Activity API for Direct Message webhooks. The Free tier does not include the Account Activity API and is not sufficient for contact centre use.
- | API  Tier | Account  Activity  API | Suitable  for  CelestaCX |
+ | API Tier | Account Activity API | Suitable for CelestaCX |
 | --- | --- | --- |
 | Free | No | No |
-| Basic | Yes | Yes  —  minimum  required |
+| Basic | Yes | Yes — minimum required |
 | Pro | Yes | Yes |
 | Enterprise | Yes | Yes | 
 API tier costs and terms are set by Twitter/X and are subject to change. Review current pricing at [http://developer.twitter.com](http://developer.twitter.com) before committing to a plan.
@@ -93,12 +94,12 @@ API tier costs and terms are set by Twitter/X and are subject to change. Review 
 3. Enter the following credentials:
  | Field | Description |
 | --- | --- |
-| API  Key | From  Twitter/X  Developer  Portal  →  App  →  Keys  and  Tokens |
-| API  Key  Secret | From  Twitter/X  Developer  Portal  →  App  →  Keys  and  Tokens |
-| Access  Token | Generated  for  the  specific  Twitter/X  account  in  the  Developer  Portal |
-| Access  Token  Secret | Generated  alongside  the  Access  Token |
-| Environment  Name | The  Account  Activity  API  environment  name  from  the  Developer  Portal |
-| Webhook  Verify  Token | A  string  you  define,  used  to  verify  the  webhook  handshake | 
+| API Key | From Twitter/X Developer Portal → App → Keys and Tokens |
+| API Key Secret | From Twitter/X Developer Portal → App → Keys and Tokens |
+| Access Token | Generated for the specific Twitter/X account in the Developer Portal |
+| Access Token Secret | Generated alongside the Access Token |
+| Environment Name | The Account Activity API environment name from the Developer Portal |
+| Webhook Verify Token | A string you define, used to verify the webhook handshake | 
 1. Copy the **CelestaCX Webhook URL** and register it in the Twitter/X Developer Portal under **Dev Environments → Account Activity API → [Environment] → Add Webhook URL** .
 2. Twitter/X will send a CRC (Challenge Response Check) to the webhook URL to verify it. CelestaCX handles the CRC response automatically — the verification should complete within a few seconds of registering the URL.
 3. Subscribe to the **Direct Message events** for your account under the Account Activity API environment.
@@ -126,8 +127,10 @@ When a tweet mentioning your account is detected:
 For operations where public mention monitoring is a core workflow — for example, a social media team responding to brand mentions — mentions can be configured to create routable interactions rather than notifications only. This is configured under **Administration → Channels → [Channel] → Mention Handling** :
  | Setting | Behaviour |
 | --- | --- |
-| Notifications  only  (default) | Mentions  appear  as  notifications  in  the  Agent  Desk.  No  queue  routing. |
-| Route  as  interactions | Mentions  create  routable  interactions  that  enter  the  queue  and  are  assigned  to  agents.  Agents  respond  via  Direct  Message  —  public  replies  are  not  sent  through  CelestaCX. | **Note:** Routing mentions as interactions will generate a queue interaction for every public tweet that mentions your account, including automated mentions, retweets, and spam. Review mention volume before enabling this setting and ensure appropriate filtering rules are in place. 
+| Notifications only (default) | Mentions appear as notifications in the Agent Desk. No queue routing. |
+| Route as interactions | Mentions create routable interactions that enter the queue and are assigned to agents. Agents respond via Direct Message — public replies are not sent through CelestaCX. | 
+> **Note:** Routing mentions as interactions will generate a queue interaction for every public tweet that mentions your account, including automated mentions, retweets, and spam. Review mention volume before enabling this setting and ensure appropriate filtering rules are in place.
+ 
 ---
  
 ### Conversation Behaviour
@@ -135,19 +138,19 @@ For operations where public mention monitoring is a core workflow — for exampl
 Twitter/X does not impose a formal conversation window equivalent to Meta's 24-hour policy. Agents can send Direct Messages to customers at any time, provided the customer has previously sent a message to your account or follows your account (Twitter/X DM settings permitting).
  | Capability | Supported |
 | --- | --- |
-| Responding  to  customer-initiated  DMs | Yes |
-| Initiating  DMs  to  customers  who  follow  your  account | Yes  —  if  the  customer's  DM  settings  allow  it |
-| Initiating  DMs  to  customers  who  do  not  follow  your  account | No  —  Twitter/X  DM  restrictions  apply |
-| Sending  public  replies  via  CelestaCX | No | 
+| Responding to customer-initiated DMs | Yes |
+| Initiating DMs to customers who follow your account | Yes — if the customer's DM settings allow it |
+| Initiating DMs to customers who do not follow your account | No — Twitter/X DM restrictions apply |
+| Sending public replies via CelestaCX | No | 
 ---
  
 ### Rich Media Handling
- | Media  Type | Inbound | Outbound | Notes |
+ | Media Type | Inbound | Outbound | Notes |
 | --- | --- | --- | --- |
-| Images  (JPEG,  PNG,  GIF) | Yes | Yes | Max  5  MB  for  images;  GIF  max  15  MB |
-| Video  (MP4) | Yes | No | Inbound  video  displayed  as  attachment |
-| Audio | No | No | Not  supported  via  DM  API |
-| Documents | No | No | Not  supported  via  DM  API | 
+| Images (JPEG, PNG, GIF) | Yes | Yes | Max 5 MB for images; GIF max 15 MB |
+| Video (MP4) | Yes | No | Inbound video displayed as attachment |
+| Audio | No | No | Not supported via DM API |
+| Documents | No | No | Not supported via DM API | 
 Received media is stored with the interaction record and accessible to agents in the interaction panel.
  
 ---
@@ -190,22 +193,24 @@ Twitter/X imposes API rate limits that affect how many messages can be sent and 
 Key limits to be aware of at the Basic tier:
  | Operation | Limit |
 | --- | --- |
-| Direct  Messages  sent  per  day | 1,000  per  account |
-| Account  Activity  API  subscriptions | 1  per  environment  (Basic  tier) |
-| Read  operations  (mention  monitoring) | 10,000  per  month | 
+| Direct Messages sent per day | 1,000 per account |
+| Account Activity API subscriptions | 1 per environment (Basic tier) |
+| Read operations (mention monitoring) | 10,000 per month | 
 If your operation requires higher volumes, upgrade to the Pro or Enterprise API tier. Current limits are published at [**developer.twitter.com/en/docs/twitter-api/rate-limits**](http://developer.twitter.com/en/docs/twitter-api/rate-limits) .
- **Note:** Twitter/X API limits and pricing have changed frequently since 2023. Always verify current limits directly with Twitter/X before planning your deployment around specific volume assumptions. 
+ 
+> **Note:** Twitter/X API limits and pricing have changed frequently since 2023. Always verify current limits directly with Twitter/X before planning your deployment around specific volume assumptions.
+ 
 ---
  
 ### Troubleshooting
- | Symptom | Likely  Cause | Action |
+ | Symptom | Likely Cause | Action |
 | --- | --- | --- |
-| Inbound  DMs  not  appearing  in  CelestaCX | Webhook  not  registered  or  CRC  verification  failed | Re-register  webhook  URL  in  Developer  Portal.  CelestaCX  will  re-attempt  CRC  verification  automatically. |
-| "401  Unauthorised"  error | Access  Token  or  Access  Token  Secret  incorrect  or  expired | Regenerate  Access  Token  and  Secret  in  Developer  Portal  and  update  the  connector. |
-| Webhook  registered  but  no  events  arriving | Account  Activity  API  subscription  not  created | Confirm  the  account  is  subscribed  to  the  environment  under  Developer  Portal  →  Dev  Environments  →  [Environment]  →  Subscriptions. |
-| Mentions  not  appearing | App  does  not  have  sufficient  read  permissions | Verify  App  Permissions  include  Read  access.  Regenerate  tokens  after  changing  permissions. |
-| Rate  limit  errors  appearing  in  logs | Daily  DM  send  limit  reached | Review  outbound  message  volume.  Upgrade  API  tier  if  sustained  high  volumes  are  required. |
-| CRC  challenge  failing | CelestaCX  webhook  URL  not  publicly  reachable | Verify  network  configuration  and  ensure  the  webhook  URL  is  accessible  from  the  public  internet. | 
+| Inbound DMs not appearing in CelestaCX | Webhook not registered or CRC verification failed | Re-register webhook URL in Developer Portal. CelestaCX will re-attempt CRC verification automatically. |
+| "401 Unauthorised" error | Access Token or Access Token Secret incorrect or expired | Regenerate Access Token and Secret in Developer Portal and update the connector. |
+| Webhook registered but no events arriving | Account Activity API subscription not created | Confirm the account is subscribed to the environment under Developer Portal → Dev Environments → [Environment] → Subscriptions. |
+| Mentions not appearing | App does not have sufficient read permissions | Verify App Permissions include Read access. Regenerate tokens after changing permissions. |
+| Rate limit errors appearing in logs | Daily DM send limit reached | Review outbound message volume. Upgrade API tier if sustained high volumes are required. |
+| CRC challenge failing | CelestaCX webhook URL not publicly reachable | Verify network configuration and ensure the webhook URL is accessible from the public internet. | 
 ---
  
 *What's next: Proceed to* [*Telegram*](#) *to configure Telegram bot-based messaging.*

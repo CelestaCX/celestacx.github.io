@@ -1,3 +1,4 @@
+# Key Concepts & Terminology
 ### Key Concepts & Terminology
  
 This page defines the core terms and concepts you'll encounter across CelestaCX and throughout this documentation. If you come across an unfamiliar term anywhere in this knowledge base, this is the place to look it up.

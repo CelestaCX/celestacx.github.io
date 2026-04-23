@@ -1,3 +1,4 @@
+# Admin Setup Guide
 This guide provides a structured, task-oriented walkthrough for administrators setting up CelestaCX for the first time, or performing common ongoing administration tasks. Rather than navigating between reference pages, this guide gives you a sequential path through the platform — from a freshly deployed system to a fully operational contact centre.
  
 Use the reference pages in this section for detailed configuration options. Use this guide to understand the order of operations and how each step connects to the next.
@@ -7,14 +8,14 @@ Use the reference pages in this section for detailed configuration options. Use 
 ### Before You Begin
  
 Confirm the following prerequisites are in place before starting configuration:
- | Prerequisite | Where  to  Check |
+ | Prerequisite | Where to Check |
 | --- | --- |
-| CelestaCX  is  deployed  and  accessible  via  browser | Deployment  &  Infrastructure |
-| You  have  Platform  Admin  or  Tenant  Admin  credentials | Provided  during  deployment |
-| DNS,  SSL  certificates,  and  network  access  are  confirmed | Security  &  Certificates |
-| You  know  the  channels  your  operation  will  use  (voice,  WhatsApp,  email,  etc.) | Internal  requirements |
-| You  have  an  organisational  structure:  teams,  supervisors,  agent  headcount | Internal  requirements |
-| You  have  defined  working  hours  and  public  holiday  schedules | Internal  requirements | 
+| CelestaCX is deployed and accessible via browser | Deployment & Infrastructure |
+| You have Platform Admin or Tenant Admin credentials | Provided during deployment |
+| DNS, SSL certificates, and network access are confirmed | Security & Certificates |
+| You know the channels your operation will use (voice, WhatsApp, email, etc.) | Internal requirements |
+| You have an organisational structure: teams, supervisors, agent headcount | Internal requirements |
+| You have defined working hours and public holiday schedules | Internal requirements | 
 ---
  
 ### Phase 1: Platform & Tenant Setup
@@ -46,7 +47,9 @@ If your organisation uses Single Sign-On, configure it before provisioning other
 3. Follow the SSO configuration steps in [Identity & Access Management](#) .
 4. Test SSO login before enabling it for all users.
 5. Decide on authentication mode: **SSO Only** or **SSO + Local** .
- If SSO is not required, skip to Step 1.4 and use local authentication. 
+ 
+> If SSO is not required, skip to Step 1.4 and use local authentication.
+ 
 #### Step 1.4 — Set Password Policy
  
 1. Navigate to **Administration → Security → Password Policy** .
@@ -148,15 +151,15 @@ See [Forms & Form Builder](#) for full configuration details.
 ### Phase 4: Channel Configuration
  
 Channel configuration connects external communication services to CelestaCX. The steps in this phase depend on which channels your operation will use.
- | Channel | Where  to  Configure |
+ | Channel | Where to Configure |
 | --- | --- |
-| Voice | Voice  &  Video |
+| Voice | Voice & Video |
 | WhatsApp | WhatsApp |
-| Facebook  &  Instagram | Facebook  &  Instagram |
+| Facebook & Instagram | Facebook & Instagram |
 | Email | Email |
-| Webchat  /  Customer  Widget | Customer  Widget |
-| SMS | SMS  (Twilio  &  SMPP) |
-| Other  digital  channels | Channels  &  Integrations | 
+| Webchat / Customer Widget | Customer Widget |
+| SMS | SMS (Twilio & SMPP) |
+| Other digital channels | Channels & Integrations | 
 Work through each channel your operation requires. For each:
  
 1. Follow the channel-specific setup guide in the [Channels & Integrations](#) section.
@@ -219,15 +222,15 @@ Before going live, work through this checklist to confirm the platform is correc
 Once the platform is live, the following are the most frequently performed administration tasks:
  | Task | Where |
 | --- | --- |
-| Add  or  deactivate  a  user | Administration  →  Users |
-| Reset  a  user's  password | Administration  →  Users  →  [User]  →  Reset  Password |
-| Add  an  agent  to  a  team | Administration  →  Teams  →  [Team]  →  Members |
-| Update  queue  capacity  or  wrap-up  time | Administration  →  Queues  →  [Queue]  →  Edit |
-| Add  a  holiday  to  a  calendar | Administration  →  Business  Calendars  →  [Calendar]  →  Holidays |
-| Update  a  routing  rule | Administration  →  Routing  →  Routing  Rules  →  [Rule]  →  Edit |
-| Add  a  new  form  field | Administration  →  Forms  →  Form  Builder  →  [Form]  →  Edit |
-| View  the  audit  log | Platform  Administration  →  Audit  Log |
-| Create  a  new  tenant  (Platform  Admin  only) | Platform  Administration  →  Tenants  →  New  Tenant | 
+| Add or deactivate a user | Administration → Users |
+| Reset a user's password | Administration → Users → [User] → Reset Password |
+| Add an agent to a team | Administration → Teams → [Team] → Members |
+| Update queue capacity or wrap-up time | Administration → Queues → [Queue] → Edit |
+| Add a holiday to a calendar | Administration → Business Calendars → [Calendar] → Holidays |
+| Update a routing rule | Administration → Routing → Routing Rules → [Rule] → Edit |
+| Add a new form field | Administration → Forms → Form Builder → [Form] → Edit |
+| View the audit log | Platform Administration → Audit Log |
+| Create a new tenant (Platform Admin only) | Platform Administration → Tenants → New Tenant | 
 ---
  
 ### Getting Help

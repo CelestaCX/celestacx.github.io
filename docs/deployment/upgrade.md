@@ -1,22 +1,26 @@
+# Upgrade Guides
 This page covers how to upgrade CelestaCX from one version to the next. Whether you are upgrading a single customer deployment or rolling out a new version across multiple tenants, follow the process on this page to ensure a safe, predictable upgrade.
- *(Add a yellow Note Panel macro around the following)*
  
-⚠️ **Always read the version-specific notes** for your upgrade path before starting. Some upgrades include database schema changes, configuration file updates, or component replacements that require additional steps beyond the standard process. 
+> *(Add a yellow Note Panel macro around the following)*
+> ⚠️ **Always read the version-specific notes** for your upgrade path before starting. Some upgrades include database schema changes, configuration file updates, or component replacements that require additional steps beyond the standard process.
+ 
 ---
  
 ### Upgrade Compatibility Matrix
  
 Before upgrading, confirm your upgrade path is supported. Always upgrade one major version at a time — do not skip major versions.
- | From  Version | To  Version | Supported | Notes |
+ | From Version | To Version | Supported | Notes |
 | --- | --- | --- | --- |
-| 4.10.x | 5.0 | ✅  Yes | Includes  APISIX  reconfiguration  —  see  version  notes |
-| 4.9.x | 4.10 | ✅  Yes | Includes  schema  migration  steps |
-| 4.8.x | 4.9 | ✅  Yes | Standard  upgrade |
-| 4.7.x | 4.8 | ✅  Yes | Standard  upgrade |
-| 4.6.x | 4.7 | ✅  Yes | Standard  upgrade |
-| 4.5.x | 4.6 | ✅  Yes | Standard  upgrade |
-| 4.x | 5.0  (direct) | ❌  No | Must  upgrade  to  4.10  first |
-| 3.x | 4.x | ❌  No | Contact  OctaveBytes  —  migration  assistance  required | 💡 **Patch upgrades** (e.g., 4.10.0 → 4.10.1) follow the same process as minor upgrades but carry significantly lower risk. They contain bug fixes only and do not include schema or configuration changes unless explicitly noted in the release notes. 
+| 4.10.x | 5.0 | ✅ Yes | Includes APISIX reconfiguration — see version notes |
+| 4.9.x | 4.10 | ✅ Yes | Includes schema migration steps |
+| 4.8.x | 4.9 | ✅ Yes | Standard upgrade |
+| 4.7.x | 4.8 | ✅ Yes | Standard upgrade |
+| 4.6.x | 4.7 | ✅ Yes | Standard upgrade |
+| 4.5.x | 4.6 | ✅ Yes | Standard upgrade |
+| 4.x | 5.0 (direct) | ❌ No | Must upgrade to 4.10 first |
+| 3.x | 4.x | ❌ No | Contact OctaveBytes — migration assistance required | 
+> 💡 **Patch upgrades** (e.g., 4.10.0 → 4.10.1) follow the same process as minor upgrades but carry significantly lower risk. They contain bug fixes only and do not include schema or configuration changes unless explicitly noted in the release notes.
+ 
 ---
  
 ### Before You Upgrade — Pre-Upgrade Checklist
@@ -66,42 +70,42 @@ This process applies to all upgrades. Follow it in order without skipping steps.
 bash
  ```
 sudo rke2 etcd-snapshot save \
-  --name pre-upgrade-$(date +%Y%m%d-%H%M)
+ --name pre-upgrade-$(date +%Y%m%d-%H%M)
 ``` 
 **Back up MongoDB:**
  
 bash
  ```
 kubectl exec -n celestacx \
-  $(kubectl get pods -n celestacx -l app=mongodb \
-  -o jsonpath='{.items[0].metadata.name}') \
-  -- mongodump \
-  --username admin \
-  --password <MONGODB_PASSWORD> \
-  --out /tmp/mongodb-backup-$(date +%Y%m%d)
+ $(kubectl get pods -n celestacx -l app=mongodb \
+ -o jsonpath='{.items[0].metadata.name}') \
+ -- mongodump \
+ --username admin \
+ --password <MONGODB_PASSWORD> \
+ --out /tmp/mongodb-backup-$(date +%Y%m%d)
 
 # Copy the backup out of the pod
 kubectl cp celestacx/$(kubectl get pods -n celestacx \
-  -l app=mongodb -o jsonpath='{.items[0].metadata.name}'):\
+ -l app=mongodb -o jsonpath='{.items[0].metadata.name}'):\
 /tmp/mongodb-backup-$(date +%Y%m%d) \
-  ./mongodb-backup-$(date +%Y%m%d)
+ ./mongodb-backup-$(date +%Y%m%d)
 ``` 
 **Back up PostgreSQL:**
  
 bash
  ```
 kubectl exec -n celestacx \
-  $(kubectl get pods -n celestacx -l app=postgresql \
-  -o jsonpath='{.items[0].metadata.name}') \
-  -- pg_dumpall \
-  -U postgres > ./postgresql-backup-$(date +%Y%m%d).sql
+ $(kubectl get pods -n celestacx -l app=postgresql \
+ -o jsonpath='{.items[0].metadata.name}') \
+ -- pg_dumpall \
+ -U postgres > ./postgresql-backup-$(date +%Y%m%d).sql
 ``` 
 **Save your current Helm values:**
  
 bash
  ```
 helm get values celestacx -n celestacx > \
-  cx-values-backup-$(date +%Y%m%d).yaml
+ cx-values-backup-$(date +%Y%m%d).yaml
 ``` 
 ---
  
@@ -116,7 +120,7 @@ bash
 helm repo update
 
 helm show values celestacx/celestacx \
-  --version <NEW_CHART_VERSION> > new-default-values.yaml
+ --version <NEW_CHART_VERSION> > new-default-values.yaml
 ``` 
 Compare your current values against the new defaults:
  
@@ -133,11 +137,11 @@ Update your `cx-values.yaml` as needed based on the diff and the version-specifi
 bash
  ```
 helm upgrade celestacx celestacx/celestacx \
-  --namespace celestacx \
-  --values cx-values.yaml \
-  --version <NEW_CHART_VERSION> \
-  --timeout 20m \
-  --wait
+ --namespace celestacx \
+ --values cx-values.yaml \
+ --version <NEW_CHART_VERSION> \
+ --timeout 20m \
+ --wait
 ``` 
 Watch the upgrade progress in a separate terminal:
  
@@ -163,17 +167,17 @@ If a migration job is present, wait for it to complete:
 bash
  ```
 kubectl wait job/cx-schema-migration \
-  --for=condition=complete \
-  --namespace celestacx \
-  --timeout=10m
+ --for=condition=complete \
+ --namespace celestacx \
+ --timeout=10m
 ``` 
 Check the migration logs if the job fails:
  
 bash
  ```
 kubectl logs -n celestacx \
-  $(kubectl get pods -n celestacx -l job-name=cx-schema-migration \
-  -o jsonpath='{.items[0].metadata.name}')
+ $(kubectl get pods -n celestacx -l job-name=cx-schema-migration \
+ -o jsonpath='{.items[0].metadata.name}')
 ``` 
 ---
  
@@ -238,27 +242,28 @@ bash
  ```
 helm list -n celestacx
 kubectl get pods -n celestacx
-``` *(Add a yellow Note Panel macro around the following)*
+``` 
+> *(Add a yellow Note Panel macro around the following)*
+> ⚠️ **Database rollback warning** Helm rollback restores the application to its previous version but does **not** automatically reverse database schema migrations. If the upgrade included schema migrations, you may need to restore your database from the pre-upgrade backup to fully return to the previous state. This is why the pre-upgrade backup step is mandatory — never skip it.
  
-⚠️ **Database rollback warning** Helm rollback restores the application to its previous version but does **not** automatically reverse database schema migrations. If the upgrade included schema migrations, you may need to restore your database from the pre-upgrade backup to fully return to the previous state. This is why the pre-upgrade backup step is mandatory — never skip it. 
 **Restore MongoDB from backup if needed:**
  
 bash
  ```
 # Copy backup back into the pod
 kubectl cp ./mongodb-backup-<DATE> \
-  celestacx/$(kubectl get pods -n celestacx \
-  -l app=mongodb \
-  -o jsonpath='{.items[0].metadata.name}'):/tmp/restore
+ celestacx/$(kubectl get pods -n celestacx \
+ -l app=mongodb \
+ -o jsonpath='{.items[0].metadata.name}'):/tmp/restore
 
 # Run restore
 kubectl exec -n celestacx \
-  $(kubectl get pods -n celestacx -l app=mongodb \
-  -o jsonpath='{.items[0].metadata.name}') \
-  -- mongorestore \
-  --username admin \
-  --password <MONGODB_PASSWORD> \
-  --drop /tmp/restore
+ $(kubectl get pods -n celestacx -l app=mongodb \
+ -o jsonpath='{.items[0].metadata.name}') \
+ -- mongorestore \
+ --username admin \
+ --password <MONGODB_PASSWORD> \
+ --drop /tmp/restore
 ``` 
 ---
  
@@ -276,8 +281,8 @@ bash
  ```
 # Delete all existing APISIX routes
 kubectl -n celestacx delete ar \
-  $(kubectl -n celestacx get ar \
-  -o jsonpath='{.items[*]..metadata.name}')
+ $(kubectl -n celestacx get ar \
+ -o jsonpath='{.items[*]..metadata.name}')
 
 # Uninstall existing APISIX
 helm -n cx-external uninstall apisix
@@ -289,16 +294,16 @@ Then proceed with the standard Helm upgrade — the new APISIX configuration wil
 bash
  ```
 kubectl create job cx-tenant-init \
-  --from=cronjob/cx-tenant-setup \
-  -n celestacx
+ --from=cronjob/cx-tenant-setup \
+ -n celestacx
 ``` 
 1. **Values File Updates** The following new fields are required in `cx-values.yaml` for 5.0:
  
 yaml
  ```
 multitenancy:
-  enabled: false    # Set to true only if enabling CCaaS multi-tenancy
-  defaultTenant: default
+ enabled: false # Set to true only if enabling CCaaS multi-tenancy
+ defaultTenant: default
 ``` 
 1. **MongoDB Upgrade** CelestaCX 5.0 requires MongoDB 8.x. If you are running an older MongoDB version, upgrade it before running the Helm upgrade:
  
@@ -306,9 +311,9 @@ bash
  ```
 # Check current MongoDB version
 kubectl exec -n celestacx \
-  $(kubectl get pods -n celestacx -l app=mongodb \
-  -o jsonpath='{.items[0].metadata.name}') \
-  -- mongod --version
+ $(kubectl get pods -n celestacx -l app=mongodb \
+ -o jsonpath='{.items[0].metadata.name}') \
+ -- mongod --version
 ``` 
 Follow the [MongoDB upgrade guide →](#) in Platform Administration if your version is below 8.x.
  
@@ -327,13 +332,13 @@ Follow the [MongoDB upgrade guide →](#) in Platform Administration if your ver
 yaml
  ```
 formBuilder:
-  revampEnabled: true    # Enables the redesigned Form Builder UI
+ revampEnabled: true # Enables the redesigned Form Builder UI
 
 linkedIn:
-  enabled: false         # Set to true if deploying LinkedIn channel
+ enabled: false # Set to true if deploying LinkedIn channel
 
 qualityManagement:
-  aiAssessments: false   # Set to true to enable AI-driven QM
+ aiAssessments: false # Set to true to enable AI-driven QM
 ``` 
 1. **CX Voice** If you are running CX Voice components, voice has a separate upgrade process. After completing the main CelestaCX upgrade, follow the CX Voice upgrade steps in the [Voice & Video →](#) section of Channels & Integrations.
  
@@ -353,11 +358,11 @@ helm repo update
 
 # Upgrade to the latest patch
 helm upgrade celestacx celestacx/celestacx \
-  --namespace celestacx \
-  --values cx-values.yaml \
-  --version <PATCH_VERSION> \
-  --timeout 15m \
-  --wait
+ --namespace celestacx \
+ --values cx-values.yaml \
+ --version <PATCH_VERSION> \
+ --timeout 15m \
+ --wait
 ```
 
 ---

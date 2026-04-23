@@ -1,3 +1,4 @@
+# Historical Reports
 #### Overview
  
 Historical reports in CelestaCX cover every dimension of closed interaction data — agent performance, queue productivity, conversation outcomes, quality scores, campaign results, IVR journeys, WebRTC sessions, and customer survey responses. All reports are delivered through Apache Superset and are available to supervisors, quality managers, and administrators based on their role.
@@ -5,7 +6,9 @@ Historical reports in CelestaCX cover every dimension of closed interaction data
 Historical reports only include interactions that have been fully closed and processed through the ETL pipeline. By default the pipeline runs every 5 minutes, so very recently closed conversations may not yet appear. For live data, use the [Real-Time Dashboards](#) .
  
 **Accessing reports:** Navigate to the **Analytics & Reporting** module in the CelestaCX interface to open Superset. All reports listed on this page are available there.
- **Timezone note:** Always confirm the UTC offset setting for your reports matches your operational timezone. Reports default to the server timezone. See your administrator if reports show timestamps that do not match your local time. 
+ 
+> **Timezone note:** Always confirm the UTC offset setting for your reports matches your operational timezone. Reports default to the server timezone. See your administrator if reports show timestamps that do not match your local time.
+ 
 ---
  
 #### How to Use This Page
@@ -14,14 +17,14 @@ Reports are organised by category below. For each report you will find what it c
  
 **Category index:**
  
-1. [Conversation & Channel Reports]()
-2. [Agent & Queue Reports]()
-3. [Quality & Evaluation Reports]()
-4. [Outbound & Campaign Reports]()
-5. [IVR Reports]()
-6. [WebRTC Reports]()
-7. [Survey Reports]()
-8. [Common Filters & Settings]()
+1. [Conversation & Channel Reports](#)
+2. [Agent & Queue Reports](#)
+3. [Quality & Evaluation Reports](#)
+4. [Outbound & Campaign Reports](#)
+5. [IVR Reports](#)
+6. [WebRTC Reports](#)
+7. [Survey Reports](#)
+8. [Common Filters & Settings](#)
  
 ---
  
@@ -34,17 +37,17 @@ These reports cover the full customer journey — from the moment an interaction
 The most granular conversation-level report. One row per conversation, containing everything that happened within it.
  | Field | Description |
 | --- | --- |
-| Direction | Inbound  or  Outbound |
-| Queue | Queue  the  conversation  was  routed  through |
-| Start  /  End  Time | Timestamps  for  conversation  open  and  close |
-| Duration | Total  conversation  duration |
-| Agent | Handling  agent  name  and  username |
-| Customer | Customer  identity  and  channel  identifier |
-| Routing  Mode | Push  or  Pull |
-| Transfer  Count | Number  of  transfers  that  occurred |
-| Bot  Participation  % | Percentage  of  the  conversation  handled  by  a  bot |
-| Transcript | Link  to  full  conversation  transcript |
-| Disposition | Final  outcome  (Handled,  Abandoned,  etc.) | 
+| Direction | Inbound or Outbound |
+| Queue | Queue the conversation was routed through |
+| Start / End Time | Timestamps for conversation open and close |
+| Duration | Total conversation duration |
+| Agent | Handling agent name and username |
+| Customer | Customer identity and channel identifier |
+| Routing Mode | Push or Pull |
+| Transfer Count | Number of transfers that occurred |
+| Bot Participation % | Percentage of the conversation handled by a bot |
+| Transcript | Link to full conversation transcript |
+| Disposition | Final outcome (Handled, Abandoned, etc.) | 
 **Best for:** Compliance reviews, escalation investigations, individual case lookups.
  
 ---
@@ -110,9 +113,9 @@ Bar chart showing conversation volume broken down by who resolved it — Agent, 
 Count of conversations grouped by wrap-up category and reason code for the selected period.
  | Field | Description |
 | --- | --- |
-| Wrap-up  Category | The  broad  topic  selected  by  the  agent  (e.g.  Billing,  Technical  Support) |
-| Wrap-up  Reason | The  specific  outcome  selected  (e.g.  Issue  Resolved,  Escalated) |
-| Count | Number  of  conversations  with  this  wrap-up  combination | 
+| Wrap-up Category | The broad topic selected by the agent (e.g. Billing, Technical Support) |
+| Wrap-up Reason | The specific outcome selected (e.g. Issue Resolved, Escalated) |
+| Count | Number of conversations with this wrap-up combination | 
 **Best for:** Identifying the most common contact reasons, tracking resolution patterns, informing training priorities.
  
 ---
@@ -134,15 +137,15 @@ These reports measure how effectively agents are working and how efficiently que
 The most commonly used historical report for supervisors. Shows agent KPIs in 15-minute interval buckets across the selected period.
  | Field | Description | Format |
 | --- | --- | --- |
-| Interval | Time  window  of  the  data  (default  15  minutes) | HH:MM |
-| Calls  Answered | Interactions  successfully  accepted  by  the  agent | Count |
-| Calls  Handled | Interactions  answered  and  completed  with  a  wrap-up | Count |
-| Talk  Time | Total  time  spent  in  active  conversation | HH:MM:SS |
-| Hold  Time | Total  time  the  agent  placed  interactions  on  hold | HH:MM:SS |
-| Ring  Time | Time  the  task  was  offered  before  the  agent  answered  (latency) | HH:MM:SS |
-| Not  Ready  Time | Total  time  spent  in  Not  Ready  state  across  all  reasons | HH:MM:SS |
-| Wait  Time | Total  time  in  Ready  state  waiting  for  a  task | HH:MM:SS |
-| External  Transfer | Count  of  interactions  transferred  to  an  external  party | Count | 
+| Interval | Time window of the data (default 15 minutes) | HH:MM |
+| Calls Answered | Interactions successfully accepted by the agent | Count |
+| Calls Handled | Interactions answered and completed with a wrap-up | Count |
+| Talk Time | Total time spent in active conversation | HH:MM:SS |
+| Hold Time | Total time the agent placed interactions on hold | HH:MM:SS |
+| Ring Time | Time the task was offered before the agent answered (latency) | HH:MM:SS |
+| Not Ready Time | Total time spent in Not Ready state across all reasons | HH:MM:SS |
+| Wait Time | Total time in Ready state waiting for a task | HH:MM:SS |
+| External Transfer | Count of interactions transferred to an external party | Count | 
 **Best for:** Individual agent productivity reviews, coaching preparation, interval-level trend analysis.
  
 ---
@@ -240,13 +243,13 @@ Queue statistics for the current day since midnight — offered, answered, aband
 Wait times, abandonment rates, and interaction throughput per queue over the selected period. One of the most important reports for assessing whether queue configuration and staffing levels are appropriate.
  | Field | Description |
 | --- | --- |
-| Total  Offered | All  interactions  that  entered  the  queue |
-| Answered | Interactions  accepted  by  an  agent |
-| Abandoned | Interactions  where  the  customer  left  before  connecting |
-| Abandoned  % | Abandonment  as  a  percentage  of  total  offered |
-| Average  Wait  Time | Mean  time  in  queue  before  answer  or  abandon |
-| Longest  Wait  Time | The  single  longest  queue  wait  in  the  period |
-| SL% | Percentage  answered  within  the  configured  SL  threshold | 
+| Total Offered | All interactions that entered the queue |
+| Answered | Interactions accepted by an agent |
+| Abandoned | Interactions where the customer left before connecting |
+| Abandoned % | Abandonment as a percentage of total offered |
+| Average Wait Time | Mean time in queue before answer or abandon |
+| Longest Wait Time | The single longest queue wait in the period |
+| SL% | Percentage answered within the configured SL threshold | 
 **Best for:** Queue health assessment, SLA compliance review, staffing gap identification.
  
 ---
@@ -458,23 +461,23 @@ Overview of customer responses to each individual survey question across all int
 #### 8. Common Filters & Settings
  
 All historical reports in Superset support a standard set of filters. Apply these before reading any report to ensure the data is scoped correctly.
- | Filter | What  It  Does |
+ | Filter | What It Does |
 | --- | --- |
-| Date  /  Time  Range | Scope  the  report  to  a  specific  period  —  yesterday,  last  7  days,  last  30  days,  or  a  custom  range |
-| Agent  Name | Filter  to  one  or  more  specific  agents |
-| Team | Filter  to  a  specific  team |
-| Queue  Name | Filter  to  one  or  more  queues |
-| Channel  Type | Filter  by  interaction  channel  (voice,  chat,  email,  WhatsApp,  etc.) |
-| UTC  Offset | Adjust  report  timestamps  to  match  your  local  timezone | 
+| Date / Time Range | Scope the report to a specific period — yesterday, last 7 days, last 30 days, or a custom range |
+| Agent Name | Filter to one or more specific agents |
+| Team | Filter to a specific team |
+| Queue Name | Filter to one or more queues |
+| Channel Type | Filter by interaction channel (voice, chat, email, WhatsApp, etc.) |
+| UTC Offset | Adjust report timestamps to match your local timezone | 
 #### Interval Settings
  
 Some reports (particularly Agent Performance and Interval Performance) allow you to adjust the interval granularity:
- | Interval | Best  For |
+ | Interval | Best For |
 | --- | --- |
-| 15  minutes | Intraday  analysis,  peak  period  identification |
-| 30  minutes | Shift-level  analysis |
-| Hourly | Daily  trend  analysis |
-| Daily | Weekly  and  monthly  trend  reporting | 
+| 15 minutes | Intraday analysis, peak period identification |
+| 30 minutes | Shift-level analysis |
+| Hourly | Daily trend analysis |
+| Daily | Weekly and monthly trend reporting | 
 #### Scheduled Report Delivery
  
 Superset supports scheduled delivery of reports by email. Ask your administrator to configure report schedules and alert thresholds. See the [Unified Admin Reference → Reporting & Analytics](#) for configuration steps.

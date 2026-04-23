@@ -1,14 +1,15 @@
+# Kubernetes Setup
 This page walks you through installing and configuring Kubernetes in preparation for CelestaCX deployment. We'll start with a complete single-node setup that you can use for development, testing, or small production deployments. Then, if you need multi-node or high availability, we'll show you what additional steps are required.
  
 By the end of this page you will have a working Kubernetes cluster ready for CelestaCX installation.
- *(Add a yellow Note Panel macro around the following)*
  
-⚠️ **Prerequisites** Before starting, confirm you have completed [Deployment Planning & Sizing →](#) and have your node(s) ready with:
+> *(Add a yellow Note Panel macro around the following)*
+> ⚠️ **Prerequisites** Before starting, confirm you have completed [Deployment Planning & Sizing →](#) and have your node(s) ready with:
+> - **Ubuntu 20.04+** or **RHEL 8.4+** installed
+> - **Root or sudo access**
+> - **At least 8 vCPU and 32 GB RAM** per node
+> - **SSH access** available
  
-- **Ubuntu 20.04+** or **RHEL 8.4+** installed
-- **Root or sudo access**
-- **At least 8 vCPU and 32 GB RAM** per node
-- **SSH access** available 
 ---
  
 ### Single-Node Kubernetes Setup
@@ -58,9 +59,9 @@ sudo hostnamectl set-hostname celestacx-node
 **Configure your firewall** to allow the following ports:
  | Port | Protocol | Purpose |
 | --- | --- | --- |
-| 6443 | TCP | Kubernetes  API  server |
-| 10250 | TCP | Kubelet  metrics |
-| 80,  443 | TCP | HTTP/HTTPS  for  CelestaCX  web  interfaces | 
+| 6443 | TCP | Kubernetes API server |
+| 10250 | TCP | Kubelet metrics |
+| 80, 443 | TCP | HTTP/HTTPS for CelestaCX web interfaces | 
 For **Ubuntu with UFW:**
  
 bash
@@ -116,9 +117,9 @@ Paste the following content, replacing `celestacx.yourcompany.com` with your act
 yaml
  ```
 tls-san:
-  - celestacx.yourcompany.com    # Your FQDN
-  - 192.168.1.10                 # Your server's IP address
-  - 127.0.0.1
+ - celestacx.yourcompany.com # Your FQDN
+ - 192.168.1.10 # Your server's IP address
+ - 127.0.0.1
 write-kubeconfig-mode: "0644"
 ``` 
 **What this does:**
@@ -195,8 +196,8 @@ kubectl get nodes
 
 You should see output like this:
 ```
-NAME               STATUS   ROLES                       AGE   VERSION
-celestacx-node     Ready    control-plane,etcd,master   2m    v1.28.x
+NAME STATUS ROLES AGE VERSION
+celestacx-node Ready control-plane,etcd,master 2m v1.28.x
 ``` 
 The **STATUS** column should say **Ready** . If it says **NotReady** , wait 1–2 minutes and try again — it takes a moment for the network plugin to initialize.
  
@@ -238,12 +239,14 @@ helm repo update
 bash
  ```
 helm install ingress-nginx ingress-nginx/ingress-nginx \
-  --namespace ingress-nginx \
-  --create-namespace \
-  --set controller.service.type=NodePort \
-  --set controller.service.nodePorts.http=80 \
-  --set controller.service.nodePorts.https=443
-``` 💡 **Why NodePort?** In a single-node setup, we use NodePort to expose services directly on ports 80 and 443. This means your server's IP on ports 80 and 443 will route traffic into Kubernetes. 
+ --namespace ingress-nginx \
+ --create-namespace \
+ --set controller.service.type=NodePort \
+ --set controller.service.nodePorts.http=80 \
+ --set controller.service.nodePorts.https=443
+``` 
+> 💡 **Why NodePort?** In a single-node setup, we use NodePort to expose services directly on ports 80 and 443. This means your server's IP on ports 80 and 443 will route traffic into Kubernetes.
+ 
 **Verify the ingress controller is running:**
  
 bash
@@ -289,6 +292,6 @@ bash
 helm list -A
 ``` 
 Expected: Shows an empty list (or shows ingress-nginx if you ran the above command)
- *(Add a blue Info Panel macro around the following)*
  
-✅ **Your single-node Kubernetes cluster is ready!** All checks passed. You can now proceed to [CelestaCX Installation Guide →](#)
+> *(Add a blue Info Panel macro around the following)*
+> ✅ **Your single-node Kubernetes cluster is ready!** All checks passed. You can now proceed to [CelestaCX Installation Guide →](#)

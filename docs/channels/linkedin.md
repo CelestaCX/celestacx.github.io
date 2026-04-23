@@ -1,3 +1,4 @@
+# LinkedIn
 Here is the **LinkedIn** page:
  
 ---
@@ -14,16 +15,16 @@ CelestaCX connects to LinkedIn via the **LinkedIn Marketing Developer Platform A
  ```
 Customer sends LinkedIn
 Direct Message to Company Page
-        │
-        ▼
+ │
+ ▼
 LinkedIn Marketing Developer Platform API
-        │
-  Webhook delivery
-        │
-        ▼
+ │
+ Webhook delivery
+ │
+ ▼
 CelestaCX Channel Connector
-        │
-        ▼
+ │
+ ▼
 Routing Engine → Queue → Agent Desk
 ``` 
 ---
@@ -31,18 +32,20 @@ Routing Engine → Queue → Agent Desk
 ### Supported Features
  | Feature | Supported |
 | --- | --- |
-| Inbound  Direct  Messages | Yes |
-| Outbound  Direct  Messages | Yes |
-| Text  messages | Yes |
-| Inbound  image  attachments | Yes |
-| Outbound  image  attachments | Yes |
-| File  attachments  (PDF,  DOCX) | Inbound  only |
-| Message  read  receipts | Yes |
-| Typing  indicators | No |
-| Bot  handoff | No |
-| Public  post  comments | No |
-| LinkedIn  InMail | No |
-| Connection  requests | No | **Note:** LinkedIn's API for messaging is more restrictive than Meta's platforms. Only Direct Messages sent to your Company Page are supported. InMail, connection requests, and public post comments are not accessible via the API. 
+| Inbound Direct Messages | Yes |
+| Outbound Direct Messages | Yes |
+| Text messages | Yes |
+| Inbound image attachments | Yes |
+| Outbound image attachments | Yes |
+| File attachments (PDF, DOCX) | Inbound only |
+| Message read receipts | Yes |
+| Typing indicators | No |
+| Bot handoff | No |
+| Public post comments | No |
+| LinkedIn InMail | No |
+| Connection requests | No | 
+> **Note:** LinkedIn's API for messaging is more restrictive than Meta's platforms. Only Direct Messages sent to your Company Page are supported. InMail, connection requests, and public post comments are not accessible via the API.
+ 
 ---
  
 ### Prerequisites
@@ -63,7 +66,9 @@ LinkedIn's messaging API is not publicly open — access requires approval throu
 3. Applying specifically for the **Messaging API** access within that program
 4. Providing LinkedIn with details about your use case and expected message volumes
 5. Waiting for LinkedIn's review — this typically takes 2–4 weeks and is not guaranteed
- **Important:** LinkedIn API access approval is controlled entirely by LinkedIn and is not within the control of CelestaCX or your implementation partner. Begin the application process well in advance of your planned go-live date. If access is not granted, LinkedIn messaging cannot be enabled in CelestaCX. 
+ 
+> **Important:** LinkedIn API access approval is controlled entirely by LinkedIn and is not within the control of CelestaCX or your implementation partner. Begin the application process well in advance of your planned go-live date. If access is not granted, LinkedIn messaging cannot be enabled in CelestaCX.
+ 
 ---
  
 ### Setting Up Your LinkedIn Developer App
@@ -88,10 +93,10 @@ Once your Marketing Developer Platform access is approved:
 3. Enter the following credentials:
  | Field | Description |
 | --- | --- |
-| Client  ID | From  your  LinkedIn  Developer  App  →  Auth  tab |
-| Client  Secret | Generated  in  your  LinkedIn  Developer  App  →  Auth  tab |
-| Company  Page  ID | Your  LinkedIn  Company  Page's  numeric  ID  —  found  in  the  Page  URL  (  linkedin.com/company/[ID]  ) |
-| Webhook  Verify  Token | A  string  you  define,  used  to  verify  the  webhook  handshake | 
+| Client ID | From your LinkedIn Developer App → Auth tab |
+| Client Secret | Generated in your LinkedIn Developer App → Auth tab |
+| Company Page ID | Your LinkedIn Company Page's numeric ID — found in the Page URL ( linkedin.com/company/[ID] ) |
+| Webhook Verify Token | A string you define, used to verify the webhook handshake | 
 1. Click **Authorise with LinkedIn** . You will be redirected to LinkedIn to grant CelestaCX permission to access your Company Page's messages on behalf of your organisation. Complete the OAuth authorisation flow.
 2. Once authorised, copy the **CelestaCX Webhook URL** and register it in your LinkedIn Developer App under **Webhooks** .
 3. Subscribe to the `messageCreate` webhook event.
@@ -108,9 +113,11 @@ LinkedIn uses OAuth 2.0 for authentication. The access token granted during setu
 However, in some cases — particularly if the authorising admin's LinkedIn account loses Super Admin access to the Company Page, or if the Developer App credentials change — the token may become invalid and require manual reauthorisation.
  | Symptom | Cause | Action |
 | --- | --- | --- |
-| Channel  status  shows  "Token  Expired" | OAuth  token  has  expired  and  could  not  be  refreshed | Re-authorise  via  Administration  →  Channels  →  [Channel]  →  Reauthorise |
-| Channel  status  shows  "Authorisation  Revoked" | Admin  revoked  app  access  in  LinkedIn  settings | Re-authorise  the  app  and  verify  the  admin  account  still  has  Page  Super  Admin  access |
-| Messages  arriving  but  replies  not  sending | Insufficient  permissions  granted  during  OAuth | Reauthorise  ensuring  all  requested  permissions  are  accepted | **Best practice:** The LinkedIn account used to authorise CelestaCX should be a dedicated service account with Super Admin access to the Company Page — not a personal LinkedIn account. This prevents the integration from breaking if an individual employee's access changes. 
+| Channel status shows "Token Expired" | OAuth token has expired and could not be refreshed | Re-authorise via Administration → Channels → [Channel] → Reauthorise |
+| Channel status shows "Authorisation Revoked" | Admin revoked app access in LinkedIn settings | Re-authorise the app and verify the admin account still has Page Super Admin access |
+| Messages arriving but replies not sending | Insufficient permissions granted during OAuth | Reauthorise ensuring all requested permissions are accepted | 
+> **Best practice:** The LinkedIn account used to authorise CelestaCX should be a dedicated service account with Super Admin access to the Company Page — not a personal LinkedIn account. This prevents the integration from breaking if an individual employee's access changes.
+ 
 ---
  
 ### Conversation Behaviour
@@ -120,20 +127,20 @@ Unlike WhatsApp and Facebook Messenger, LinkedIn does not impose a formal conver
 LinkedIn does not currently support outbound-initiated conversations via the API — CelestaCX can only respond to messages that the customer has sent first. Proactive outreach via LinkedIn messaging is not supported through the platform integration.
  | Capability | Supported |
 | --- | --- |
-| Responding  to  customer-initiated  messages | Yes |
-| Proactive  outbound  message  initiation | No |
-| Following  up  after  a  conversation  has  gone  quiet | Yes  —  no  window  restriction |
-| Sending  messages  to  any  LinkedIn  user | No  —  only  to  users  who  have  messaged  first | 
+| Responding to customer-initiated messages | Yes |
+| Proactive outbound message initiation | No |
+| Following up after a conversation has gone quiet | Yes — no window restriction |
+| Sending messages to any LinkedIn user | No — only to users who have messaged first | 
 ---
  
 ### Rich Media Handling
- | Media  Type | Inbound | Outbound | Notes |
+ | Media Type | Inbound | Outbound | Notes |
 | --- | --- | --- | --- |
-| Images  (JPEG,  PNG) | Yes | Yes | Max  5  MB  outbound |
-| Documents  (PDF,  DOCX) | Yes | No | Inbound  displayed  as  attachment |
-| Video | No | No | Not  supported  via  Messaging  API |
-| Audio | No | No | Not  supported  via  Messaging  API |
-| GIFs | No | No | Not  supported  via  Messaging  API | 
+| Images (JPEG, PNG) | Yes | Yes | Max 5 MB outbound |
+| Documents (PDF, DOCX) | Yes | No | Inbound displayed as attachment |
+| Video | No | No | Not supported via Messaging API |
+| Audio | No | No | Not supported via Messaging API |
+| GIFs | No | No | Not supported via Messaging API | 
 Received attachments are stored with the interaction record and accessible to agents in the interaction panel.
  
 ---
@@ -143,10 +150,10 @@ Received attachments are stored with the interaction record and accessible to ag
 LinkedIn interactions tend to differ in character from consumer support channels. Consider the following when designing routing for LinkedIn:
  | Consideration | Recommendation |
 | --- | --- |
-| Message  tone  and  complexity | LinkedIn  messages  are  often  more  formal  and  may  require  more  considered  responses.  Avoid  very  high  concurrent  capacity  limits  for  agents  handling  LinkedIn. |
-| Response  time  expectations | B2B  customers  on  LinkedIn  typically  expect  responses  within  a  few  hours  rather  than  minutes.  SLA  targets  and  queue  overflow  settings  should  reflect  this. |
-| Agent  skill  requirements | Consider  routing  LinkedIn  to  agents  with  strong  written  communication  skills  and  familiarity  with  your  B2B  products  or  services. |
-| Volume | LinkedIn  message  volumes  are  typically  lower  than  WhatsApp  or  email.  LinkedIn  may  not  need  a  dedicated  team  —  consider  blending  it  with  email  queues  handled  by  the  same  agents. | 
+| Message tone and complexity | LinkedIn messages are often more formal and may require more considered responses. Avoid very high concurrent capacity limits for agents handling LinkedIn. |
+| Response time expectations | B2B customers on LinkedIn typically expect responses within a few hours rather than minutes. SLA targets and queue overflow settings should reflect this. |
+| Agent skill requirements | Consider routing LinkedIn to agents with strong written communication skills and familiarity with your B2B products or services. |
+| Volume | LinkedIn message volumes are typically lower than WhatsApp or email. LinkedIn may not need a dedicated team — consider blending it with email queues handled by the same agents. | 
 ---
  
 ### Multiple Company Pages
@@ -162,14 +169,14 @@ To add a second LinkedIn Company Page:
 ---
  
 ### Troubleshooting
- | Symptom | Likely  Cause | Action |
+ | Symptom | Likely Cause | Action |
 | --- | --- | --- |
-| Inbound  messages  not  appearing | Webhook  not  registered  or  messageCreate  event  not  subscribed | Verify  webhook  URL  and  event  subscription  in  LinkedIn  Developer  App. |
-| "Invalid  Client"  error | Incorrect  Client  ID  or  Client  Secret | Re-enter  credentials  from  LinkedIn  Developer  App  →  Auth  tab. |
-| Authorisation  fails  during  OAuth  flow | Authorising  account  does  not  have  Super  Admin  access  to  the  Company  Page | Confirm  the  LinkedIn  account  used  has  Super  Admin  role  on  the  Company  Page. |
-| Token  expired  and  auto-refresh  failing | Refresh  token  has  also  expired | Reauthorise  the  channel  manually  via  Administration  →  Channels  →  [Channel]  →  Reauthorise. |
-| Replies  not  delivered  to  customer | Customer  has  withdrawn  connection  or  restricted  messages | No  action  possible  —  LinkedIn  does  not  expose  restriction  status  to  businesses. |
-| App  access  application  taking  longer  than  expected | LinkedIn  review  backlog | Contact  LinkedIn  Developer  Support  for  status  updates.  No  workaround  is  available  while  under  review. | 
+| Inbound messages not appearing | Webhook not registered or messageCreate event not subscribed | Verify webhook URL and event subscription in LinkedIn Developer App. |
+| "Invalid Client" error | Incorrect Client ID or Client Secret | Re-enter credentials from LinkedIn Developer App → Auth tab. |
+| Authorisation fails during OAuth flow | Authorising account does not have Super Admin access to the Company Page | Confirm the LinkedIn account used has Super Admin role on the Company Page. |
+| Token expired and auto-refresh failing | Refresh token has also expired | Reauthorise the channel manually via Administration → Channels → [Channel] → Reauthorise. |
+| Replies not delivered to customer | Customer has withdrawn connection or restricted messages | No action possible — LinkedIn does not expose restriction status to businesses. |
+| App access application taking longer than expected | LinkedIn review backlog | Contact LinkedIn Developer Support for status updates. No workaround is available while under review. | 
 ---
  
 *What's next: Proceed to* [*Twitter / X*](#) *to configure Twitter/X Direct Messages and public mention handling.*

@@ -1,3 +1,4 @@
+# Identity & Access Management
 CelestaCX uses a role-based access control (RBAC) model to manage who can log in to the platform, what they can see, and what actions they can take. This page covers user provisioning, roles and permissions, Single Sign-On (SSO), and multi-tenancy boundaries.
  
 ---
@@ -7,24 +8,26 @@ CelestaCX uses a role-based access control (RBAC) model to manage who can log in
 Before configuring access, it helps to understand how CelestaCX structures identity:
  | Concept | Description |
 | --- | --- |
-| Tenant | A  logically  isolated  environment  within  the  platform.  Each  customer  or  business  unit  operates  within  its  own  tenant.  Users,  queues,  and  configurations  do  not  cross  tenant  boundaries. |
-| User | An  individual  with  a  login  account.  Users  are  always  scoped  to  a  tenant  and  assigned  one  or  more  roles. |
-| Role | A  named  set  of  permissions  that  controls  access  to  features  and  data.  Roles  are  assigned  to  users  at  the  tenant  level. |
-| Service  Account | A  non-human  account  used  by  integrations,  bots,  or  external  systems  to  authenticate  with  the  CelestaCX  API. | 
+| Tenant | A logically isolated environment within the platform. Each customer or business unit operates within its own tenant. Users, queues, and configurations do not cross tenant boundaries. |
+| User | An individual with a login account. Users are always scoped to a tenant and assigned one or more roles. |
+| Role | A named set of permissions that controls access to features and data. Roles are assigned to users at the tenant level. |
+| Service Account | A non-human account used by integrations, bots, or external systems to authenticate with the CelestaCX API. | 
 ---
  
 ### Built-In Roles
  
 CelestaCX ships with a set of pre-defined roles covering the most common operational profiles. These cannot be deleted, but their default permissions can be reviewed by a platform administrator.
- | Role | Typical  User | Access  Summary |
+ | Role | Typical User | Access Summary |
 | --- | --- | --- |
-| Platform  Admin | IT  /  Ops  team | Full  access  across  all  tenants.  Manages  infrastructure-level  settings,  SSO,  and  tenant  provisioning. |
-| Tenant  Admin | Customer  admin | Full  access  within  a  single  tenant.  Manages  users,  channels,  queues,  routing,  and  configuration. |
-| Supervisor | Team  lead | Access  to  live  monitoring,  queue  management,  agent  state  control,  and  reporting  within  assigned  teams. |
-| Agent | Front-line  staff | Access  to  the  Agent  Desk  only.  Cannot  access  admin  or  reporting  areas. |
-| Quality  Manager | QA  team | Access  to  interaction  recordings,  evaluation  forms,  and  quality  reports.  No  routing  or  admin  access. |
-| Evaluator | QA  reviewer | Access  to  assigned  evaluations  only.  Read-only  on  recordings  and  completed  evaluation  forms. |
-| Reporting  User | Analyst  /  manager | Access  to  historical  reports  and  dashboards.  No  operational  or  admin  access. | **Note:** If your operation requires custom roles with granular permission combinations, contact your CelestaCX implementation partner. Custom role configuration is available at the platform-admin level. 
+| Platform Admin | IT / Ops team | Full access across all tenants. Manages infrastructure-level settings, SSO, and tenant provisioning. |
+| Tenant Admin | Customer admin | Full access within a single tenant. Manages users, channels, queues, routing, and configuration. |
+| Supervisor | Team lead | Access to live monitoring, queue management, agent state control, and reporting within assigned teams. |
+| Agent | Front-line staff | Access to the Agent Desk only. Cannot access admin or reporting areas. |
+| Quality Manager | QA team | Access to interaction recordings, evaluation forms, and quality reports. No routing or admin access. |
+| Evaluator | QA reviewer | Access to assigned evaluations only. Read-only on recordings and completed evaluation forms. |
+| Reporting User | Analyst / manager | Access to historical reports and dashboards. No operational or admin access. | 
+> **Note:** If your operation requires custom roles with granular permission combinations, contact your CelestaCX implementation partner. Custom role configuration is available at the platform-admin level.
+ 
 ---
  
 ### User Provisioning
@@ -76,15 +79,17 @@ SSO is configured at the tenant level by a Tenant Admin or Platform Admin.
 5. From your IdP, obtain the **IdP Metadata URL** or upload the IdP metadata XML.
 6. Paste or upload the IdP metadata into CelestaCX and save.
 7. Map the required SAML attributes:
- | SAML  Attribute | CelestaCX  Field | Required |
+ | SAML Attribute | CelestaCX Field | Required |
 | --- | --- | --- |
-| email | User  email  (primary  identifier) | Yes |
-| firstName | User  first  name | Yes |
-| lastName | User  last  name | Yes |
-| role | CelestaCX  role  assignment | Optional | 
+| email | User email (primary identifier) | Yes |
+| firstName | User first name | Yes |
+| lastName | User last name | Yes |
+| role | CelestaCX role assignment | Optional | 
 1. Test the configuration using the **Test SSO Login** button before enabling it for all users.
 2. Set the authentication mode to **SSO Only** or **SSO + Local** depending on your policy.
- **Important:** If SSO is set to **SSO Only** , local password login is disabled for all tenant users. Ensure at least one break-glass admin account is configured before switching to SSO Only mode. 
+ 
+> **Important:** If SSO is set to **SSO Only** , local password login is disabled for all tenant users. Ensure at least one break-glass admin account is configured before switching to SSO Only mode.
+ 
 #### SSO and Just-in-Time (JIT) Provisioning
  
 When JIT provisioning is enabled, users who authenticate via SSO for the first time are automatically created in CelestaCX without needing to be pre-provisioned. The role assigned to JIT-provisioned users defaults to **Agent** unless a role mapping is configured via SAML attributes.

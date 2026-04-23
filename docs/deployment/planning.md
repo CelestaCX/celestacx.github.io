@@ -1,3 +1,4 @@
+# Deployment Planning & Sizing
 Before deploying CelestaCX, you need to make three key decisions:
  
 1. **What deployment topology do you need?** — Single node, multi-node, or high availability
@@ -11,11 +12,11 @@ This page walks you through each of these decisions so you arrive at the [Kubern
 ### Step 1 — Choose Your Deployment Topology
  
 CelestaCX supports three deployment topologies. Choose the one that matches your environment and reliability requirements.
- | Topology | Description | When  to  Use |
+ | Topology | Description | When to Use |
 | --- | --- | --- |
-| Single  Node | All  CelestaCX  services  run  on  one  machine | Development,  testing,  or  proof-of-concept  (POC)  only.  Not  suitable  for  production. |
-| Multi-Node | Services  distributed  across  multiple  Kubernetes  nodes | Production  deployments  with  moderate  load  and  no  strict  uptime  SLA |
-| High  Availability  (HA) | Multiple  control  plane  nodes,  external  load  balancer,  replicated  storage | Production  deployments  requiring  resilience,  failover,  and  zero-downtime  maintenance | ⚠️ **Single node deployments are not recommended for production use.** If a single node goes offline, the entire CelestaCX platform becomes unavailable. Use multi-node or HA for any live customer-facing deployment. 
+| Single Node | All CelestaCX services run on one machine | Development, testing, or proof-of-concept (POC) only. Not suitable for production. |
+| Multi-Node | Services distributed across multiple Kubernetes nodes | Production deployments with moderate load and no strict uptime SLA |
+| High Availability (HA) | Multiple control plane nodes, external load balancer, replicated storage | Production deployments requiring resilience, failover, and zero-downtime maintenance | ⚠️ **Single node deployments are not recommended for production use.** If a single node goes offline, the entire CelestaCX platform becomes unavailable. Use multi-node or HA for any live customer-facing deployment. 
 ---
  
 ### Step 2 — Estimate Your Hardware Requirements
@@ -37,11 +38,11 @@ Use the sizing tiers below as a starting point. If your requirements fall betwee
 *Suitable for: Up to 100 concurrent agents, digital channels only (no voice)*
  | Component | Specification |
 | --- | --- |
-| Nodes | 3  worker  nodes |
-| CPU  per  node | 8  vCPU |
-| RAM  per  node | 32  GB |
-| Storage  per  node | 200  GB  SSD |
-| Network | 1  Gbps | 
+| Nodes | 3 worker nodes |
+| CPU per node | 8 vCPU |
+| RAM per node | 32 GB |
+| Storage per node | 200 GB SSD |
+| Network | 1 Gbps | 
 ---
  
 #### Tier 2 — Medium Deployment
@@ -49,12 +50,12 @@ Use the sizing tiers below as a starting point. If your requirements fall betwee
 *Suitable for: 100–500 concurrent agents, mixed digital and voice channels*
  | Component | Specification |
 | --- | --- |
-| Nodes | 5  worker  nodes |
-| CPU  per  node | 16  vCPU |
-| RAM  per  node | 64  GB |
-| Storage  per  node | 500  GB  SSD |
-| Network | 1  Gbps |
-| Separate  Media  Server  node | 8  vCPU  /  16  GB  RAM  (for  voice/video) | 
+| Nodes | 5 worker nodes |
+| CPU per node | 16 vCPU |
+| RAM per node | 64 GB |
+| Storage per node | 500 GB SSD |
+| Network | 1 Gbps |
+| Separate Media Server node | 8 vCPU / 16 GB RAM (for voice/video) | 
 ---
  
 #### Tier 3 — Large Deployment
@@ -62,13 +63,13 @@ Use the sizing tiers below as a starting point. If your requirements fall betwee
 *Suitable for: 500–1000+ concurrent agents, high-volume voice and digital*
  | Component | Specification |
 | --- | --- |
-| Nodes | 8+  worker  nodes |
-| CPU  per  node | 32  vCPU |
-| RAM  per  node | 128  GB |
-| Storage  per  node | 1  TB  SSD |
-| Network | 10  Gbps |
-| Separate  Media  Server  node | 16  vCPU  /  32  GB  RAM  (for  voice/video) |
-| Separate  Rasa  node  (if  using  AI  bots) | 4  vCPU  /  16  GB  RAM | 
+| Nodes | 8+ worker nodes |
+| CPU per node | 32 vCPU |
+| RAM per node | 128 GB |
+| Storage per node | 1 TB SSD |
+| Network | 10 Gbps |
+| Separate Media Server node | 16 vCPU / 32 GB RAM (for voice/video) |
+| Separate Rasa node (if using AI bots) | 4 vCPU / 16 GB RAM | 
 ---
  
 #### Additional Sizing Notes
@@ -88,24 +89,28 @@ Use the sizing tiers below as a starting point. If your requirements fall betwee
 If you are deploying with High Availability, you need additional infrastructure on top of the worker nodes.
  | Component | Requirement |
 | --- | --- |
-| Control  plane  nodes | Minimum  3  nodes  (odd  number  for  quorum) |
-| CPU  per  control  plane  node | 4  vCPU |
-| RAM  per  control  plane  node | 8  GB |
-| External  Load  Balancer | NGINX  or  HAProxy  —  separate  from  the  cluster |
-| Shared  storage | Required  for  replicated  block  volumes  across  nodes | 👉 For full HA setup instructions, see [High Availability →](#) 
+| Control plane nodes | Minimum 3 nodes (odd number for quorum) |
+| CPU per control plane node | 4 vCPU |
+| RAM per control plane node | 8 GB |
+| External Load Balancer | NGINX or HAProxy — separate from the cluster |
+| Shared storage | Required for replicated block volumes across nodes | 
+> 👉 For full HA setup instructions, see [High Availability →](#)
+ 
 ---
  
 ### Step 4 — Choose Your Kubernetes Distribution
  
 CelestaCX supports several Kubernetes distributions. The table below helps you choose based on your environment.
- | Distribution | Footprint | Recommended  For |
+ | Distribution | Footprint | Recommended For |
 | --- | --- | --- |
-| RKE2 | Medium | Production  deployments  —  recommended  for  enterprise  and  partner  use |
-| K3s | Small | Lightweight  production  or  resource-constrained  environments |
-| K0s | Small | Small  deployments  and  edge  environments |
-| MicroK8s | Small | Development  and  testing |
-| Rancher | Large | Enterprises  already  using  Rancher  for  multi-cluster  management |
-| KIND | Very  small | Local  development  and  CI/CD  pipelines  only | 💡 **OctaveBytes recommendation:** Use **RKE2** for all production customer deployments. It is the most thoroughly tested distribution with CelestaCX and supports HA, air-gap installation, and enterprise security features out of the box. 
+| RKE2 | Medium | Production deployments — recommended for enterprise and partner use |
+| K3s | Small | Lightweight production or resource-constrained environments |
+| K0s | Small | Small deployments and edge environments |
+| MicroK8s | Small | Development and testing |
+| Rancher | Large | Enterprises already using Rancher for multi-cluster management |
+| KIND | Very small | Local development and CI/CD pipelines only | 
+> 💡 **OctaveBytes recommendation:** Use **RKE2** for all production customer deployments. It is the most thoroughly tested distribution with CelestaCX and supports HA, air-gap installation, and enterprise security features out of the box.
+ 
 ---
  
 ### Step 5 — Pre-Deployment Checklist
@@ -146,14 +151,15 @@ Before moving to the Kubernetes setup and installation steps, confirm the follow
 ### Deployment Decision Summary
  
 Once you have worked through the steps above, you should be able to fill in this summary before proceeding:
- | Decision | Your  Choice |
+ | Decision | Your Choice |
 | --- | --- |
-| Deployment  topology | (Single  Node  /  Multi-Node  /  HA) |
-| Kubernetes  distribution | (RKE2  /  K3s  /  K0s  /  other) |
-| Sizing  tier | (Tier  1  /  Tier  2  /  Tier  3) |
-| Number  of  worker  nodes | (e.g.,  3) |
-| CPU  per  node | (e.g.,  16  vCPU) |
-| RAM  per  node | (e.g.,  64  GB) |
-| Dedicated  Media  Server  node? | (Yes  /  No) |
-| Dedicated  Rasa  node? | (Yes  /  No) |
-| FQDN | (e.g.,  )  yourcompany.com | 👉 Once this table is filled in, you're ready to proceed to [Kubernetes Setup →](#)
+| Deployment topology | (Single Node / Multi-Node / HA) |
+| Kubernetes distribution | (RKE2 / K3s / K0s / other) |
+| Sizing tier | (Tier 1 / Tier 2 / Tier 3) |
+| Number of worker nodes | (e.g., 3) |
+| CPU per node | (e.g., 16 vCPU) |
+| RAM per node | (e.g., 64 GB) |
+| Dedicated Media Server node? | (Yes / No) |
+| Dedicated Rasa node? | (Yes / No) |
+| FQDN | (e.g., ) yourcompany.com | 
+> 👉 Once this table is filled in, you're ready to proceed to [Kubernetes Setup →](#)

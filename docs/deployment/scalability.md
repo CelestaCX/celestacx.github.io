@@ -1,4 +1,5 @@
-This page covers how to scale CelestaCX to handle growing contact center workloads  more agents, higher conversation volumes, additional channels, and increased data processing demands. Whether you're expanding an existing deployment or planning for future growth, this guide helps you scale efficiently.
+# Scalability
+This page covers how to scale CelestaCX to handle growing contact center workloads more agents, higher conversation volumes, additional channels, and increased data processing demands. Whether you're expanding an existing deployment or planning for future growth, this guide helps you scale efficiently.
  
 ---
  
@@ -9,18 +10,20 @@ CelestaCX is designed to scale in two dimensions:
 **Vertical Scaling (Scale Up)** Adding more CPU, RAM, or storage to existing nodes. Useful for quick capacity increases but limited by hardware maximums.
  
 **Horizontal Scaling (Scale Out)** Adding more nodes to your Kubernetes cluster. This is the recommended long-term scaling approach — Kubernetes distributes workloads automatically across available nodes.
- 💡 **CelestaCX is built for horizontal scaling.** The microservices architecture allows you to add capacity by simply adding nodes — no application reconfiguration required. 
+ 
+> 💡 **CelestaCX is built for horizontal scaling.** The microservices architecture allows you to add capacity by simply adding nodes — no application reconfiguration required.
+ 
 ---
  
 ### When to Scale
  
 Monitor these indicators to know when scaling is needed:
- | Indicator | Warning  Threshold | Action  Required |
+ | Indicator | Warning Threshold | Action Required |
 | --- | --- | --- |
-| CPU  utilization  on  worker  nodes | >75%  average  over  1  hour | Add  worker  nodes  or  increase  node  CPU |
-| Memory  utilization  on  worker  nodes | >80%  average  over  1  hour | Add  worker  nodes  or  increase  node  RAM |
-| Agent  count  approaching  license  limit | >85%  of  licensed  agents | Request  license  expansion  from  OctaveBytes |
-| Database  response  times  degrading | Query  times  >500ms | Scale  database  resources  or  add  replicas | 
+| CPU utilization on worker nodes | >75% average over 1 hour | Add worker nodes or increase node CPU |
+| Memory utilization on worker nodes | >80% average over 1 hour | Add worker nodes or increase node RAM |
+| Agent count approaching license limit | >85% of licensed agents | Request license expansion from OctaveBytes |
+| Database response times degrading | Query times >500ms | Scale database resources or add replicas | 
 ### Scaling Strategy by Component
  
 Different CelestaCX components scale differently. Here's how to scale each layer.
@@ -47,8 +50,8 @@ bash
  ```
 # Example: Scale Agent Manager from 2 to 4 replicas
 kubectl scale deployment agent-manager \
-  --replicas=4 \
-  --namespace celestacx
+ --replicas=4 \
+ --namespace celestacx
 ``` 
 **Automate scaling with Horizontal Pod Autoscaler (HPA):**
  
@@ -56,10 +59,10 @@ bash
  ```
 # Auto-scale Agent Manager based on CPU usage
 kubectl autoscale deployment agent-manager \
-  --namespace celestacx \
-  --min=2 \
-  --max=8 \
-  --cpu-percent=70
+ --namespace celestacx \
+ --min=2 \
+ --max=8 \
+ --cpu-percent=70
 ``` 
 This tells Kubernetes to automatically add replicas when CPU exceeds 70%, up to a maximum of 8 replicas.
  
@@ -80,9 +83,9 @@ A MongoDB replica set runs multiple copies of the database across multiple nodes
 bash
  ```
 kubectl exec -n celestacx \
-  $(kubectl get pods -n celestacx -l app=mongodb \
-  -o jsonpath='{.items[0].metadata.name}') \
-  -- mongo --eval "rs.status()"
+ $(kubectl get pods -n celestacx -l app=mongodb \
+ -o jsonpath='{.items[0].metadata.name}') \
+ -- mongo --eval "rs.status()"
 ``` 
 **Convert from single-node to replica set:**
  
@@ -103,10 +106,12 @@ bash
 kubectl edit pvc mongodb-data -n celestacx
 
 # Change this line:
-#   storage: 50Gi
+# storage: 50Gi
 # To:
-#   storage: 100Gi
-``` ⚠️ **Storage expansion requires your storage class to support volume expansion.** Check with `kubectl get storageclass` — look for `ALLOWVOLUMEEXPANSION` set to `true` . 
+# storage: 100Gi
+``` 
+> ⚠️ **Storage expansion requires your storage class to support volume expansion.** Check with `kubectl get storageclass` — look for `ALLOWVOLUMEEXPANSION` set to `true` .
+ 
 **PostgreSQL (Reporting Data)**
  
 PostgreSQL stores historical reporting data — conversation summaries, agent performance metrics, and QM evaluations.
@@ -122,19 +127,19 @@ Update your `cx-values.yaml` :
 yaml
  ```
 postgresql:
-  enabled: true
-  replication:
-    enabled: true
-    numSynchronousReplicas: 1
-    readReplicas: 2    # Add 2 read replicas
+ enabled: true
+ replication:
+ enabled: true
+ numSynchronousReplicas: 1
+ readReplicas: 2 # Add 2 read replicas
 ``` 
 Apply the change:
  
 bash
  ```
 helm upgrade celestacx celestacx/celestacx \
-  --namespace celestacx \
-  --values cx-values.yaml
+ --namespace celestacx \
+ --values cx-values.yaml
 ``` 
 **When to add replicas:**
  
@@ -154,12 +159,12 @@ yaml
  ```
 # In cx-values.yaml
 redis:
-  master:
-    resources:
-      requests:
-        memory: 4Gi    # Increase from default 2Gi
-      limits:
-        memory: 8Gi
+ master:
+ resources:
+ requests:
+ memory: 4Gi # Increase from default 2Gi
+ limits:
+ memory: 8Gi
 ``` 
 **Option 2 — Redis Cluster** (for very large deployments):
  
@@ -187,10 +192,10 @@ Update `cx-values.yaml` :
 yaml
  ```
 mediaServer:
-  enabled: true
-  nodeSelector:
-    workload: media-server
-  replicas: 2    # Run 2 instances across labeled nodes
+ enabled: true
+ nodeSelector:
+ workload: media-server
+ replicas: 2 # Run 2 instances across labeled nodes
 ``` 
 **Step 2 — Scale based on concurrent calls**
  
@@ -210,8 +215,8 @@ kubectl top pod -n celestacx -l app=media-server
 bash
  ```
 kubectl scale deployment media-server \
-  --replicas=5 \
-  --namespace celestacx
+ --replicas=5 \
+ --namespace celestacx
 ``` 
 #### Layer 4 — Data Platform (ETL Pipelines)
  
@@ -225,16 +230,16 @@ yaml
  ```
 # In cx-values.yaml
 dataPlatform:
-  workers: 4    # Increase from default 2
+ workers: 4 # Increase from default 2
 ``` 
 **Monitor ETL lag:**
  
 bash
  ```
 kubectl logs -n celestacx \
-  $(kubectl get pods -n celestacx -l app=data-platform \
-  -o jsonpath='{.items[0].metadata.name}') \
-  | grep "lag"
+ $(kubectl get pods -n celestacx -l app=data-platform \
+ -o jsonpath='{.items[0].metadata.name}') \
+ | grep "lag"
 ``` 
 ---
  
@@ -267,7 +272,7 @@ sudo nano /etc/rancher/rke2/config.yaml
 ``` 
 yaml
  ```
-server: https://192.168.1.100:9345    # Load balancer IP (HA) or first control plane IP
+server: https://192.168.1.100:9345 # Load balancer IP (HA) or first control plane IP
 token: <CLUSTER_TOKEN>
 ``` 
 bash
@@ -326,13 +331,13 @@ yaml
  ```
 # In cx-values.yaml
 agentManager:
-  resources:
-    requests:
-      cpu: 500m        # Minimum guaranteed
-      memory: 1Gi
-    limits:
-      cpu: 2000m       # Maximum allowed
-      memory: 4Gi
+ resources:
+ requests:
+ cpu: 500m # Minimum guaranteed
+ memory: 1Gi
+ limits:
+ cpu: 2000m # Maximum allowed
+ memory: 4Gi
 ``` 
 ---
  
@@ -345,16 +350,16 @@ Ensure replicas of the same service don't all run on the same node. If that node
 yaml
  ```
 agentManager:
-  affinity:
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-          - key: app
-            operator: In
-            values:
-            - agent-manager
-        topologyKey: kubernetes.io/hostname
+ affinity:
+ podAntiAffinity:
+ requiredDuringSchedulingIgnoredDuringExecution:
+ - labelSelector:
+ matchExpressions:
+ - key: app
+ operator: In
+ values:
+ - agent-manager
+ topologyKey: kubernetes.io/hostname
 ``` 
 This forces each Agent Manager replica onto a different physical node.
  
@@ -369,18 +374,18 @@ Each CelestaCX service maintains a connection pool to MongoDB and PostgreSQL. Tu
 yaml
  ```
 mongodb:
-  connectionPool:
-    minSize: 10
-    maxSize: 50
+ connectionPool:
+ minSize: 10
+ maxSize: 50
 ``` 
 **For high-load deployments (500+ agents):**
  
 yaml
  ```
 mongodb:
-  connectionPool:
-    minSize: 20
-    maxSize: 100
+ connectionPool:
+ minSize: 20
+ maxSize: 100
 ``` 
 ---
  
@@ -391,7 +396,7 @@ Reusing Redis connections improves performance for agent state updates.
 yaml
  ```
 redis:
-  persistentConnections: true
+ persistentConnections: true
 ``` 
 ---
  
@@ -402,22 +407,22 @@ ActiveMQ is the message broker between CelestaCX services. For high conversation
 yaml
  ```
 activemq:
-  resources:
-    memory: 4Gi    # Default is 2Gi
-  consumers: 8     # Default is 4
+ resources:
+ memory: 4Gi # Default is 2Gi
+ consumers: 8 # Default is 4
 ``` 
 ---
  
 ### Capacity Planning Guidelines
  
 Use this table to plan node requirements based on your target agent count.
- | Target  Agents | Worker  Nodes | Control  Plane  Nodes | Total  vCPU | Total  RAM | MongoDB  Storage |
+ | Target Agents | Worker Nodes | Control Plane Nodes | Total vCPU | Total RAM | MongoDB Storage |
 | --- | --- | --- | --- | --- | --- |
-| 50  agents | 2 | 1  (single-node) | 8 | 16  GB | 100  GB |
-| 100  agents | 3 | 3  (HA  recommended) | 16 | 24  GB | 250  GB |
-| 250  agents | 5 | 3 | 16 | 32  GB | 250  GB |
-| 500  agents | 8 | 3 | 24 | 42  GB | 500  GB |
-| 1000  agents | 12 | 5 | 32 | 64  GB | 1  TB | 
+| 50 agents | 2 | 1 (single-node) | 8 | 16 GB | 100 GB |
+| 100 agents | 3 | 3 (HA recommended) | 16 | 24 GB | 250 GB |
+| 250 agents | 5 | 3 | 16 | 32 GB | 250 GB |
+| 500 agents | 8 | 3 | 24 | 42 GB | 500 GB |
+| 1000 agents | 12 | 5 | 32 | 64 GB | 1 TB | 
 **Add 20% buffer** to all numbers to handle peak loads and future growth.
  
 **Voice channel multiplier:** If running voice/video, add 1 dedicated media server node per 100 concurrent calls.
@@ -427,27 +432,27 @@ Use this table to plan node requirements based on your target agent count.
 ### Scaling Checklist
  
 Before scaling, run through this checklist:
- *(Add a blue Info Panel macro around the following)*
  
-**Pre-Scaling Checklist:**
+> *(Add a blue Info Panel macro around the following)*
+> **Pre-Scaling Checklist:**
+> - Monitored current resource usage (CPU, RAM, disk) for at least 1 week
+> - Identified the bottleneck (compute, memory, database, network)
+> - Reviewed current pod replica counts and distribution
+> - Checked database performance and slow query logs
+> - Verified license capacity for additional agents
+> - Tested scaling in a non-production environment first
+> - Scheduled scaling during a maintenance window
+> - Backed up etcd and databases before making changes
+> - Documented current configuration for rollback
  
-- Monitored current resource usage (CPU, RAM, disk) for at least 1 week
-- Identified the bottleneck (compute, memory, database, network)
-- Reviewed current pod replica counts and distribution
-- Checked database performance and slow query logs
-- Verified license capacity for additional agents
-- Tested scaling in a non-production environment first
-- Scheduled scaling during a maintenance window
-- Backed up etcd and databases before making changes
-- Documented current configuration for rollback 
 ---
  
 ### Troubleshooting Scaling Issues
- | Problem | Likely  Cause | Solution |
+ | Problem | Likely Cause | Solution |
 | --- | --- | --- |
-| New  pods  stuck  in  Pending  after  scaling | Insufficient  node  resources | Check  kubectl  describe  pod  —  add  more  worker  nodes  or  increase  node  size |
-| Pods  evenly  distributed  but  performance  still  poor | Database  bottleneck | Check  MongoDB/PostgreSQL  CPU  and  slow  queries  —  scale  databases |
-| Scaling  HPA  doesn't  trigger | Metrics  server  not  installed | Install  metrics-server:  kubectl  apply  -f  https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml |
-| New  worker  node  joins  but  no  pods  schedule  onto  it | Node  has  taints  or  labels  preventing  scheduling | Check  kubectl  describe  node  for  taints  —  remove  with  kubectl  taint  node  <name>  <taint>- |
-| Agent  Manager  scaled  but  agents  still  experience  delays | Session  affinity  breaking  connections | Enable  sticky  sessions  in  NGINX  ingress  configuration | 
+| New pods stuck in Pending after scaling | Insufficient node resources | Check kubectl describe pod — add more worker nodes or increase node size |
+| Pods evenly distributed but performance still poor | Database bottleneck | Check MongoDB/PostgreSQL CPU and slow queries — scale databases |
+| Scaling HPA doesn't trigger | Metrics server not installed | Install metrics-server: kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml |
+| New worker node joins but no pods schedule onto it | Node has taints or labels preventing scheduling | Check kubectl describe node for taints — remove with kubectl taint node <name> <taint>- |
+| Agent Manager scaled but agents still experience delays | Session affinity breaking connections | Enable sticky sessions in NGINX ingress configuration | 
 ---

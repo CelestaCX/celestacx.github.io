@@ -1,8 +1,9 @@
+# Agent Guide
 #### Overview
  
 This guide is written for contact centre agents — the people who handle conversations with customers every day. It covers everything you need to use CelestaCX Agent Desk effectively: logging in, managing your availability, handling conversations across voice and digital channels, collaborating with colleagues, and wrapping up interactions correctly.
  
-If you are new to CelestaCX, start with the [Getting Started]() section below and work through it in order before exploring the rest of the guide.
+If you are new to CelestaCX, start with the [Getting Started](#) section below and work through it in order before exploring the rest of the guide.
  
 ---
  
@@ -18,7 +19,9 @@ Before you can receive any conversations, two things need to be in place: you mu
 4. Enable the channel toggles for each channel type you handle (e.g., Chat, Voice, Email). Each toggle turns green when active.
  
 You are now available to receive routed conversations.
- **Browser requirements:** CelestaCX Agent Desk runs in modern browsers. Enable browser notifications when prompted — these are used to alert you to incoming conversations when you are on another tab. 
+ 
+> **Browser requirements:** CelestaCX Agent Desk runs in modern browsers. Enable browser notifications when prompted — these are used to alert you to incoming conversations when you are on another tab.
+ 
 ---
  
 #### 2. Managing Your Availability
@@ -26,24 +29,26 @@ You are now available to receive routed conversations.
 Your availability is controlled through a two-level state system: a **Global State** that applies across all channels, and individual **Channel Category States** that let you fine-tune availability per channel type.
  
 #### Global States
- | State | What  It  Means |
+ | State | What It Means |
 | --- | --- |
-| Not  Ready | Default  after  login.  No  conversations  are  routed  to  you.  Select  a  reason  code  if  prompted. |
-| Ready | You  are  available.  Conversations  may  be  routed  depending  on  your  channel  toggles. |
-| Logout | You  are  signing  out.  Active  conversations  are  re-routed  before  the  logout  completes. |
-| Unknown | Rare  failover  state.  Recover  by  switching  to  Ready  or  Not  Ready. | 
+| Not Ready | Default after login. No conversations are routed to you. Select a reason code if prompted. |
+| Ready | You are available. Conversations may be routed depending on your channel toggles. |
+| Logout | You are signing out. Active conversations are re-routed before the logout completes. |
+| Unknown | Rare failover state. Recover by switching to Ready or Not Ready. | 
 A **state timer** on the Agent Desk shows how long you have been in your current global state. It resets every time your global state changes.
  
 #### Channel Category States
  
 Within each channel (Chat, Voice, Email), you will see a toggle that controls availability for that specific channel type independently of your global state.
- | Toggle  Colour | State | Meaning |
+ | Toggle Colour | State | Meaning |
 | --- | --- | --- |
-| Grey  (off) | Not  Ready | Not  receiving  conversations  on  this  channel |
-| Green  (on) | Ready | Available  to  receive  conversations  on  this  channel |
-| Orange  (on) | Active | Currently  handling  one  or  more  conversations  on  this  channel |
-| Red  (on) | Busy | At  maximum  task  limit  —  no  new  conversations  routed |
-| Purple  (off) | Pending  Not  Ready | Waiting  for  active  tasks  to  clear  before  going  off | **Push vs. Pull mode:** The state system applies to Push mode routing, where conversations are assigned to you automatically. In Pull mode, you can pick up conversations from a queue list regardless of state, as long as you are logged in. 
+| Grey (off) | Not Ready | Not receiving conversations on this channel |
+| Green (on) | Ready | Available to receive conversations on this channel |
+| Orange (on) | Active | Currently handling one or more conversations on this channel |
+| Red (on) | Busy | At maximum task limit — no new conversations routed |
+| Purple (off) | Pending Not Ready | Waiting for active tasks to clear before going off | 
+> **Push vs. Pull mode:** The state system applies to Push mode routing, where conversations are assigned to you automatically. In Pull mode, you can pick up conversations from a queue list regardless of state, as long as you are logged in.
+ 
 #### Not Ready Reason Codes
  
 When switching from Ready to Not Ready, you may be prompted to select a reason code (e.g., Break, Training, Meeting). These are configured by your administrator and are used for adherence reporting. Always select the most accurate reason — your supervisor can see these in real time.
@@ -66,11 +71,13 @@ Click **Accept** to join the conversation. Once accepted, the main conversation 
 #### Customer Profile Matching
  
 CelestaCX automatically tries to match the customer by their channel identifier (phone number, email address, etc.).
- | Scenario | What  to  Do |
+ | Scenario | What to Do |
 | --- | --- |
-| Single  match  found | Start  responding  —  customer  context  is  loaded  automatically |
-| Multiple  matches  found | Use  the  Link  Profile  tab  in  the  sidebar  to  select  the  correct  record |
-| No  match  found | Update  the  anonymous  profile  with  the  correct  customer  details  after  the  conversation | **Tip:** Always scroll through conversation history before typing your first response. Use **Load More** to see older messages and **Jump to Bottom** to return to the latest one quickly. 
+| Single match found | Start responding — customer context is loaded automatically |
+| Multiple matches found | Use the Link Profile tab in the sidebar to select the correct record |
+| No match found | Update the anonymous profile with the correct customer details after the conversation | 
+> **Tip:** Always scroll through conversation history before typing your first response. Use **Load More** to see older messages and **Jump to Bottom** to return to the latest one quickly.
+ 
 ---
  
 #### 4. Handling Conversations
@@ -108,11 +115,11 @@ You can also consult on an external phone number using the Dialpad in the same m
 #### Transfer
  
 Move the conversation to a different queue or agent. You are removed from the conversation once the transfer completes.
- | Transfer  Type | How |
+ | Transfer Type | How |
 | --- | --- |
-| To  a  queue | Agent  Assistance  →  select  queue  →  Transfer |
-| To  a  specific  agent | Agent  Assistance  →  expand  queue  →  hover  agent  →  Transfer |
-| To  an  external  number | Agent  Assistance  →  Dialpad  →  enter  number  →  Transfer | 
+| To a queue | Agent Assistance → select queue → Transfer |
+| To a specific agent | Agent Assistance → expand queue → hover agent → Transfer |
+| To an external number | Agent Assistance → Dialpad → enter number → Transfer | 
 The customer sees a message telling them they are being transferred and which queue they are going to.
  
 #### Consult Transfer & Conference
@@ -152,7 +159,9 @@ After a conversation ends, you will be prompted to complete wrap-up before becom
 #### The Wrap-up Timer
  
 Your administrator may set a wrap-up timer (commonly 60 seconds). When the timer expires, the conversation is closed regardless of whether wrap-up was completed. If this happens, the interaction is marked as **Closed without Wrap-up** in reports.
- **Tip:** Be consistent with your wrap-up code selection. Inconsistent codes make your supervisor's reporting less accurate and may affect team performance metrics. 
+ 
+> **Tip:** Be consistent with your wrap-up code selection. Inconsistent codes make your supervisor's reporting less accurate and may affect team performance metrics.
+ 
 ---
  
 #### 8. AI Co-Pilot
@@ -166,17 +175,17 @@ Your administrator controls which Co-Pilot features are enabled for your team.
 ---
  
 #### Quick Reference: Agent Desk Controls
- | Control | What  It  Does |
+ | Control | What It Does |
 | --- | --- |
-| State  selector | Switch  between  Ready,  Not  Ready,  and  Logout |
-| Channel  toggles | Enable  /  disable  availability  per  channel  type |
-| Accept  button | Accept  an  incoming  conversation |
-| Agent  Assistance | Open  consult,  transfer,  or  conference  options |
-| Hand  Raise | Signal  to  your  supervisor  that  you  need  help |
-| Notes  icon | Open  wrap-up  codes  and  notes  panel |
-| Pause  /  Resume | Pause  an  active  conversation  temporarily |
-| Load  More | Load  older  conversation  history |
-| Jump  to  Bottom | Return  to  the  latest  message  in  a  long  conversation | 
+| State selector | Switch between Ready, Not Ready, and Logout |
+| Channel toggles | Enable / disable availability per channel type |
+| Accept button | Accept an incoming conversation |
+| Agent Assistance | Open consult, transfer, or conference options |
+| Hand Raise | Signal to your supervisor that you need help |
+| Notes icon | Open wrap-up codes and notes panel |
+| Pause / Resume | Pause an active conversation temporarily |
+| Load More | Load older conversation history |
+| Jump to Bottom | Return to the latest message in a long conversation | 
 ---
  
 #### What's Next

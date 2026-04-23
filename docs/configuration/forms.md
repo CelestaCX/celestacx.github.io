@@ -1,3 +1,4 @@
+# Forms & Form Builder
 Here is the **Forms & Form Builder** page:
  
 ---
@@ -11,13 +12,13 @@ CelestaCX includes a built-in form builder that allows administrators to create 
 ### What Forms Are Used For
  
 Forms serve several distinct purposes within CelestaCX:
- | Form  Type | When  It  Appears | Typical  Use |
+ | Form Type | When It Appears | Typical Use |
 | --- | --- | --- |
-| Customer  Verification  Form | When  an  interaction  is  accepted  by  an  agent | Collecting  or  confirming  identity  information  before  the  conversation  begins |
-| Case  Intake  Form | During  an  active  interaction | Capturing  the  reason  for  contact,  relevant  details,  and  customer  data |
-| After-Contact  Work  (ACW)  Form | After  an  interaction  ends,  during  wrap-up | Categorising  the  interaction,  logging  outcomes,  and  completing  required  fields |
-| Escalation  Form | When  an  agent  initiates  a  transfer  or  escalation | Capturing  context  to  pass  to  the  receiving  agent  or  team |
-| Custom  Form | Triggered  manually  or  by  a  routing  rule | Flexible  data  collection  for  any  operational  workflow | 
+| Customer Verification Form | When an interaction is accepted by an agent | Collecting or confirming identity information before the conversation begins |
+| Case Intake Form | During an active interaction | Capturing the reason for contact, relevant details, and customer data |
+| After-Contact Work (ACW) Form | After an interaction ends, during wrap-up | Categorising the interaction, logging outcomes, and completing required fields |
+| Escalation Form | When an agent initiates a transfer or escalation | Capturing context to pass to the receiving agent or team |
+| Custom Form | Triggered manually or by a routing rule | Flexible data collection for any operational workflow | 
 A single form can be linked to multiple queues or interaction types. The same form can also be reused across channels — the agent sees the same structure whether they are handling a voice call or a WhatsApp message.
  
 ---
@@ -27,21 +28,21 @@ A single form can be linked to multiple queues or interaction types. The same fo
 The form builder is accessed at **Administration → Forms → Form Builder** . It provides a drag-and-drop interface for assembling forms from a library of field types, with no technical skills required.
  
 #### Supported Field Types
- | Field  Type | Description |
+ | Field Type | Description |
 | --- | --- |
-| Text  (single  line) | Free-text  input  for  short  values  such  as  names,  reference  numbers,  or  notes. |
-| Text  (multi-line) | Larger  text  area  for  longer  notes  or  descriptions. |
-| Dropdown | A  predefined  list  of  options.  The  agent  selects  one  value. |
-| Multi-select | A  predefined  list  where  the  agent  can  select  multiple  values. |
-| Checkbox | A  single  true/false  toggle.  Useful  for  confirmations  or  binary  flags. |
-| Date | A  date  picker.  Useful  for  scheduling,  date  of  birth,  or  event  dates. |
-| Date  &  Time | A  combined  date  and  time  picker. |
-| Number | Numeric  input  only.  Supports  validation  for  minimum  and  maximum  values. |
-| Phone  Number | A  formatted  phone  number  field  with  optional  country  code  selector. |
-| Email | An  email  address  field  with  format  validation. |
-| URL | A  web  address  field  with  format  validation. |
-| Section  Header | A  non-input  element  used  to  visually  divide  the  form  into  labelled  sections. |
-| Instructional  Text | Static  text  displayed  to  the  agent  to  provide  guidance  or  context  within  the  form. | 
+| Text (single line) | Free-text input for short values such as names, reference numbers, or notes. |
+| Text (multi-line) | Larger text area for longer notes or descriptions. |
+| Dropdown | A predefined list of options. The agent selects one value. |
+| Multi-select | A predefined list where the agent can select multiple values. |
+| Checkbox | A single true/false toggle. Useful for confirmations or binary flags. |
+| Date | A date picker. Useful for scheduling, date of birth, or event dates. |
+| Date & Time | A combined date and time picker. |
+| Number | Numeric input only. Supports validation for minimum and maximum values. |
+| Phone Number | A formatted phone number field with optional country code selector. |
+| Email | An email address field with format validation. |
+| URL | A web address field with format validation. |
+| Section Header | A non-input element used to visually divide the form into labelled sections. |
+| Instructional Text | Static text displayed to the agent to provide guidance or context within the form. | 
 ---
  
 ### Creating a Form
@@ -53,12 +54,12 @@ The form builder is accessed at **Administration → Forms → Form Builder** . 
 5. For each field, configure its properties:
  | Property | Description |
 | --- | --- |
-| Label | The  text  displayed  above  the  field.  Keep  it  short  and  clear. |
-| Placeholder | Optional  hint  text  shown  inside  the  field  before  the  agent  types. |
-| Required | If  enabled,  the  agent  cannot  submit  the  form  without  completing  this  field. |
-| Default  Value | A  pre-populated  value.  Can  be  static  or  dynamically  populated  from  interaction  attributes  or  CRM  data  (see  Dynamic  Population  below). |
-| Validation | Field-specific  rules  —  minimum/maximum  length,  numeric  ranges,  format  checks. |
-| Help  Text | Optional  tooltip  or  inline  guidance  shown  to  the  agent  when  they  hover  or  focus  on  the  field. | 
+| Label | The text displayed above the field. Keep it short and clear. |
+| Placeholder | Optional hint text shown inside the field before the agent types. |
+| Required | If enabled, the agent cannot submit the form without completing this field. |
+| Default Value | A pre-populated value. Can be static or dynamically populated from interaction attributes or CRM data (see Dynamic Population below). |
+| Validation | Field-specific rules — minimum/maximum length, numeric ranges, format checks. |
+| Help Text | Optional tooltip or inline guidance shown to the agent when they hover or focus on the field. | 
 1. Use **Section Headers** and **Instructional Text** fields to structure the form logically, especially for longer forms.
 2. Set the form **visibility conditions** if certain fields should only appear based on other field values (see Conditional Logic below).
 3. Preview the form using the **Preview** button to see how it will appear to agents.
@@ -95,9 +96,9 @@ Form fields can be pre-populated automatically using data that CelestaCX already
 #### Sources for Dynamic Population
  | Source | Description |
 | --- | --- |
-| Interaction  Attributes | Data  collected  before  the  interaction  reached  the  agent  —  from  a  bot,  IVR,  or  routing  rule.  For  example,  a  bot  may  have  captured  the  customer's  account  number. |
-| CRM  Connector  Data | If  a  CRM  connector  is  active  and  a  customer  record  has  been  matched,  CRM  fields  can  be  mapped  directly  into  form  fields. |
-| Agent  Desk  Context | Certain  platform  values  —  such  as  queue  name,  channel  type,  and  interaction  ID  —  are  always  available  for  population. | 
+| Interaction Attributes | Data collected before the interaction reached the agent — from a bot, IVR, or routing rule. For example, a bot may have captured the customer's account number. |
+| CRM Connector Data | If a CRM connector is active and a customer record has been matched, CRM fields can be mapped directly into form fields. |
+| Agent Desk Context | Certain platform values — such as queue name, channel type, and interaction ID — are always available for population. | 
 Dynamic population is configured per field under **Administration → Forms → [Form] → [Field] → Default Value → Dynamic Source** .
  
 ---

@@ -1,19 +1,22 @@
+# Evaluator Guide
 This guide is written for Evaluators — the people who listen to, read, and score completed agent interactions as part of the contact centre's quality assurance process.
  
 Your role is focused and specific: you are given a queue of conversations to review, and you assess each one using the evaluation form your Quality Manager has designed. Your scoring feeds directly into quality reports, coaching decisions, and continuous improvement programmes — so accuracy, consistency, and thoroughness matter.
  
 This guide covers everything you need to do your job effectively in CelestaCX: finding your work queue, reviewing conversations, scoring interactions correctly, and submitting evaluations on time.
- **Note:** The Evaluator role is assigned to your account by your administrator. If you cannot see the Quality Management section in your interface, contact your administrator to confirm your role is correctly configured. 
+ 
+> **Note:** The Evaluator role is assigned to your account by your administrator. If you cannot see the Quality Management section in your interface, contact your administrator to confirm your role is correctly configured.
+ 
 ---
  
 #### 1. Understanding Your Role
  
 As an Evaluator you work within a structured QA workflow that is coordinated by your Quality Manager. The key relationships to understand:
- | Role | What  They  Do  for  You |
+ | Role | What They Do for You |
 | --- | --- |
-| Quality  Manager | Designs  evaluation  forms,  assigns  conversations  to  your  review  queue,  sets  deadlines,  monitors  your  progress,  and  reviews  your  completed  evaluations |
-| You  (Evaluator) | Open  assigned  conversations,  review  the  full  interaction,  score  against  the  evaluation  form  criteria,  add  coaching  notes,  and  submit |
-| Agent | The  person  whose  interaction  you  are  evaluating  —  your  scores  and  notes  feed  into  their  coaching  and  performance  records | 
+| Quality Manager | Designs evaluation forms, assigns conversations to your review queue, sets deadlines, monitors your progress, and reviews your completed evaluations |
+| You (Evaluator) | Open assigned conversations, review the full interaction, score against the evaluation form criteria, add coaching notes, and submit |
+| Agent | The person whose interaction you are evaluating — your scores and notes feed into their coaching and performance records | 
 You do not choose which conversations to evaluate — they are assigned to you either by the Quality Manager directly or through a scheduled bulk assignment. Your job is to work through your queue accurately and on time.
  
 ---
@@ -23,12 +26,12 @@ You do not choose which conversations to evaluate — they are assigned to you e
 All of your evaluation work lives in the **Reviews** tab within the Quality Management section. This is your personal task list — every conversation assigned to you appears here.
  
 #### Reading Your Queue
- | Column | What  It  Shows |
+ | Column | What It Shows |
 | --- | --- |
-| Conversation | The  interaction  ID  and  basic  details  —  agent,  channel,  date |
-| Questionnaire | The  evaluation  form  assigned  to  this  review  —  check  this  before  you  start  so  you  know  the  scoring  criteria |
-| Due  Date | The  deadline  by  which  this  evaluation  must  be  submitted |
-| Status | Pending  (not  yet  started),  In  Progress  (opened  but  not  submitted),  or  Completed | 
+| Conversation | The interaction ID and basic details — agent, channel, date |
+| Questionnaire | The evaluation form assigned to this review — check this before you start so you know the scoring criteria |
+| Due Date | The deadline by which this evaluation must be submitted |
+| Status | Pending (not yet started), In Progress (opened but not submitted), or Completed | 
 **Always sort by Due Date** to ensure you are prioritising correctly. Evaluations that are overdue or approaching deadline should be addressed first.
  
 #### Filtering Your Queue
@@ -50,12 +53,12 @@ Click the **Start Review** icon on any pending item to open the evaluation works
 The workspace is split into two panels displayed side by side:
  
 **Left panel — the conversation:**
- | Content  Type | What  Is  Available |
+ | Content Type | What Is Available |
 | --- | --- |
-| Chat  transcript | Full  text  of  the  digital  interaction  —  every  message,  in  order,  with  timestamps |
-| Voice  recording | Integrated  audio  player  for  voice  calls  —  play,  pause,  scrub,  and  adjust  playback  speed |
-| Screen  recording | Where  screen  capture  is  enabled,  a  video  playback  of  the  agent's  screen  during  the  call |
-| Metadata  sidebar | Agent  name,  queue,  channel,  interaction  duration,  wrap-up  codes,  and  timestamps | 
+| Chat transcript | Full text of the digital interaction — every message, in order, with timestamps |
+| Voice recording | Integrated audio player for voice calls — play, pause, scrub, and adjust playback speed |
+| Screen recording | Where screen capture is enabled, a video playback of the agent's screen during the call |
+| Metadata sidebar | Agent name, queue, channel, interaction duration, wrap-up codes, and timestamps | 
 **Right panel — the evaluation form:**
  
 The form your Quality Manager configured, displayed section by section. You work through it as you review the conversation, scoring each question as you go.
@@ -73,15 +76,19 @@ Work through the conversation from start to finish before scoring, or score sect
 #### 4. Scoring the Interaction
  
 As you work through the evaluation form, you will encounter three types of questions:
- | Question  Type | How  to  Answer | Affects  Score? |
+ | Question Type | How to Answer | Affects Score? |
 | --- | --- | --- |
-| Weighted  Single  Select | Choose  from  the  defined  options  (e.g.  Yes  /  No,  or  a  1–5  scale) | ✅  Yes  —  this  is  the  primary  scored  element |
-| Non-weighted  Dropdown | Select  a  category  to  classify  the  issue | ❌  No |
-| Text  Input | Write  a  note,  observation,  or  coaching  comment | ❌  No | 
+| Weighted Single Select | Choose from the defined options (e.g. Yes / No, or a 1–5 scale) | ✅ Yes — this is the primary scored element |
+| Non-weighted Dropdown | Select a category to classify the issue | ❌ No |
+| Text Input | Write a note, observation, or coaching comment | ❌ No | 
 #### Adding Coaching Notes
  
 For every question where you deduct points, add a specific note explaining your reasoning. These notes are the most valuable part of your evaluation for the agent — vague deductions without explanation do not help anyone improve. Be specific and constructive:
- ✅ Good: *"Agent did not confirm the customer's account number before discussing account details — verification step was skipped entirely."* ❌ Not useful: *"Compliance issue."* 
+ 
+> ✅ Good: *"Agent did not confirm the customer's account number before discussing account details — verification step was skipped entirely."*
+ 
+> ❌ Not useful: *"Compliance issue."*
+ 
 Your notes are visible to the Quality Manager and may be shared with the agent as part of their coaching feedback. Write as if you are speaking directly to the agent in a coaching session.
  
 #### How Scoring Works
@@ -113,10 +120,10 @@ You cannot edit a submitted evaluation. If you submitted an evaluation in error 
 #### 6. Staying on Top of Deadlines
  
 The platform will notify you of new assignments and approaching deadlines through the **Notifications bell** in the top right corner of your interface.
- | Notification  Type | When  It  Appears |
+ | Notification Type | When It Appears |
 | --- | --- |
-| New  Assignment | When  your  Quality  Manager  assigns  a  new  batch  of  conversations  to  you |
-| Deadline  Reminder | When  a  pending  evaluation  is  approaching  its  due  date | 
+| New Assignment | When your Quality Manager assigns a new batch of conversations to you |
+| Deadline Reminder | When a pending evaluation is approaching its due date | 
 Check notifications regularly during your shift. If you have a large queue and are at risk of missing a deadline, notify your Quality Manager so they can reassign or extend as needed — do not simply let deadlines pass without communicating.
  
 ---
@@ -124,14 +131,16 @@ Check notifications regularly during your shift. If you have a large queue and a
 #### 7. Working with Voice and Screen Recordings
  
 For voice interactions, the evaluation workspace includes an integrated audio player. Key controls:
- | Control | What  It  Does |
+ | Control | What It Does |
 | --- | --- |
-| Play  /  Pause | Start  and  stop  playback |
-| Scrub  bar | Jump  to  any  point  in  the  recording |
-| Playback  speed | Increase  speed  (e.g.  1.25×,  1.5×)  to  review  calls  more  efficiently |
-| Speaker  labels | Where  available,  identifies  which  audio  track  is  the  agent  and  which  is  the  customer | 
+| Play / Pause | Start and stop playback |
+| Scrub bar | Jump to any point in the recording |
+| Playback speed | Increase speed (e.g. 1.25×, 1.5×) to review calls more efficiently |
+| Speaker labels | Where available, identifies which audio track is the agent and which is the customer | 
 For screen recordings (where enabled by your administrator), a video player appears alongside the audio. Use this to verify what the agent was doing on their screen during the call — particularly useful for compliance evaluations involving data handling or system navigation.
- **Compatibility note:** Voice and screen recording playback requires a modern browser with audio support. If recordings fail to load, check your browser permissions and contact your administrator if the issue persists. 
+ 
+> **Compatibility note:** Voice and screen recording playback requires a modern browser with audio support. If recordings fail to load, check your browser permissions and contact your administrator if the issue persists.
+ 
 ---
  
 #### 8. Calibration and Consistency

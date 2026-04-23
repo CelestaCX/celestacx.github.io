@@ -1,14 +1,17 @@
+# Release Notes & Version History
 This page tracks all CelestaCX releases — what changed, when it was released, and how long it is supported. Use this page to understand what version you are running, what's new in the latest release, and whether your version is still receiving updates.
  
 ---
  
 ### Current Supported Versions
- | Version | Release  Date | Status | Support  Until |
+ | Version | Release Date | Status | Support Until |
 | --- | --- | --- | --- |
-| 5.0 | November  2025 | ✅  Current  —  Generally  Available | TBC |
-| 4.10 | August  2025 | ✅  Active  Maintenance | August  2028 |
-| 4.9 | 2025 | ⚠️  Maintenance  Only | Check  with  support |
-| 4.8  and  earlier | — | ❌  End  of  Life | No  longer  supported | ℹ️ **Which version am I on?** Log in to the Unified Admin panel. The version number is displayed in the bottom left corner of the interface. 
+| 5.0 | November 2025 | ✅ Current — Generally Available | TBC |
+| 4.10 | August 2025 | ✅ Active Maintenance | August 2028 |
+| 4.9 | 2025 | ⚠️ Maintenance Only | Check with support |
+| 4.8 and earlier | — | ❌ End of Life | No longer supported | 
+> ℹ️ **Which version am I on?** Log in to the Unified Admin panel. The version number is displayed in the bottom left corner of the interface.
+ 
 ---
  
 ### CelestaCX 5.0
@@ -89,27 +92,29 @@ Upgrading to CelestaCX 4.10 from an earlier version? See the [Upgrade Guide →]
 ---
  
 ### Version History
- | Version | Release  Date | Key  Highlights |
+ | Version | Release Date | Key Highlights |
 | --- | --- | --- |
-| 5.0 | Nov  2025 | Multi-tenancy,  CCaaS  support |
-| 4.10 | Aug  2025 | LinkedIn,  Form  Builder  redesign,  AI  QM |
-| 4.9 | 2025 | Voice  enhancements,  reporting  updates |
-| 4.8 | 2024 | Platform  performance  improvements |
-| 4.7 | 2024 | WFM  integration,  additional  channel  support |
-| 4.6 | 2024 | Quality  Management  module,  campaign  updates |
-| 4.5 | 2023 | CX  Voice  native  dialer  introduced | ℹ️ Full release notes for versions prior to 4.10 are available on request from your CelestaCX account manager. 
+| 5.0 | Nov 2025 | Multi-tenancy, CCaaS support |
+| 4.10 | Aug 2025 | LinkedIn, Form Builder redesign, AI QM |
+| 4.9 | 2025 | Voice enhancements, reporting updates |
+| 4.8 | 2024 | Platform performance improvements |
+| 4.7 | 2024 | WFM integration, additional channel support |
+| 4.6 | 2024 | Quality Management module, campaign updates |
+| 4.5 | 2023 | CX Voice native dialer introduced | 
+> ℹ️ Full release notes for versions prior to 4.10 are available on request from your CelestaCX account manager.
+ 
 ---
  
 ### How to Read a Version Number
  
 CelestaCX uses the following versioning convention:
  ```
-5  .  0  .  1
-    │     │     │
-    │     │     └── Patch — bug fixes only, no new features
-    │     └──────── Minor — new features, backward compatible
-    └────────────── Major — significant new capabilities or
-                            architectural changes
+ 5 . 0 . 1
+ │ │ │
+ │ │ └── Patch — bug fixes only, no new features
+ │ └──────── Minor — new features, backward compatible
+ └────────────── Major — significant new capabilities or
+ architectural changes
 ``` 
 **Major releases** (e.g., 4.x → 5.0) may include architectural changes and require careful upgrade planning. Always read the upgrade guide before proceeding.
  

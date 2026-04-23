@@ -1,3 +1,4 @@
+# Logging & Monitoring
 #### Overview
  
 This page covers how to access and interpret logs from a running CelestaCX deployment, how to monitor platform health across key infrastructure components, and how to set up alerting so problems are caught proactively rather than reactively.
@@ -30,20 +31,20 @@ kubectl get pods -A
 kubectl get pods -A | grep -v Running
 ``` 
 #### Common Pod Name Prefixes
- | Pod  Prefix | Component |
+ | Pod Prefix | Component |
 | --- | --- |
-| ef-ccm-* | Core  Conversation  Manager  —  the  heart  of  routing  and  conversation  lifecycle |
-| ef-agent-manager-* | Agent  state  management  and  session  handling |
-| ef-unified-admin-* | Unified  Admin  interface  backend |
-| ef-cx-router-* | Routing  engine  —  queue  and  agent  matching |
-| ef-cx-otp-manager-* | 2FA  OTP  manager  service |
-| *-connector-* | Individual  channel  connectors  (WhatsApp,  email,  Facebook,  etc.) |
-| ef-media-server-* | Voice  media  server |
-| ef-cx-analyser-* | ETL  pipeline  and  reporting  data  processor |
-| keycloak-* | Identity  and  access  management |
-| mongo-* | MongoDB  (if  deployed  in-cluster) |
-| redis-* | Redis  (if  deployed  in-cluster) |
-| superset-* | Apache  Superset  reporting  interface | 
+| ef-ccm-* | Core Conversation Manager — the heart of routing and conversation lifecycle |
+| ef-agent-manager-* | Agent state management and session handling |
+| ef-unified-admin-* | Unified Admin interface backend |
+| ef-cx-router-* | Routing engine — queue and agent matching |
+| ef-cx-otp-manager-* | 2FA OTP manager service |
+| *-connector-* | Individual channel connectors (WhatsApp, email, Facebook, etc.) |
+| ef-media-server-* | Voice media server |
+| ef-cx-analyser-* | ETL pipeline and reporting data processor |
+| keycloak-* | Identity and access management |
+| mongo-* | MongoDB (if deployed in-cluster) |
+| redis-* | Redis (if deployed in-cluster) |
+| superset-* | Apache Superset reporting interface | 
 #### Viewing Live Logs
  
 Stream logs in real time for a specific pod:
@@ -217,7 +218,9 @@ A healthy replica set shows:
 #### Enabling Slow Query Logging
  
 When MongoDB performance is degraded — slow report generation, delayed conversation updates — enable the profiler to identify slow queries.
- **Warning:** Profiling adds performance overhead and disk usage. Use it for targeted investigation, not as a permanent setting. Always disable it when the investigation is complete. 
+ 
+> **Warning:** Profiling adds performance overhead and disk usage. Use it for targeted investigation, not as a permanent setting. Always disable it when the investigation is complete.
+ 
 bash
  ```
 # Connect to MongoDB primary
@@ -247,10 +250,10 @@ db.system.profile.find({ ns: 'ccm_db.ChannelConnector' }).pretty()
 
 # Filter by time range
 db.system.profile.find({
-  ts: {
-    $gt: new ISODate("2025-01-10T03:00:00Z"),
-    $lt: new ISODate("2025-01-10T04:00:00Z")
-  }
+ ts: {
+ $gt: new ISODate("2025-01-10T03:00:00Z"),
+ $lt: new ISODate("2025-01-10T04:00:00Z")
+ }
 }).sort({ millis: -1 }).pretty()
 
 # Quick view of 5 most recent slow operations
@@ -337,13 +340,13 @@ Superset alerts must be enabled by an administrator before they can be configure
 8. Save and enable the alert.
  
 #### Recommended Alerts for Operations Teams
- | Alert | Condition | Suggested  Threshold |
+ | Alert | Condition | Suggested Threshold |
 | --- | --- | --- |
-| High  abandonment  rate | Queue  abandonment  % | Greater  than  10% |
-| SLA  breach | Service  Level  % | Below  80% |
-| Low  agent  availability | Ready  agents  count | Below  2  per  queue |
-| ETL  pipeline  stale | Last  report  update  time | Greater  than  30  minutes  ago |
-| High  RONA  rate | RONA  count  per  hour | Greater  than  5 | 
+| High abandonment rate | Queue abandonment % | Greater than 10% |
+| SLA breach | Service Level % | Below 80% |
+| Low agent availability | Ready agents count | Below 2 per queue |
+| ETL pipeline stale | Last report update time | Greater than 30 minutes ago |
+| High RONA rate | RONA count per hour | Greater than 5 | 
 ---
  
 #### 7. Grafana Dashboards (Voice Monitoring)

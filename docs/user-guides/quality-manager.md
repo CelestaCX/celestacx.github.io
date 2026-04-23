@@ -1,3 +1,4 @@
+# Quality Manager Guide
 #### Overview
  
 This guide is written for Quality Managers — the people responsible for defining what good service looks like, building the frameworks that measure it, and driving continuous improvement across agent teams.
@@ -11,14 +12,14 @@ The [Evaluator Guide](#) covers the parallel workflow for the evaluators who do 
 #### 1. What Quality Managers Can Do
  | Capability | Description |
 | --- | --- |
-| Design  evaluation  forms | Build  structured  scoring  forms  with  weighted  sections  and  questions  that  define  your  quality  standard |
-| Schedule  bulk  reviews | Assign  batches  of  conversations  to  evaluators  based  on  agent,  team,  channel,  and  date  filters  —  one-time  or  recurring |
-| Assign  individual  reviews | Manually  assign  a  specific  conversation  to  a  specific  evaluator  for  ad-hoc  review |
-| Review  conversations  directly | Open  and  review  any  conversation  yourself  without  going  through  the  evaluator  workflow |
-| Monitor  evaluation  progress | Track  the  status  of  all  evaluation  jobs  —  Pending,  In  Progress,  Completed  —  across  your  team |
-| Analyse  QA  reports | View  scores  by  agent,  team,  form,  and  time  period  to  identify  trends  and  coaching  opportunities |
-| Configure  AI-driven  QM | Enable  and  configure  automated  AI  scoring  to  achieve  100%  interaction  coverage |
-| Override  AI  scores | Review  AI-generated  evaluations  and  manually  override  them  where  needed | 
+| Design evaluation forms | Build structured scoring forms with weighted sections and questions that define your quality standard |
+| Schedule bulk reviews | Assign batches of conversations to evaluators based on agent, team, channel, and date filters — one-time or recurring |
+| Assign individual reviews | Manually assign a specific conversation to a specific evaluator for ad-hoc review |
+| Review conversations directly | Open and review any conversation yourself without going through the evaluator workflow |
+| Monitor evaluation progress | Track the status of all evaluation jobs — Pending, In Progress, Completed — across your team |
+| Analyse QA reports | View scores by agent, team, form, and time period to identify trends and coaching opportunities |
+| Configure AI-driven QM | Enable and configure automated AI scoring to achieve 100% interaction coverage |
+| Override AI scores | Review AI-generated evaluations and manually override them where needed | 
 ---
  
 #### 2. Setting Up: QM Configuration
@@ -50,17 +51,17 @@ Evaluation forms are the foundation of your quality framework. They translate yo
 #### Form Structure
  
 Each evaluation form is organised into sections, and each section contains questions. Every element carries a weight that contributes to the overall score.
- | Level | What  It  Defines | Must  Sum  To |
+ | Level | What It Defines | Must Sum To |
 | --- | --- | --- |
-| Form | The  overall  evaluation | 100%  across  all  sections |
-| Section | A  theme  or  business  priority  (e.g.  Communication,  Compliance,  Problem  Solving) | 100%  across  all  questions  in  that  section |
-| Question | A  specific  assessment  point  within  a  section | Contributes  to  section  % | 
+| Form | The overall evaluation | 100% across all sections |
+| Section | A theme or business priority (e.g. Communication, Compliance, Problem Solving) | 100% across all questions in that section |
+| Question | A specific assessment point within a section | Contributes to section % | 
 #### Question Types
- | Type | Affects  Score? | Best  Used  For |
+ | Type | Affects Score? | Best Used For |
 | --- | --- | --- |
-| Weighted  Single  Select | ✅  Yes | Pass/fail  checks,  scaled  ratings  (e.g.  1–5,  Yes/No) |
-| Non-weighted  Dropdown | ❌  No | Categorising  issues  without  affecting  the  score |
-| Text  Input | ❌  No | Qualitative  coaching  notes,  mandatory  comments | 
+| Weighted Single Select | ✅ Yes | Pass/fail checks, scaled ratings (e.g. 1–5, Yes/No) |
+| Non-weighted Dropdown | ❌ No | Categorising issues without affecting the score |
+| Text Input | ❌ No | Qualitative coaching notes, mandatory comments | 
 Only **Weighted Single Select** questions contribute to the mathematical score. All other question types are for context and coaching.
  
 #### Building a Form
@@ -95,12 +96,12 @@ The Review Scheduler lets you assign evaluation work to evaluators in bulk, with
 2. Set your filters:
  | Filter | Options |
 | --- | --- |
-| Agent | Specific  agent  or  all  agents |
-| Team | Specific  team  or  all  teams |
-| Evaluator | The  person  who  will  complete  the  reviews |
-| Channel | Voice,  chat,  email,  or  all |
-| Date  range | The  period  of  conversations  to  include |
-| Call  properties | Duration,  outcome,  wrap-up  code,  or  other  attributes | 
+| Agent | Specific agent or all agents |
+| Team | Specific team or all teams |
+| Evaluator | The person who will complete the reviews |
+| Channel | Voice, chat, email, or all |
+| Date range | The period of conversations to include |
+| Call properties | Duration, outcome, wrap-up code, or other attributes | 
 1. Choose the schedule type:
  
 - **One-time** — a single batch of reviews with a completion deadline
@@ -135,9 +136,9 @@ The Review Screen gives you a live view of all evaluation activity across your t
 Navigate to **Quality Management → Review Screen** to see:
  | Status | Meaning |
 | --- | --- |
-| Pending | Assigned  but  not  yet  started  by  the  evaluator |
-| In  Progress | Evaluator  has  opened  and  begun  scoring  the  conversation |
-| Completed | Evaluation  submitted  and  score  recorded | 
+| Pending | Assigned but not yet started by the evaluator |
+| In Progress | Evaluator has opened and begun scoring the conversation |
+| Completed | Evaluation submitted and score recorded | 
 Use this view to identify bottlenecks — evaluators with large pending queues, deadlines at risk, or evaluations that have stalled. You can reassign evaluations from this screen if needed.
  
 ---
@@ -151,10 +152,10 @@ Manual evaluation can realistically cover only a small percentage of all interac
 The AI engine processes closed interaction data — transcripts, metadata, and conversation context — and applies your configured evaluation form to produce a score. Results are available immediately after a conversation closes, without any evaluator involvement.
  
 #### Operating Modes
- | Mode | Description | Best  For |
+ | Mode | Description | Best For |
 | --- | --- | --- |
-| Full  Automation | AI  evaluates  100%  of  closed  interactions | High-volume  teams  where  manual  coverage  is  impractical |
-| Hybrid | A  configured  percentage  goes  to  AI;  the  remainder  to  human  evaluators | Teams  that  want  AI  coverage  with  human  oversight  for  complex  cases | 
+| Full Automation | AI evaluates 100% of closed interactions | High-volume teams where manual coverage is impractical |
+| Hybrid | A configured percentage goes to AI; the remainder to human evaluators | Teams that want AI coverage with human oversight for complex cases | 
 #### Benefits Over Manual-Only QA
  
 - **Full coverage** — every interaction is scored, not just a random sample
@@ -180,12 +181,12 @@ AI-generated evaluations appear in the same QM interface as human evaluations. A
 #### 7. Analysing Quality Reports
  
 The QM reporting suite gives you visibility into quality performance across agents, teams, forms, and time periods.
- | Report | What  It  Shows |
+ | Report | What It Shows |
 | --- | --- |
-| Quality  Assurance  Reports | Aggregate  and  individual  scores  by  agent,  team,  and  evaluation  form |
-| Evaluator  Activity | How  many  evaluations  each  evaluator  has  completed,  with  scores  and  time  taken |
-| Score  Trends | How  quality  scores  are  moving  over  time  —  improving,  declining,  or  stable |
-| Form  Performance | Which  questions  or  sections  agents  consistently  score  low  on  —  signals  coaching  priorities | 
+| Quality Assurance Reports | Aggregate and individual scores by agent, team, and evaluation form |
+| Evaluator Activity | How many evaluations each evaluator has completed, with scores and time taken |
+| Score Trends | How quality scores are moving over time — improving, declining, or stable |
+| Form Performance | Which questions or sections agents consistently score low on — signals coaching priorities | 
 Use these reports to:
  
 - Identify agents who need targeted coaching
@@ -198,22 +199,22 @@ Use these reports to:
 #### Quick Reference: Quality Manager Workflow
  ```
 1. Configure
-   └── QM Admin settings → assign evaluators → enable AI (if applicable)
+ └── QM Admin settings → assign evaluators → enable AI (if applicable)
 
 2. Design
-   └── Build evaluation forms → set section and question weights → validate → publish
+ └── Build evaluation forms → set section and question weights → validate → publish
 
 3. Schedule
-   └── Review Scheduler → set filters → assign to evaluators → set deadlines
+ └── Review Scheduler → set filters → assign to evaluators → set deadlines
 
 4. Monitor
-   └── Review Screen → track Pending / In Progress / Completed → reassign if needed
+ └── Review Screen → track Pending / In Progress / Completed → reassign if needed
 
 5. Analyse
-   └── QA Reports → scores by agent / team / form → identify coaching needs
+ └── QA Reports → scores by agent / team / form → identify coaching needs
 
 6. Improve
-   └── Calibration sessions → form updates → coaching → track impact in reports
+ └── Calibration sessions → form updates → coaching → track impact in reports
 ``` 
 ---
  

@@ -1,3 +1,4 @@
+# High Availability
 High Availability (HA) ensures CelestaCX continues operating even when infrastructure components fail. In an HA deployment, no single server failure can take your contact center offline — the system automatically recovers by shifting workloads to healthy nodes.
  
 This page is a complete guide to deploying CelestaCX with HA. We'll walk through the entire process from preparing multiple Kubernetes nodes to configuring an external load balancer and verifying failover works correctly.
@@ -7,44 +8,44 @@ This page is a complete guide to deploying CelestaCX with HA. We'll walk through
 ### Do You Need High Availability?
  
 Not every deployment requires HA. Use this table to decide:
- | Your  Situation | Recommendation |
+ | Your Situation | Recommendation |
 | --- | --- |
-| Development,  testing,  or  proof-of-concept | ❌  Skip  HA  —  use  the  single-node  setup  from  Kubernetes  Setup  → |
-| Production  with  planned  maintenance  windows  acceptable | ⚠️  Multi-node  (this  page)  without  full  HA  may  be  sufficient |
-| Production  with  zero  acceptable  downtime | ✅  Full  HA  required  —  follow  this  entire  page |
-| CCaaS  /  multi-tenant  serving  multiple  customers | ✅  Full  HA  strongly  recommended |
-| Regulated  industries  (banking,  healthcare,  government) | ✅  Full  HA  required | **HA adds infrastructure complexity and cost.** You need at least **6 servers** — 3 control plane nodes, 3 worker nodes, plus 1 load balancer. Your team must be comfortable managing a multi-node Kubernetes cluster. If you're unsure, start with a single-node deployment and plan to migrate to HA later once you've gained operational experience. 
+| Development, testing, or proof-of-concept | ❌ Skip HA — use the single-node setup from Kubernetes Setup → |
+| Production with planned maintenance windows acceptable | ⚠️ Multi-node (this page) without full HA may be sufficient |
+| Production with zero acceptable downtime | ✅ Full HA required — follow this entire page |
+| CCaaS / multi-tenant serving multiple customers | ✅ Full HA strongly recommended |
+| Regulated industries (banking, healthcare, government) | ✅ Full HA required | **HA adds infrastructure complexity and cost.** You need at least **6 servers** — 3 control plane nodes, 3 worker nodes, plus 1 load balancer. Your team must be comfortable managing a multi-node Kubernetes cluster. If you're unsure, start with a single-node deployment and plan to migrate to HA later once you've gained operational experience. 
 ---
  
 ### What You're Building
  
 Here's the complete HA architecture you'll have by the end of this page:
  ```
-┌─────────────────────┐
-                    │   NGINX Load        │
-                    │   Balancer          │
-                    │   (192.168.1.100)   │
-                    └──────────┬──────────┘
-                               │
-           ┌───────────────────┼───────────────────┐
-           │                   │                   │
-           ▼                   ▼                   ▼
-    ┌──────────┐        ┌──────────┐        ┌──────────┐
-    │ Control  │        │ Control  │        │ Control  │
-    │ Plane 1  │        │ Plane 2  │        │ Plane 3  │
-    │  (etcd)  │◄──────►│  (etcd)  │◄──────►│  (etcd)  │
-    └──────────┘        └──────────┘        └──────────┘
-           │                   │                   │
-           └───────────────────┼───────────────────┘
-                               │
-           ┌───────────────────┼───────────────────┐
-           │                   │                   │
-           ▼                   ▼                   ▼
-    ┌──────────┐        ┌──────────┐        ┌──────────┐
-    │ Worker 1 │        │ Worker 2 │        │ Worker 3 │
-    │ CelestaCX│        │ CelestaCX│        │ CelestaCX│
-    │ Services │        │ Services │        │ Services │
-    └──────────┘        └──────────┘        └──────────┘
+ ┌─────────────────────┐
+ │ NGINX Load │
+ │ Balancer │
+ │ (192.168.1.100) │
+ └──────────┬──────────┘
+ │
+ ┌───────────────────┼───────────────────┐
+ │ │ │
+ ▼ ▼ ▼
+ ┌──────────┐ ┌──────────┐ ┌──────────┐
+ │ Control │ │ Control │ │ Control │
+ │ Plane 1 │ │ Plane 2 │ │ Plane 3 │
+ │ (etcd) │◄──────►│ (etcd) │◄──────►│ (etcd) │
+ └──────────┘ └──────────┘ └──────────┘
+ │ │ │
+ └───────────────────┼───────────────────┘
+ │
+ ┌───────────────────┼───────────────────┐
+ │ │ │
+ ▼ ▼ ▼
+ ┌──────────┐ ┌──────────┐ ┌──────────┐
+ │ Worker 1 │ │ Worker 2 │ │ Worker 3 │
+ │ CelestaCX│ │ CelestaCX│ │ CelestaCX│
+ │ Services │ │ Services │ │ Services │
+ └──────────┘ └──────────┘ └──────────┘
 ``` 
 **Key components:**
  
@@ -57,25 +58,27 @@ Here's the complete HA architecture you'll have by the end of this page:
 ### Hardware Requirements
  | Component | Quantity | CPU | RAM | Storage |
 | --- | --- | --- | --- | --- |
-| Control  plane  nodes | 3 | 4  vCPU  each | 8  GB  each | 100  GB  SSD  each |
-| Worker  nodes | 3–8  (based  on  your  sizing  tier) | Per  your  sizing  plan  → | Per  your  sizing  plan | Per  your  sizing  plan |
-| Load  balancer | 1 | 2  vCPU | 4  GB | 20  GB | 
+| Control plane nodes | 3 | 4 vCPU each | 8 GB each | 100 GB SSD each |
+| Worker nodes | 3–8 (based on your sizing tier) | Per your sizing plan → | Per your sizing plan | Per your sizing plan |
+| Load balancer | 1 | 2 vCPU | 4 GB | 20 GB | 
 **Total minimum:** 7 servers (3 control plane + 3 worker + 1 load balancer)
- 💡 **Operating system:** All nodes must run **Ubuntu 20.04+** or **RHEL 8.4+** 
+ 
+> 💡 **Operating system:** All nodes must run **Ubuntu 20.04+** or **RHEL 8.4+**
+ 
 ---
  
 ### Before You Start
- *(Add a blue Info Panel macro around the following)*
  
-✅ **Prerequisites checklist:**
+> *(Add a blue Info Panel macro around the following)*
+> ✅ **Prerequisites checklist:**
+> - You have **7 servers** provisioned with the hardware specs above
+> - All servers are running Ubuntu 20.04+ or RHEL 8.4+
+> - All servers have **static IP addresses** assigned
+> - You have **root/sudo access** to all servers
+> - All servers can communicate with each other on the network
+> - You have your **FQDN** ready — e.g. `celestacx.yourcompany.com`
+> - DNS is configured to point your FQDN to the **load balancer IP**
  
-- You have **7 servers** provisioned with the hardware specs above
-- All servers are running Ubuntu 20.04+ or RHEL 8.4+
-- All servers have **static IP addresses** assigned
-- You have **root/sudo access** to all servers
-- All servers can communicate with each other on the network
-- You have your **FQDN** ready — e.g. `celestacx.yourcompany.com`
-- DNS is configured to point your FQDN to the **load balancer IP** 
 ---
  
 ### Part 1 — Prepare All Nodes
@@ -139,20 +142,22 @@ sudo nano /etc/hosts
 Add entries for **all servers in your cluster**:
 ```
 # Control plane nodes
-192.168.1.10  cx-control-01
-192.168.1.11  cx-control-02
-192.168.1.12  cx-control-03
+192.168.1.10 cx-control-01
+192.168.1.11 cx-control-02
+192.168.1.12 cx-control-03
 
 # Worker nodes
-192.168.1.20  cx-worker-01
-192.168.1.21  cx-worker-02
-192.168.1.22  cx-worker-03
+192.168.1.20 cx-worker-01
+192.168.1.21 cx-worker-02
+192.168.1.22 cx-worker-03
 
 # Load balancer
-192.168.1.100  cx-loadbalancer
+192.168.1.100 cx-loadbalancer
 ``` 
 Replace the IP addresses with your actual server IPs. Save and exit.
- 💡 **Why this matters:** This allows nodes to communicate with each other using hostnames instead of IPs, which makes troubleshooting and log reading much easier. 
+ 
+> 💡 **Why this matters:** This allows nodes to communicate with each other using hostnames instead of IPs, which makes troubleshooting and log reading much easier.
+ 
 ---
  
 #### Step 1.3 — Open Additional Ports for HA
@@ -229,57 +234,57 @@ sudo nano /etc/nginx/nginx.conf
 events {}
 
 stream {
-  # RKE2 node registration port
-  upstream rke2_api {
-    least_conn;
-    server 192.168.1.10:9345;   # cx-control-01
-    server 192.168.1.11:9345;   # cx-control-02
-    server 192.168.1.12:9345;   # cx-control-03
-  }
+ # RKE2 node registration port
+ upstream rke2_api {
+ least_conn;
+ server 192.168.1.10:9345; # cx-control-01
+ server 192.168.1.11:9345; # cx-control-02
+ server 192.168.1.12:9345; # cx-control-03
+ }
 
-  # Kubernetes API server
-  upstream k8s_api {
-    least_conn;
-    server 192.168.1.10:6443;   # cx-control-01
-    server 192.168.1.11:6443;   # cx-control-02
-    server 192.168.1.12:6443;   # cx-control-03
-  }
+ # Kubernetes API server
+ upstream k8s_api {
+ least_conn;
+ server 192.168.1.10:6443; # cx-control-01
+ server 192.168.1.11:6443; # cx-control-02
+ server 192.168.1.12:6443; # cx-control-03
+ }
 
-  # HTTPS traffic to CelestaCX
-  upstream https_ingress {
-    least_conn;
-    server 192.168.1.20:443;    # cx-worker-01
-    server 192.168.1.21:443;    # cx-worker-02
-    server 192.168.1.22:443;    # cx-worker-03
-  }
+ # HTTPS traffic to CelestaCX
+ upstream https_ingress {
+ least_conn;
+ server 192.168.1.20:443; # cx-worker-01
+ server 192.168.1.21:443; # cx-worker-02
+ server 192.168.1.22:443; # cx-worker-03
+ }
 
-  # HTTP traffic to CelestaCX
-  upstream http_ingress {
-    least_conn;
-    server 192.168.1.20:80;     # cx-worker-01
-    server 192.168.1.21:80;     # cx-worker-02
-    server 192.168.1.22:80;     # cx-worker-03
-  }
+ # HTTP traffic to CelestaCX
+ upstream http_ingress {
+ least_conn;
+ server 192.168.1.20:80; # cx-worker-01
+ server 192.168.1.21:80; # cx-worker-02
+ server 192.168.1.22:80; # cx-worker-03
+ }
 
-  server {
-    listen 9345;
-    proxy_pass rke2_api;
-  }
+ server {
+ listen 9345;
+ proxy_pass rke2_api;
+ }
 
-  server {
-    listen 6443;
-    proxy_pass k8s_api;
-  }
+ server {
+ listen 6443;
+ proxy_pass k8s_api;
+ }
 
-  server {
-    listen 443;
-    proxy_pass https_ingress;
-  }
+ server {
+ listen 443;
+ proxy_pass https_ingress;
+ }
 
-  server {
-    listen 80;
-    proxy_pass http_ingress;
-  }
+ server {
+ listen 80;
+ proxy_pass http_ingress;
+ }
 }
 ``` 
 Save and exit.
@@ -336,12 +341,12 @@ Paste the following, replacing the FQDN and IPs with your own:
 yaml
  ```
 tls-san:
-  - celestacx.yourcompany.com      # Your FQDN
-  - 192.168.1.100                  # Load balancer IP
-  - 192.168.1.10                   # This node's IP
-  - 127.0.0.1
+ - celestacx.yourcompany.com # Your FQDN
+ - 192.168.1.100 # Load balancer IP
+ - 192.168.1.10 # This node's IP
+ - 127.0.0.1
 write-kubeconfig-mode: "0644"
-cluster-init: true                 # Initializes the etcd cluster
+cluster-init: true # Initializes the etcd cluster
 ``` 
 **What this does:**
  
@@ -428,10 +433,10 @@ Paste the following, replacing IPs and the token with your actual values:
 yaml
  ```
 tls-san:
-  - celestacx.yourcompany.com
-  - 192.168.1.100                  # Load balancer IP
-  - 192.168.1.11                   # This node's IP
-  - 127.0.0.1
+ - celestacx.yourcompany.com
+ - 192.168.1.100 # Load balancer IP
+ - 192.168.1.11 # This node's IP
+ - 127.0.0.1
 server: https://192.168.1.100:9345 # Load balancer address
 token: <PASTE_YOUR_CLUSTER_TOKEN_HERE>
 write-kubeconfig-mode: "0644"
@@ -459,10 +464,10 @@ sudo nano /etc/rancher/rke2/config.yaml
 yaml
  ```
 tls-san:
-  - celestacx.yourcompany.com
-  - 192.168.1.100
-  - 192.168.1.12                   # This node's IP
-  - 127.0.0.1
+ - celestacx.yourcompany.com
+ - 192.168.1.100
+ - 192.168.1.12 # This node's IP
+ - 127.0.0.1
 server: https://192.168.1.100:9345
 token: <PASTE_YOUR_CLUSTER_TOKEN_HERE>
 write-kubeconfig-mode: "0644"
@@ -489,10 +494,10 @@ kubectl get nodes
 
 You should see:
 ```
-NAME           STATUS   ROLES                       AGE   VERSION
-cx-control-01  Ready    control-plane,etcd,master   10m   v1.28.x
-cx-control-02  Ready    control-plane,etcd,master   2m    v1.28.x
-cx-control-03  Ready    control-plane,etcd,master   1m    v1.28.x
+NAME STATUS ROLES AGE VERSION
+cx-control-01 Ready control-plane,etcd,master 10m v1.28.x
+cx-control-02 Ready control-plane,etcd,master 2m v1.28.x
+cx-control-03 Ready control-plane,etcd,master 1m v1.28.x
 ``` 
 All three should show **Ready** status.
  
@@ -507,13 +512,13 @@ From **cx-control-01** , run:
 bash
  ```
 kubectl taint node cx-control-01 \
-  node-role.kubernetes.io/control-plane=:NoSchedule
+ node-role.kubernetes.io/control-plane=:NoSchedule
 
 kubectl taint node cx-control-02 \
-  node-role.kubernetes.io/control-plane=:NoSchedule
+ node-role.kubernetes.io/control-plane=:NoSchedule
 
 kubectl taint node cx-control-03 \
-  node-role.kubernetes.io/control-plane=:NoSchedule
+ node-role.kubernetes.io/control-plane=:NoSchedule
 ``` 
 ---
  
@@ -536,7 +541,7 @@ Paste the following (same config for all workers, just update the IP comment):
  
 yaml
  ```
-server: https://192.168.1.100:9345    # Load balancer IP
+server: https://192.168.1.100:9345 # Load balancer IP
 token: <PASTE_YOUR_CLUSTER_TOKEN_HERE>
 ``` 
 Save and exit.
@@ -566,13 +571,13 @@ kubectl get nodes
 
 You should now see:
 ```
-NAME           STATUS   ROLES                       AGE   VERSION
-cx-control-01  Ready    control-plane,etcd,master   15m   v1.28.x
-cx-control-02  Ready    control-plane,etcd,master   7m    v1.28.x
-cx-control-03  Ready    control-plane,etcd,master   6m    v1.28.x
-cx-worker-01   Ready    worker                      2m    v1.28.x
-cx-worker-02   Ready    worker                      2m    v1.28.x
-cx-worker-03   Ready    worker                      2m    v1.28.x
+NAME STATUS ROLES AGE VERSION
+cx-control-01 Ready control-plane,etcd,master 15m v1.28.x
+cx-control-02 Ready control-plane,etcd,master 7m v1.28.x
+cx-control-03 Ready control-plane,etcd,master 6m v1.28.x
+cx-worker-01 Ready worker 2m v1.28.x
+cx-worker-02 Ready worker 2m v1.28.x
+cx-worker-03 Ready worker 2m v1.28.x
 ``` 
 All nodes should show **Ready** .
  
@@ -608,11 +613,11 @@ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 
 helm install ingress-nginx ingress-nginx/ingress-nginx \
-  --namespace ingress-nginx \
-  --create-namespace \
-  --set controller.service.type=NodePort \
-  --set controller.service.nodePorts.http=80 \
-  --set controller.service.nodePorts.https=443
+ --namespace ingress-nginx \
+ --create-namespace \
+ --set controller.service.type=NodePort \
+ --set controller.service.nodePorts.http=80 \
+ --set controller.service.nodePorts.https=443
 ``` 
 **Verify:**
  
@@ -641,25 +646,27 @@ kubectl get pods -n ingress-nginx
 
 # Helm is working
 helm list -A
-``` *(Add a blue Info Panel macro around the following)*
+``` 
+> *(Add a blue Info Panel macro around the following)*
+> ✅ **HA cluster is ready when:**
+> - All 6+ nodes show status `Ready`
+> - All kube-system pods show `Running` or `Completed`
+> - ingress-nginx-controller shows `Running`
+> - NGINX load balancer is running and healthy
  
-✅ **HA cluster is ready when:**
- 
-- All 6+ nodes show status `Ready`
-- All kube-system pods show `Running` or `Completed`
-- ingress-nginx-controller shows `Running`
-- NGINX load balancer is running and healthy 
 ---
  
 ### Understanding Failover Behaviour
  
 Now that your HA cluster is running, here's what happens when components fail:
- | Failure  Scenario | What  Happens | User  Impact |
+ | Failure Scenario | What Happens | User Impact |
 | --- | --- | --- |
-| One  worker  node  fails | Kubernetes  reschedules  pods  to  remaining  workers  within  ~60  seconds | Active  conversations  may  pause  1–2  minutes  while  pods  restart |
-| One  control  plane  node  fails  (2  of  3  remain) | etcd  maintains  quorum  —  cluster  continues  normally | No  impact  —  operations  continue |
-| Two  control  plane  nodes  fail  (only  1  remains) | etcd  loses  quorum  —  API  becomes  read-only | New  changes  blocked  but  existing  services  keep  running |
-| Load  balancer  fails | Traffic  cannot  reach  cluster | Full  outage  —  consider  load  balancer  redundancy | 💡 **Active conversations resume after failover.** CelestaCX stores conversation state in MongoDB. When pods restart on a new node, agents can reconnect and continue conversations. Messages sent during the ~60-second failover window are queued and delivered once service resumes. 
+| One worker node fails | Kubernetes reschedules pods to remaining workers within ~60 seconds | Active conversations may pause 1–2 minutes while pods restart |
+| One control plane node fails (2 of 3 remain) | etcd maintains quorum — cluster continues normally | No impact — operations continue |
+| Two control plane nodes fail (only 1 remains) | etcd loses quorum — API becomes read-only | New changes blocked but existing services keep running |
+| Load balancer fails | Traffic cannot reach cluster | Full outage — consider load balancer redundancy | 
+> 💡 **Active conversations resume after failover.** CelestaCX stores conversation state in MongoDB. When pods restart on a new node, agents can reconnect and continue conversations. Messages sent during the ~60-second failover window are queued and delivered once service resumes.
+ 
 ---
  
 ### Testing Failover
@@ -706,7 +713,7 @@ In an HA deployment, etcd stores the entire cluster state. **Regular backups are
 bash
  ```
 sudo rke2 etcd-snapshot save \
-  --name celestacx-backup-$(date +%Y%m%d)
+ --name celestacx-backup-$(date +%Y%m%d)
 ``` 
 **List backups:**
  
@@ -719,8 +726,8 @@ sudo rke2 etcd-snapshot list
 bash
  ```
 sudo rke2 etcd-snapshot restore \
-  --cluster-reset \
-  --cluster-reset-restore-path=/var/lib/rancher/rke2/server/db/snapshots/<SNAPSHOT_NAME>
+ --cluster-reset \
+ --cluster-reset-restore-path=/var/lib/rancher/rke2/server/db/snapshots/<SNAPSHOT_NAME>
 ``` 
 **Automate daily backups:**
  
@@ -728,8 +735,8 @@ bash
  ```
 # Add to crontab on all control plane nodes (run: crontab -e)
 0 2 * * * /usr/local/bin/rke2 etcd-snapshot save \
-  --name celestacx-backup-$(date +\%Y\%m\%d) >> \
-  /var/log/etcd-backup.log 2>&1
+ --name celestacx-backup-$(date +\%Y\%m\%d) >> \
+ /var/log/etcd-backup.log 2>&1
 ``` **Store backups externally.** Copy etcd snapshots to a location outside the cluster (NFS, S3, or another server) daily. If the entire cluster fails, backups on the cluster nodes themselves are inaccessible. 
 ---
  

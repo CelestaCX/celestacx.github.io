@@ -1,3 +1,4 @@
+# Platform Architecture Overview
 CelestaCX is a microservices-based platform deployed on Kubernetes. Rather than a single monolithic application, it is composed of a set of specialized services that each handle a specific responsibility — routing, messaging, identity, reporting, and so on. These services communicate with each other through APIs and message queues.
  
 This page gives you a high-level understanding of those components and how they relate to each other — essential reading before you begin deployment, configuration, or integration work.
@@ -7,7 +8,7 @@ This page gives you a high-level understanding of those components and how they 
 ### Architecture Layers
  
 CelestaCX's architecture is organized into five logical layers. Understanding these layers helps you reason about how data flows through the system and where each component sits.
- ![Celesta CX Architecture -Page-2.drawio.png] 
+ 
 ---
  
 ### Layer 1 — Client Interfaces
@@ -83,12 +84,12 @@ Integration services that connect CelestaCX to NLU (Natural Language Understandi
 ### Layer 4 — Data & Storage
  
 CelestaCX uses several specialized databases, each chosen for what it does best.
- | Database | Type | What  it  stores |
+ | Database | Type | What it stores |
 | --- | --- | --- |
-| MongoDB | Document  database | Conversations,  messages,  customer  profiles,  channel  sessions,  configuration  data |
-| PostgreSQL | Relational  database | Reporting  data,  QM  evaluations,  campaign  data,  structured  analytics |
-| Redis | In-memory  cache | Agent  state,  session  data,  real-time  presence  information,  temporary  caches |
-| ActiveMQ | Message  broker | Asynchronous  inter-service  communication,  event  queues  between  platform  components | 
+| MongoDB | Document database | Conversations, messages, customer profiles, channel sessions, configuration data |
+| PostgreSQL | Relational database | Reporting data, QM evaluations, campaign data, structured analytics |
+| Redis | In-memory cache | Agent state, session data, real-time presence information, temporary caches |
+| ActiveMQ | Message broker | Asynchronous inter-service communication, event queues between platform components | 
 ---
  
 ### Layer 5 — Reporting & Observability
@@ -118,55 +119,57 @@ The log aggregation and search platform. All CelestaCX service logs are collecte
 To make the architecture concrete, here is what happens when a customer sends a WhatsApp message to your contact center:
  ```
 1. Customer sends a WhatsApp message
-        │
-        ▼
+ │
+ ▼
 2. WhatsApp Channel Connector receives the message
-   and converts it to CIM format
-        │
-        ▼
+ and converts it to CIM format
+ │
+ ▼
 3. CIM stores the message and creates or updates
-   the Conversation record in MongoDB
-        │
-        ▼
+ the Conversation record in MongoDB
+ │
+ ▼
 4. Routing Engine evaluates available agents,
-   queue rules, and SLA settings
-        │
-        ▼
+ queue rules, and SLA settings
+ │
+ ▼
 5. Routing Engine assigns a Task to the best
-   available agent
-        │
-        ▼
+ available agent
+ │
+ ▼
 6. Agent Manager notifies the Agent Desk
-   via Socket.io — agent sees the incoming request
-        │
-        ▼
+ via Socket.io — agent sees the incoming request
+ │
+ ▼
 7. Agent accepts the Task — conversation becomes Active
-        │
-        ▼
+ │
+ ▼
 8. Agent and customer exchange messages through
-   CIM in real time
-        │
-        ▼
+ CIM in real time
+ │
+ ▼
 9. Agent closes the conversation and applies a Wrap-up
-        │
-        ▼
+ │
+ ▼
 10. Data Platform ETL picks up the closed conversation
-    and writes it to PostgreSQL for reporting
+ and writes it to PostgreSQL for reporting
 ``` 
 ---
  
 ### Key Integration Points
  
 For teams building custom integrations or extensions, the key integration points in the architecture are:
- | Integration  Point | Protocol | Primary  Use  Case |
+ | Integration Point | Protocol | Primary Use Case |
 | --- | --- | --- |
-| Agent  Manager | http://Socket.io  +  REST | Build  a  custom  Agent  Desk |
-| CIM | REST  +  http://Socket.io | Send  and  receive  messages  programmatically |
-| Channel  Connector  API | REST | Build  a  custom  channel  connector |
-| Bot  Connector  API | REST | Integrate  a  custom  NLU  bot |
-| Routing  Engine  API | REST | Programmatic  queue  and  routing  management |
-| IAM  (Keycloak) | OAuth  2.0  /  OpenID  Connect | Single  sign-on  and  token-based  auth |
-| API  Gateway  (APISIX) | HTTPS | All  external  API  access | 👉 For full API documentation and integration guides, see the [Developer Hub →](#) 
+| Agent Manager | http://Socket.io + REST | Build a custom Agent Desk |
+| CIM | REST + http://Socket.io | Send and receive messages programmatically |
+| Channel Connector API | REST | Build a custom channel connector |
+| Bot Connector API | REST | Integrate a custom NLU bot |
+| Routing Engine API | REST | Programmatic queue and routing management |
+| IAM (Keycloak) | OAuth 2.0 / OpenID Connect | Single sign-on and token-based auth |
+| API Gateway (APISIX) | HTTPS | All external API access | 
+> 👉 For full API documentation and integration guides, see the [Developer Hub →](#)
+ 
 ---
  
 ### Deployment Topology
@@ -178,4 +181,5 @@ CelestaCX is deployed on Kubernetes and supports three main deployment topologie
 **Multi-Node** — Services are distributed across multiple Kubernetes nodes. Suitable for production deployments with moderate load.
  
 **High Availability (HA)** — Multiple control plane nodes with an external load balancer and replicated storage. Recommended for production deployments requiring zero-downtime and failover resilience.
- 👉 For sizing guidance and deployment instructions, see [Deployment & Infrastructure →](#)
+ 
+> 👉 For sizing guidance and deployment instructions, see [Deployment & Infrastructure →](#)

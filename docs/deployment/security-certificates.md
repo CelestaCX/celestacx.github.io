@@ -1,3 +1,4 @@
+# Security & Certificates
 A freshly installed CelestaCX deployment needs several security configurations applied before it is ready for production use. This page covers the three main areas:
  
 1. **SSL/TLS Certificates** — securing all traffic to and from CelestaCX with HTTPS
@@ -11,11 +12,11 @@ A freshly installed CelestaCX deployment needs several security configurations a
 All CelestaCX interfaces — Agent Desk, Unified Admin, Customer Widget, and APIs — must be served over HTTPS. This requires a valid SSL/TLS certificate for your FQDN.
  
 You have three options depending on your environment:
- | Option | Best  For | Cost |
+ | Option | Best For | Cost |
 | --- | --- | --- |
-| Option  A  —  Let's  Encrypt | Internet-accessible  deployments | Free |
-| Option  B  —  Commercial  Certificate | Enterprise  deployments,  intranet,  or  compliance  requirements | Paid |
-| Option  C  —  Self-Signed  Certificate | Development,  testing,  or  air-gapped  environments  only | Free | 
+| Option A — Let's Encrypt | Internet-accessible deployments | Free |
+| Option B — Commercial Certificate | Enterprise deployments, intranet, or compliance requirements | Paid |
+| Option C — Self-Signed Certificate | Development, testing, or air-gapped environments only | Free | 
 ---
  
 #### Option A — Let's Encrypt (Recommended for Internet-Accessible Deployments)
@@ -30,9 +31,9 @@ helm repo add jetstack https://charts.jetstack.io
 helm repo update
 
 helm install cert-manager jetstack/cert-manager \
-  --namespace cert-manager \
-  --create-namespace \
-  --set installCRDs=true
+ --namespace cert-manager \
+ --create-namespace \
+ --set installCRDs=true
 ``` 
 **Verify cert-manager is running:**
  
@@ -53,17 +54,17 @@ yaml
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-prod
+ name: letsencrypt-prod
 spec:
-  acme:
-    server: https://acme-v02.api.letsencrypt.org/directory
-    email: admin@yourcompany.com    # Replace with your email
-    privateKeySecretRef:
-      name: letsencrypt-prod
-    solvers:
-    - http01:
-        ingress:
-          class: nginx
+ acme:
+ server: https://acme-v02.api.letsencrypt.org/directory
+ email: admin@yourcompany.com # Replace with your email
+ privateKeySecretRef:
+ name: letsencrypt-prod
+ solvers:
+ - http01:
+ ingress:
+ class: nginx
 ``` 
 bash
  ```
@@ -80,15 +81,15 @@ yaml
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: celestacx-tls
-  namespace: celestacx
+ name: celestacx-tls
+ namespace: celestacx
 spec:
-  secretName: cx-tls
-  issuerRef:
-    name: letsencrypt-prod
-    kind: ClusterIssuer
-  dnsNames:
-  - celestacx.yourcompany.com    # Replace with your FQDN
+ secretName: cx-tls
+ issuerRef:
+ name: letsencrypt-prod
+ kind: ClusterIssuer
+ dnsNames:
+ - celestacx.yourcompany.com # Replace with your FQDN
 ``` 
 bash
  ```
@@ -101,9 +102,10 @@ bash
 kubectl get certificate -n celestacx
 ``` 
 The `READY` column should show `True` within a few minutes. cert-manager will automatically renew this certificate before it expires.
- *(Add a yellow Note Panel macro around the following)*
  
-⚠️ **Let's Encrypt requires your FQDN to be publicly accessible on port 80** for the HTTP-01 challenge to work. If your deployment is on a private network without public internet access, use Option B or Option C instead. 
+> *(Add a yellow Note Panel macro around the following)*
+> ⚠️ **Let's Encrypt requires your FQDN to be publicly accessible on port 80** for the HTTP-01 challenge to work. If your deployment is on a private network without public internet access, use Option B or Option C instead.
+ 
 ---
  
 #### Option B — Commercial Certificate
@@ -127,16 +129,18 @@ cat celestacx.crt ca-bundle.crt > celestacx-full.crt
 bash
  ```
 kubectl create secret tls cx-tls \
-  --cert=celestacx-full.crt \
-  --key=celestacx.key \
-  --namespace celestacx
+ --cert=celestacx-full.crt \
+ --key=celestacx.key \
+ --namespace celestacx
 ``` 
 **Verify the secret was created:**
  
 bash
  ```
 kubectl get secret cx-tls -n celestacx
-``` 💡 **Certificate renewal** for commercial certificates must be done manually. Set a calendar reminder 30 days before your certificate expires. When you receive the renewed certificate, delete the old secret and create a new one using the same command above — Kubernetes will pick up the new certificate automatically. 
+``` 
+> 💡 **Certificate renewal** for commercial certificates must be done manually. Set a calendar reminder 30 days before your certificate expires. When you receive the renewed certificate, delete the old secret and create a new one using the same command above — Kubernetes will pick up the new certificate automatically.
+ 
 ---
  
 #### Option C — Self-Signed Certificate
@@ -148,23 +152,24 @@ Self-signed certificates are suitable for development, testing, and air-gapped e
 bash
  ```
 openssl req -x509 -nodes -days 365 \
-  -newkey rsa:2048 \
-  -keyout celestacx-selfsigned.key \
-  -out celestacx-selfsigned.crt \
-  -subj "/CN=celestacx.yourcompany.com/O=OctaveBytes" \
-  -addext "subjectAltName=DNS:celestacx.yourcompany.com"
+ -newkey rsa:2048 \
+ -keyout celestacx-selfsigned.key \
+ -out celestacx-selfsigned.crt \
+ -subj "/CN=celestacx.yourcompany.com/O=OctaveBytes" \
+ -addext "subjectAltName=DNS:celestacx.yourcompany.com"
 ``` 
 **Create the Kubernetes TLS secret:**
  
 bash
  ```
 kubectl create secret tls cx-tls \
-  --cert=celestacx-selfsigned.crt \
-  --key=celestacx-selfsigned.key \
-  --namespace celestacx
-``` *(Add a yellow Note Panel macro around the following)*
+ --cert=celestacx-selfsigned.crt \
+ --key=celestacx-selfsigned.key \
+ --namespace celestacx
+``` 
+> *(Add a yellow Note Panel macro around the following)*
+> ⚠️ **Do not use self-signed certificates in production.** Users will see browser security warnings, and some integrations — particularly mobile apps and third-party webhooks — will refuse to connect to endpoints with untrusted certificates.
  
-⚠️ **Do not use self-signed certificates in production.** Users will see browser security warnings, and some integrations — particularly mobile apps and third-party webhooks — will refuse to connect to endpoints with untrusted certificates. 
 ---
  
 ### Part 2 — Post-Installation Security Hardening
@@ -197,10 +202,10 @@ kubectl delete secret cx-db-credentials -n celestacx
 
 # Recreate with new passwords
 kubectl create secret generic cx-db-credentials \
-  --from-literal=mongodb-password=<NEW_STRONG_PASSWORD> \
-  --from-literal=postgresql-password=<NEW_STRONG_PASSWORD> \
-  --from-literal=redis-password=<NEW_STRONG_PASSWORD> \
-  --namespace celestacx
+ --from-literal=mongodb-password=<NEW_STRONG_PASSWORD> \
+ --from-literal=postgresql-password=<NEW_STRONG_PASSWORD> \
+ --from-literal=redis-password=<NEW_STRONG_PASSWORD> \
+ --namespace celestacx
 
 # Restart affected pods to pick up new credentials
 kubectl rollout restart deployment -n celestacx
@@ -210,9 +215,9 @@ kubectl rollout restart deployment -n celestacx
 bash
  ```
 kubectl create configmap activemq-config \
-  --from-literal=admin-password=<NEW_STRONG_PASSWORD> \
-  --namespace celestacx \
-  --dry-run=client -o yaml | kubectl apply -f -
+ --from-literal=admin-password=<NEW_STRONG_PASSWORD> \
+ --namespace celestacx \
+ --dry-run=client -o yaml | kubectl apply -f -
 ``` 
 ---
  
@@ -221,12 +226,12 @@ kubectl create configmap activemq-config \
 The API Gateway (APISIX) protects CelestaCX APIs from abuse. Enable IP-based rate limiting to prevent brute force and denial-of-service attempts.
  
 Rate limiting is configured per route in APISIX. The recommended baseline limits are:
- | Route  Type | Recommended  Limit |
+ | Route Type | Recommended Limit |
 | --- | --- |
-| Authentication  endpoints | 10  requests  per  minute  per  IP |
-| Agent  Desk  API | 300  requests  per  minute  per  agent |
-| Customer  Widget  API | 60  requests  per  minute  per  customer  session |
-| Admin  API | 100  requests  per  minute  per  IP | 
+| Authentication endpoints | 10 requests per minute per IP |
+| Agent Desk API | 300 requests per minute per agent |
+| Customer Widget API | 60 requests per minute per customer session |
+| Admin API | 100 requests per minute per IP | 
 Contact your OctaveBytes account manager for the APISIX configuration file with these limits pre-configured for CelestaCX routes.
  
 ---
@@ -240,7 +245,9 @@ For admin and supervisor accounts, enable two-factor authentication (2FA) to add
 Navigate to Unified Admin → Security Settings → Two-Factor Authentication and enable 2FA for the Admin and Supervisor roles.
  
 Users will be prompted to verify a one-time password sent to their registered email address on each login. Ensure your SMTP configuration is working before enabling this — users will be locked out if email delivery fails.
- 👉 For full 2FA setup instructions see [Identity & Access Management →](#) 
+ 
+> 👉 For full 2FA setup instructions see [Identity & Access Management →](#)
+ 
 ---
  
 #### 2d — Configure PII Data Masking
@@ -250,10 +257,10 @@ If your deployment handles personal customer data — names, phone numbers, emai
 PII masking is configured in the Unified Admin:
  
 Navigate to Unified Admin → Security → PII Data Masking and configure the fields you want masked. Two masking levels are available:
- | Level | Behaviour | Use  Case |
+ | Level | Behaviour | Use Case |
 | --- | --- | --- |
-| Log  masking | PII  is  redacted  from  all  system  logs | Required  for  GDPR  and  HIPAA  compliance |
-| UI  masking | PII  is  masked  on  screen  for  agents  without  the  "View  PII"  permission | Required  when  agents  should  not  see  full  customer  details | 
+| Log masking | PII is redacted from all system logs | Required for GDPR and HIPAA compliance |
+| UI masking | PII is masked on screen for agents without the "View PII" permission | Required when agents should not see full customer details | 
 ---
  
 #### 2e — Review User Roles and Permissions
@@ -261,13 +268,15 @@ Navigate to Unified Admin → Security → PII Data Masking and configure the fi
 Before going live, audit the roles and permissions configured in IAM to ensure the principle of least privilege is applied — users should only have access to what they need for their role.
  
 CelestaCX default roles and their intended scope:
- | Role | Intended  For | Key  Permissions |
+ | Role | Intended For | Key Permissions |
 | --- | --- | --- |
-| Agent | Contact  center  agents | Handle  conversations,  view  own  performance |
-| Supervisor | Team  supervisors | Monitor  agents,  access  dashboards,  manage  team |
-| Quality  Manager | QA  staff | Access  recordings,  run  evaluations |
-| Admin | Platform  administrators | Full  configuration  access |
-| API  Admin | System  integrations | Programmatic  API  access | 👉 For detailed role configuration see [Identity & Access Management →](#) 
+| Agent | Contact center agents | Handle conversations, view own performance |
+| Supervisor | Team supervisors | Monitor agents, access dashboards, manage team |
+| Quality Manager | QA staff | Access recordings, run evaluations |
+| Admin | Platform administrators | Full configuration access |
+| API Admin | System integrations | Programmatic API access | 
+> 👉 For detailed role configuration see [Identity & Access Management →](#)
+ 
 ---
  
 #### 2f — Network Security
@@ -290,11 +299,11 @@ bash
 # between control plane nodes — never exposed externally
 ``` 
 **Close unused ports:** Ensure your firewall only allows the following external-facing ports:
- | Port | Purpose | Who  Needs  Access |
+ | Port | Purpose | Who Needs Access |
 | --- | --- | --- |
-| 443 | HTTPS  —  all  CelestaCX  interfaces | All  users |
-| 80 | HTTP  —  redirects  to  HTTPS | All  users |
-| 22 | SSH  —  server  management | IT  admins  only,  from  known  IPs | 
+| 443 | HTTPS — all CelestaCX interfaces | All users |
+| 80 | HTTP — redirects to HTTPS | All users |
+| 22 | SSH — server management | IT admins only, from known IPs | 
 All other ports should be closed to external traffic.
  
 ---
@@ -321,13 +330,13 @@ kubectl delete secret cx-tls -n celestacx
 
 # Create a new secret with the renewed certificate
 kubectl create secret tls cx-tls \
-  --cert=renewed-celestacx-full.crt \
-  --key=celestacx.key \
-  --namespace celestacx
+ --cert=renewed-celestacx-full.crt \
+ --key=celestacx.key \
+ --namespace celestacx
 
 # Restart ingress controller to pick up new certificate
 kubectl rollout restart deployment ingress-nginx-controller \
-  -n ingress-nginx
+ -n ingress-nginx
 ```
 
 ### Self-Signed Certificates
@@ -348,4 +357,5 @@ CelestaCX includes built-in support for the following compliance frameworks. The
 > 👉 Full compliance configuration guidance is covered in [Configuration & Administration → Security & Compliance →](#)
 
 ---
+
 ```

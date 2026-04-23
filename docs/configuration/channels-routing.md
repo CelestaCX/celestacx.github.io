@@ -1,3 +1,4 @@
+# Channels & Routing Configuration
 Routing is the engine of CelestaCX. It determines how every incoming interaction — whether a phone call, WhatsApp message, email, or webchat — is received, classified, and delivered to the right queue and agent. This page covers the core routing model, how to configure routing rules, and the settings that apply across all channels.
  
 Channel-specific setup (WhatsApp, Voice, Email, etc.) is covered in the [Channels & Integrations](#) section. This page focuses on the routing layer that sits above individual channels.
@@ -9,22 +10,22 @@ Channel-specific setup (WhatsApp, Voice, Email, etc.) is covered in the [Channel
 When an interaction arrives, CelestaCX processes it through a sequence of steps before it reaches an agent:
  ```
 Incoming Interaction
-        │
-        ▼
-  Channel Connector
-  (receives & normalises the interaction)
-        │
-        ▼
-  Routing Engine
-  (evaluates rules: skills, priority, availability)
-        │
-        ▼
-  Queue
-  (holds the interaction until an agent is available)
-        │
-        ▼
-  Agent Desk
-  (agent accepts and handles the interaction)
+ │
+ ▼
+ Channel Connector
+ (receives & normalises the interaction)
+ │
+ ▼
+ Routing Engine
+ (evaluates rules: skills, priority, availability)
+ │
+ ▼
+ Queue
+ (holds the interaction until an agent is available)
+ │
+ ▼
+ Agent Desk
+ (agent accepts and handles the interaction)
 ``` 
 The routing engine evaluates rules in real time based on interaction attributes (channel, language, topic, customer data), agent availability, and queue state.
  
@@ -33,13 +34,13 @@ The routing engine evaluates rules in real time based on interaction attributes 
 ### Key Routing Concepts
  | Concept | Description |
 | --- | --- |
-| Channel  Connector | The  integration  point  that  receives  interactions  from  an  external  channel  (e.g.  WhatsApp,  telephony  switch,  email  server)  and  passes  them  into  the  routing  engine. |
-| Routing  Rule | A  logical  condition  that  determines  which  queue  an  interaction  is  sent  to,  based  on  attributes  such  as  channel  type,  DNIS,  language,  or  custom  tags. |
-| Queue | A  holding  area  for  interactions  waiting  to  be  handled.  Each  queue  is  served  by  one  or  more  agent  teams.  See  Agent  Teams  &  Queues  for  queue  configuration. |
-| Skill | A  tag  assigned  to  agents  and  routing  rules  to  enable  skill-based  routing  —  ensuring  interactions  requiring  specific  expertise  reach  appropriately  skilled  agents. |
-| Priority | A  numeric  value  assigned  to  an  interaction  or  queue  that  determines  its  position  relative  to  others.  Higher-priority  interactions  are  offered  to  agents  first. |
-| Overflow | A  fallback  action  triggered  when  a  queue  exceeds  a  defined  wait  threshold  —  for  example,  redirecting  to  a  different  queue,  playing  a  callback  offer,  or  sending  an  automated  message. |
-| Business  Calendar | Routing  rules  can  reference  a  business  calendar  to  apply  different  logic  during  open  hours,  closed  hours,  and  public  holidays.  See  Business  Calendars  . | 
+| Channel Connector | The integration point that receives interactions from an external channel (e.g. WhatsApp, telephony switch, email server) and passes them into the routing engine. |
+| Routing Rule | A logical condition that determines which queue an interaction is sent to, based on attributes such as channel type, DNIS, language, or custom tags. |
+| Queue | A holding area for interactions waiting to be handled. Each queue is served by one or more agent teams. See Agent Teams & Queues for queue configuration. |
+| Skill | A tag assigned to agents and routing rules to enable skill-based routing — ensuring interactions requiring specific expertise reach appropriately skilled agents. |
+| Priority | A numeric value assigned to an interaction or queue that determines its position relative to others. Higher-priority interactions are offered to agents first. |
+| Overflow | A fallback action triggered when a queue exceeds a defined wait threshold — for example, redirecting to a different queue, playing a callback offer, or sending an automated message. |
+| Business Calendar | Routing rules can reference a business calendar to apply different logic during open hours, closed hours, and public holidays. See Business Calendars . | 
 ---
  
 ### Routing Rule Configuration
@@ -72,12 +73,12 @@ Rules are evaluated in priority order. The first matching rule wins. If no rule 
 7. Use the **drag handle** on the rules list to adjust evaluation order.
  
 #### Priority Levels
- | Priority  Level | Typical  Use |
+ | Priority Level | Typical Use |
 | --- | --- |
-| 1 | Standard  interactions |
-| 2–4 | Escalations  or  callbacks |
-| 5–7 | VIP  or  SLA-sensitive  customers |
-| 8–10 | Emergency  or  compliance-critical  interactions | 
+| 1 | Standard interactions |
+| 2–4 | Escalations or callbacks |
+| 5–7 | VIP or SLA-sensitive customers |
+| 8–10 | Emergency or compliance-critical interactions | 
 ---
  
 ### Skill-Based Routing
@@ -102,14 +103,14 @@ Each skill assignment includes a proficiency level (1–5). When multiple agents
 ### Overflow & Fallback Handling
  
 Overflow rules define what happens when interactions wait too long or a queue becomes unavailable. Overflow is configured per queue under **Administration → Queues → [Queue] → Overflow Settings** .
- | Overflow  Trigger | Available  Actions |
+ | Overflow Trigger | Available Actions |
 | --- | --- |
-| Wait  time  exceeds  threshold | Transfer  to  another  queue |
-| Wait  time  exceeds  threshold | Offer  callback  (voice) |
-| Wait  time  exceeds  threshold | Send  automated  message  (digital  channels) |
-| Queue  is  closed  (outside  calendar  hours) | Play  closed  message  /  send  out-of-hours  reply |
-| No  agents  available | Transfer  to  voicemail  (voice)  or  bot  (digital) |
-| All  agents  busy  for  X  minutes | Escalate  priority  of  waiting  interactions | 
+| Wait time exceeds threshold | Transfer to another queue |
+| Wait time exceeds threshold | Offer callback (voice) |
+| Wait time exceeds threshold | Send automated message (digital channels) |
+| Queue is closed (outside calendar hours) | Play closed message / send out-of-hours reply |
+| No agents available | Transfer to voicemail (voice) or bot (digital) |
+| All agents busy for X minutes | Escalate priority of waiting interactions | 
 Overflow rules are evaluated every 30 seconds against live queue state.
  
 ---

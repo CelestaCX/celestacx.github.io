@@ -1,3 +1,4 @@
+# Email
 Here is the **Email** page:
  
 ---
@@ -14,17 +15,17 @@ CelestaCX connects to email accounts via **IMAP** (for receiving) and **SMTP** (
  ```
 Customer sends email
 to your support address
-        │
-        ▼
+ │
+ ▼
 Email Server (IMAP mailbox)
-        │
-  Polled by CelestaCX
-        │
-        ▼
+ │
+ Polled by CelestaCX
+ │
+ ▼
 CelestaCX Email Connector
 (converts to interaction, extracts metadata)
-        │
-        ▼
+ │
+ ▼
 Routing Engine → Queue → Agent Desk
 ``` 
 Replies from agents follow the reverse path — composed in the Agent Desk, sent via SMTP, and delivered to the customer's inbox as a standard email reply.
@@ -34,24 +35,24 @@ Replies from agents follow the reverse path — composed in the Agent Desk, sent
 ### Supported Features
  | Feature | Supported |
 | --- | --- |
-| Inbound  email  via  IMAP | Yes |
-| Outbound  email  via  SMTP | Yes |
-| HTML  email  composition | Yes |
-| Plain  text  email  composition | Yes |
-| Inbound  attachments | Yes |
-| Outbound  attachments | Yes |
-| Email  threading  (conversation  view) | Yes |
-| CC  and  BCC  on  replies | Yes |
-| Auto-acknowledgement  replies | Yes |
-| Email  signatures | Yes  —  per  agent  and  per  queue |
-| Routing  by  sender  domain | Yes |
-| Routing  by  subject  line  keywords | Yes |
-| Routing  by  recipient  address | Yes |
-| Shared  mailbox  support | Yes |
-| OAuth  2.0  authentication  (Microsoft  365,  Google  Workspace) | Yes |
-| Basic  authentication  (IMAP/SMTP  username  +  password) | Yes  —  where  supported  by  provider |
-| Email  forwarding  mode | Yes  —  as  alternative  to  direct  IMAP  connection |
-| Spam  filtering | Basic  —  relies  on  upstream  email  server  filtering | 
+| Inbound email via IMAP | Yes |
+| Outbound email via SMTP | Yes |
+| HTML email composition | Yes |
+| Plain text email composition | Yes |
+| Inbound attachments | Yes |
+| Outbound attachments | Yes |
+| Email threading (conversation view) | Yes |
+| CC and BCC on replies | Yes |
+| Auto-acknowledgement replies | Yes |
+| Email signatures | Yes — per agent and per queue |
+| Routing by sender domain | Yes |
+| Routing by subject line keywords | Yes |
+| Routing by recipient address | Yes |
+| Shared mailbox support | Yes |
+| OAuth 2.0 authentication (Microsoft 365, Google Workspace) | Yes |
+| Basic authentication (IMAP/SMTP username + password) | Yes — where supported by provider |
+| Email forwarding mode | Yes — as alternative to direct IMAP connection |
+| Spam filtering | Basic — relies on upstream email server filtering | 
 ---
  
 ### Prerequisites
@@ -101,7 +102,9 @@ OAuth 2.0 is the modern, secure authentication standard used by Microsoft 365 an
 #### Basic Authentication (Username + Password)
  
 Some email providers still support basic authentication using a username (email address) and password or app-specific password. Basic authentication is simpler to configure but less secure — use it only where OAuth 2.0 is not available.
- **Note:** Microsoft 365 has disabled basic authentication for most account types. If you are connecting a Microsoft 365 mailbox, OAuth 2.0 is required. Google Workspace similarly recommends OAuth 2.0 and may disable basic authentication for accounts with advanced security policies enabled. 
+ 
+> **Note:** Microsoft 365 has disabled basic authentication for most account types. If you are connecting a Microsoft 365 mailbox, OAuth 2.0 is required. Google Workspace similarly recommends OAuth 2.0 and may disable basic authentication for accounts with advanced security policies enabled.
+ 
 ---
  
 ### Configuring Email in CelestaCX
@@ -116,24 +119,24 @@ Some email providers still support basic authentication using a username (email 
 #### Step 2 — Configure Inbound (IMAP)
  | Field | Description |
 | --- | --- |
-| IMAP  Host | Your  email  server's  IMAP  hostname  (e.g.  imap.gmail.com  ,  outlook.office365.com  ) |
-| IMAP  Port | 993  (IMAP  over  TLS  —  recommended)  or  143  (IMAP  with  STARTTLS) |
-| TLS | Enabled  (recommended) |
-| Authentication  Method | OAuth  2.0  or  Basic |
-| Username | The  email  address  of  the  mailbox  (for  Basic  auth) |
-| Password  /  App  Password | The  account  password  or  app-specific  password  (for  Basic  auth) |
-| OAuth  Credentials | Client  ID,  Client  Secret,  Tenant  ID  (Microsoft)  or  Client  ID,  Client  Secret  (Google)  —  for  OAuth |
-| Polling  Interval | How  frequently  CelestaCX  checks  for  new  emails  (default:  60  seconds) |
-| Monitored  Folder | The  mailbox  folder  to  monitor  for  incoming  emails  (default:  Inbox) |
-| Processed  Folder | The  folder  emails  are  moved  to  after  being  converted  to  interactions  (default:  Processed) | 
+| IMAP Host | Your email server's IMAP hostname (e.g. imap.gmail.com , outlook.office365.com ) |
+| IMAP Port | 993 (IMAP over TLS — recommended) or 143 (IMAP with STARTTLS) |
+| TLS | Enabled (recommended) |
+| Authentication Method | OAuth 2.0 or Basic |
+| Username | The email address of the mailbox (for Basic auth) |
+| Password / App Password | The account password or app-specific password (for Basic auth) |
+| OAuth Credentials | Client ID, Client Secret, Tenant ID (Microsoft) or Client ID, Client Secret (Google) — for OAuth |
+| Polling Interval | How frequently CelestaCX checks for new emails (default: 60 seconds) |
+| Monitored Folder | The mailbox folder to monitor for incoming emails (default: Inbox) |
+| Processed Folder | The folder emails are moved to after being converted to interactions (default: Processed) | 
 #### Step 3 — Configure Outbound (SMTP)
  | Field | Description |
 | --- | --- |
-| SMTP  Host | Your  email  server's  SMTP  hostname  (e.g.  smtp.gmail.com  ,  smtp.office365.com  ) |
-| SMTP  Port | 587  (SMTP  with  STARTTLS  —  recommended)  or  465  (SMTP  over  TLS) |
-| TLS  /  STARTTLS | Enabled  (recommended) |
-| Authentication  Method | OAuth  2.0  or  Basic  (must  match  inbound  authentication  method) |
-| Username | The  email  address  used  for  SMTP  authentication | 
+| SMTP Host | Your email server's SMTP hostname (e.g. smtp.gmail.com , smtp.office365.com ) |
+| SMTP Port | 587 (SMTP with STARTTLS — recommended) or 465 (SMTP over TLS) |
+| TLS / STARTTLS | Enabled (recommended) |
+| Authentication Method | OAuth 2.0 or Basic (must match inbound authentication method) |
+| Username | The email address used for SMTP authentication | 
 #### Step 4 — Test the Connection
  
 1. Click **Test Inbound Connection** — CelestaCX will attempt to connect to the IMAP server and list the monitored folder. A success message confirms the connection is working.
@@ -150,13 +153,13 @@ Some email providers still support basic authentication using a username (email 
 ### Email Routing Options
  
 CelestaCX can route email interactions based on several attributes extracted from the incoming email:
- | Routing  Attribute | Description | Example |
+ | Routing Attribute | Description | Example |
 | --- | --- | --- |
-| Recipient  address | The  To  address  the  email  was  sent  to | Route  emails  to  billing@acme.com  to  the  Billing  queue |
-| Sender  domain | The  domain  of  the  customer's  email  address | Route  emails  from  @enterprise-client.com  to  the  Enterprise  queue |
-| Subject  keywords | Words  or  phrases  in  the  email  subject  line | Route  emails  containing  "urgent"  or  "complaint"  to  a  high-priority  queue |
-| Sender  address | A  specific  customer  email  address | Route  emails  from  a  VIP  contact  to  a  dedicated  queue |
-| Attachment  present | Whether  the  email  contains  an  attachment | Route  emails  with  attachments  to  a  team  equipped  to  handle  documents | 
+| Recipient address | The To address the email was sent to | Route emails to billing@acme.com to the Billing queue |
+| Sender domain | The domain of the customer's email address | Route emails from @enterprise-client.com to the Enterprise queue |
+| Subject keywords | Words or phrases in the email subject line | Route emails containing "urgent" or "complaint" to a high-priority queue |
+| Sender address | A specific customer email address | Route emails from a VIP contact to a dedicated queue |
+| Attachment present | Whether the email contains an attachment | Route emails with attachments to a team equipped to handle documents | 
 Multiple conditions can be combined in a single routing rule. Rules are evaluated in priority order as with all other channel types.
  
 #### Catch-All Routing
@@ -172,11 +175,11 @@ CelestaCX maintains email conversations as threaded interactions. When a custome
 Threading behaviour:
  | Scenario | Behaviour |
 | --- | --- |
-| Customer  replies  to  an  agent  email | Reply  is  appended  to  the  existing  interaction  thread |
-| Customer  starts  a  new  email  (new  subject,  no  reply  headers) | A  new  interaction  is  created |
-| Agent  replies  from  the  Agent  Desk | Reply  uses  the  original  Message-ID  for  threading  —  customer's  email  client  shows  it  as  part  of  the  same  conversation |
-| Customer  emails  a  different  address  (new  recipient) | A  new  interaction  is  created,  even  if  content  is  related |
-| Interaction  is  closed  and  customer  emails  again | A  new  interaction  is  created  —  the  previous  thread  is  referenced  in  interaction  history | 
+| Customer replies to an agent email | Reply is appended to the existing interaction thread |
+| Customer starts a new email (new subject, no reply headers) | A new interaction is created |
+| Agent replies from the Agent Desk | Reply uses the original Message-ID for threading — customer's email client shows it as part of the same conversation |
+| Customer emails a different address (new recipient) | A new interaction is created, even if content is related |
+| Interaction is closed and customer emails again | A new interaction is created — the previous thread is referenced in interaction history | 
 Threading relies on standard email headers. Some email clients or forwarding configurations strip these headers, which can cause replies to be treated as new interactions. If threading issues are occurring, check whether email forwarding is stripping headers — see Email Forwarding Mode below.
  
 ---
@@ -200,10 +203,10 @@ Auto-acknowledgement emails are sent immediately upon interaction creation, befo
 ### Email Signatures
  
 CelestaCX supports email signatures at two levels:
- | Level | Description | Configured  In |
+ | Level | Description | Configured In |
 | --- | --- | --- |
-| Queue  signature | A  standard  signature  applied  to  all  emails  sent  from  a  specific  queue | Administration  →  Queues  →  [Queue]  →  Email  Signature |
-| Agent  signature | A  personal  signature  that  agents  can  configure  for  their  own  replies | Agent  Desk  →  Profile  →  Email  Signature | 
+| Queue signature | A standard signature applied to all emails sent from a specific queue | Administration → Queues → [Queue] → Email Signature |
+| Agent signature | A personal signature that agents can configure for their own replies | Agent Desk → Profile → Email Signature | 
 When both a queue signature and an agent signature are configured, the agent signature takes precedence. Agents can preview and edit their signature in the Agent Desk message composer before sending.
  
 Signatures support plain text and basic HTML formatting — logos and images can be included via HTML image tags referencing publicly accessible URLs.
@@ -224,8 +227,8 @@ CelestaCX accepts all standard email attachment types. Received attachments are:
 #### Inbound Attachment Limits
  | Limit | Value |
 | --- | --- |
-| Maximum  attachment  size  per  email | 25  MB  (total  across  all  attachments) |
-| Maximum  number  of  attachments  per  email | 20 | 
+| Maximum attachment size per email | 25 MB (total across all attachments) |
+| Maximum number of attachments per email | 20 | 
 Emails with attachments exceeding these limits are still received as interactions, but oversized attachments are truncated and flagged in the interaction panel with a warning.
  
 #### Outbound Attachments
@@ -257,7 +260,9 @@ As an alternative to direct IMAP connection, CelestaCX supports **email forwardi
 3. In your email server or email provider, create a forwarding rule that forwards all emails arriving at your support address to the CelestaCX inbound address.
 4. Configure outbound (SMTP) settings as normal — forwarding mode only affects inbound receipt.
 5. Test by sending an email to your support address and confirming it appears as an interaction in CelestaCX.
- **Note:** Email forwarding mode may affect threading reliability if the forwarding configuration modifies email headers. Test threading behaviour thoroughly before going live with forwarding mode. 
+ 
+> **Note:** Email forwarding mode may affect threading reliability if the forwarding configuration modifies email headers. Test threading behaviour thoroughly before going live with forwarding mode.
+ 
 ---
  
 ### CC and BCC Handling
@@ -290,16 +295,16 @@ If spam emails do arrive as interactions, agents can mark them as spam in the Ag
 ---
  
 ### Troubleshooting
- | Symptom | Likely  Cause | Action |
+ | Symptom | Likely Cause | Action |
 | --- | --- | --- |
-| Inbound  emails  not  appearing  as  interactions | IMAP  connection  failing  or  polling  interval  issue | Run  Test  Inbound  Connection.  Check  IMAP  credentials  and  server  settings.  Verify  the  monitored  folder  name  matches  exactly. |
-| OAuth  authentication  failing  (Microsoft  365) | Insufficient  API  permissions  or  admin  consent  not  granted | Verify  Mail.Read  and  Mail.Send  permissions  are  granted  with  admin  consent  in  Azure  AD. |
-| OAuth  authentication  failing  (Google  Workspace) | OAuth  scope  not  approved  or  redirect  URI  mismatch | Verify  Gmail  API  is  enabled  and  the  redirect  URI  in  Google  Cloud  Console  matches  the  CelestaCX  OAuth  redirect  URL  exactly. |
-| Outbound  emails  not  delivered | SMTP  authentication  failing  or  port  blocked | Run  Test  Outbound  Connection.  Check  SMTP  credentials,  port,  and  TLS  settings.  Confirm  port  587  or  465  is  not  blocked  by  your  network. |
-| Email  replies  creating  new  interactions  instead  of  threading | Reply  headers  stripped  by  forwarding  or  email  client | Check  whether  email  forwarding  is  stripping  Message-ID  and  In-Reply-To  headers.  Consider  switching  to  forwarding  mode  or  reviewing  forwarding  rules. |
-| Auto-acknowledgement  not  sending | SMTP  connection  issue  or  auto-acknowledgement  disabled | Verify  SMTP  connection  is  working  and  auto-acknowledgement  is  enabled  under  Administration  →  Channels  →  [Channel]  →  Auto-Acknowledgement. |
-| Attachments  missing  from  received  interactions | Attachment  exceeds  size  limit | Check  attachment  size  against  the  25  MB  limit.  Oversized  attachments  are  flagged  in  the  interaction  panel. |
-| Emails  from  a  specific  sender  not  creating  interactions | Sender  is  on  the  suppression  list | Check  Administration  →  Channels  →  [Channel]  →  Suppressed  Senders  and  remove  the  sender  if  suppression  was  applied  in  error. | 
+| Inbound emails not appearing as interactions | IMAP connection failing or polling interval issue | Run Test Inbound Connection. Check IMAP credentials and server settings. Verify the monitored folder name matches exactly. |
+| OAuth authentication failing (Microsoft 365) | Insufficient API permissions or admin consent not granted | Verify Mail.Read and Mail.Send permissions are granted with admin consent in Azure AD. |
+| OAuth authentication failing (Google Workspace) | OAuth scope not approved or redirect URI mismatch | Verify Gmail API is enabled and the redirect URI in Google Cloud Console matches the CelestaCX OAuth redirect URL exactly. |
+| Outbound emails not delivered | SMTP authentication failing or port blocked | Run Test Outbound Connection. Check SMTP credentials, port, and TLS settings. Confirm port 587 or 465 is not blocked by your network. |
+| Email replies creating new interactions instead of threading | Reply headers stripped by forwarding or email client | Check whether email forwarding is stripping Message-ID and In-Reply-To headers. Consider switching to forwarding mode or reviewing forwarding rules. |
+| Auto-acknowledgement not sending | SMTP connection issue or auto-acknowledgement disabled | Verify SMTP connection is working and auto-acknowledgement is enabled under Administration → Channels → [Channel] → Auto-Acknowledgement. |
+| Attachments missing from received interactions | Attachment exceeds size limit | Check attachment size against the 25 MB limit. Oversized attachments are flagged in the interaction panel. |
+| Emails from a specific sender not creating interactions | Sender is on the suppression list | Check Administration → Channels → [Channel] → Suppressed Senders and remove the sender if suppression was applied in error. | 
 For persistent issues, check connector logs under **Platform Administration → Logs → Channel Connectors** or refer to the [Troubleshooting Guide](#) .
  
 ---

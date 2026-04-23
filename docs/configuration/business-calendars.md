@@ -1,3 +1,4 @@
+# Business Calendars
 Here is the **Business Calendars** page:
  
 ---
@@ -11,13 +12,13 @@ Business calendars define when your operation is open, when it is closed, and ho
 ### How Calendars Are Used
  
 Calendars are not just informational — they actively influence platform behaviour in real time:
- | Where  Calendars  Are  Used | Effect |
+ | Where Calendars Are Used | Effect |
 | --- | --- |
-| Queue  availability | A  queue  linked  to  a  calendar  is  only  open  during  defined  working  hours.  Outside  those  hours,  overflow  rules  apply. |
-| Routing  rules | Rules  with  a  time  condition  check  the  linked  calendar  before  deciding  whether  to  apply. |
-| SLA  calculations | Elapsed  time  for  SLA  targets  is  measured  only  during  calendar  working  hours,  not  around  the  clock. |
-| Out-of-hours  messaging | When  a  calendar  marks  a  queue  as  closed,  automated  out-of-hours  replies  are  triggered  on  digital  channels. |
-| Reports | Historical  reports  can  filter  and  segment  interaction  data  by  calendar  periods. | 
+| Queue availability | A queue linked to a calendar is only open during defined working hours. Outside those hours, overflow rules apply. |
+| Routing rules | Rules with a time condition check the linked calendar before deciding whether to apply. |
+| SLA calculations | Elapsed time for SLA targets is measured only during calendar working hours, not around the clock. |
+| Out-of-hours messaging | When a calendar marks a queue as closed, automated out-of-hours replies are triggered on digital channels. |
+| Reports | Historical reports can filter and segment interaction data by calendar periods. | 
 ---
  
 ### Calendar Components
@@ -25,9 +26,9 @@ Calendars are not just informational — they actively influence platform behavi
 A business calendar in CelestaCX consists of three components:
  | Component | Description |
 | --- | --- |
-| Working  Hours | The  standard  open  hours  for  each  day  of  the  week.  Each  day  can  have  different  hours,  or  be  marked  as  closed. |
-| Holidays | Specific  dates  when  the  operation  is  closed  regardless  of  the  standard  weekly  schedule. |
-| Special  Schedules | Date-specific  overrides  for  modified  hours  —  for  example,  reduced  hours  on  a  day  before  a  public  holiday,  or  extended  hours  during  a  campaign  period. | 
+| Working Hours | The standard open hours for each day of the week. Each day can have different hours, or be marked as closed. |
+| Holidays | Specific dates when the operation is closed regardless of the standard weekly schedule. |
+| Special Schedules | Date-specific overrides for modified hours — for example, reduced hours on a day before a public holiday, or extended hours during a campaign period. | 
 ---
  
 ### Creating a Calendar
@@ -52,19 +53,19 @@ A business calendar in CelestaCX consists of three components:
 ### Working Hours Configuration
  | Field | Description |
 | --- | --- |
-| Day | Day  of  the  week  (Monday  through  Sunday). |
-| Open  Time | The  time  from  which  the  queue  or  rule  is  active. |
-| Close  Time | The  time  at  which  the  queue  or  rule  becomes  inactive. |
-| Closed | Toggle  to  mark  the  entire  day  as  closed. |
-| Split  Hours | Optional  second  time  block  for  operations  with  a  mid-day  closure  (e.g.  09:00–12:30  and  13:30–17:30). | 
+| Day | Day of the week (Monday through Sunday). |
+| Open Time | The time from which the queue or rule is active. |
+| Close Time | The time at which the queue or rule becomes inactive. |
+| Closed | Toggle to mark the entire day as closed. |
+| Split Hours | Optional second time block for operations with a mid-day closure (e.g. 09:00–12:30 and 13:30–17:30). | 
 #### Example: Standard UK Business Hours
  | Day | Hours |
 | --- | --- |
-| Monday | 08:30  –  17:30 |
-| Tuesday | 08:30  –  17:30 |
-| Wednesday | 08:30  –  17:30 |
-| Thursday | 08:30  –  17:30 |
-| Friday | 08:30  –  17:00 |
+| Monday | 08:30 – 17:30 |
+| Tuesday | 08:30 – 17:30 |
+| Wednesday | 08:30 – 17:30 |
+| Thursday | 08:30 – 17:30 |
+| Friday | 08:30 – 17:00 |
 | Saturday | Closed |
 | Sunday | Closed | 
 ---
@@ -81,7 +82,9 @@ To add a full year of public holidays at once:
 2. Download the holiday import template.
 3. Populate the CSV with columns: `date` (YYYY-MM-DD format) and `name` .
 4. Upload the file. All valid rows are added immediately.
- **Tip:** Import holidays at the start of each calendar year, or whenever public holiday schedules are published. Set a recurring reminder to keep calendars accurate — incorrect holidays silently affect routing and SLA calculations. 
+ 
+> **Tip:** Import holidays at the start of each calendar year, or whenever public holiday schedules are published. Set a recurring reminder to keep calendars accurate — incorrect holidays silently affect routing and SLA calculations.
+ 
 ---
  
 ### Special Schedules
@@ -106,13 +109,15 @@ To add a special schedule:
 ### Time Zones & Multi-Region Operations
  
 Each calendar is tied to a single time zone. For operations running across multiple regions or countries, the recommended approach is to create one calendar per operational region.
- | Scenario | Recommended  Approach |
+ | Scenario | Recommended Approach |
 | --- | --- |
-| Single-region  operation | One  calendar  for  the  entire  operation. |
-| Multi-region,  same  hours | One  calendar  per  region,  each  in  its  own  time  zone. |
-| Multi-region,  different  hours | One  calendar  per  region  with  region-specific  working  hours  and  holidays. |
-| 24/7  operation | Create  a  calendar  with  all  days  set  to  00:00–23:59.  No  holidays  unless  partial  closures  apply. |
-| Follow-the-sun  support | Create  one  calendar  per  regional  shift  and  link  each  to  the  appropriate  queue. | **Important:** CelestaCX evaluates calendar rules using the time zone defined in the calendar, not the agent's local time zone or the server time zone. Always verify the calendar time zone is set correctly before going live. 
+| Single-region operation | One calendar for the entire operation. |
+| Multi-region, same hours | One calendar per region, each in its own time zone. |
+| Multi-region, different hours | One calendar per region with region-specific working hours and holidays. |
+| 24/7 operation | Create a calendar with all days set to 00:00–23:59. No holidays unless partial closures apply. |
+| Follow-the-sun support | Create one calendar per regional shift and link each to the appropriate queue. | 
+> **Important:** CelestaCX evaluates calendar rules using the time zone defined in the calendar, not the agent's local time zone or the server time zone. Always verify the calendar time zone is set correctly before going live.
+ 
 ---
  
 ### Linking a Calendar to a Queue or Routing Rule

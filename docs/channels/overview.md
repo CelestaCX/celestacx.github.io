@@ -1,3 +1,4 @@
+# Digital Channels Overview
 Here is the **Digital Channels Overview** page:
  
 ---
@@ -9,20 +10,20 @@ CelestaCX supports a broad range of digital messaging channels, allowing your ag
 ---
  
 ### Supported Digital Channels
- | Channel | Type | Direction | Rich  Media | File  Sharing | Bots  Supported | Typical  Use  Case |
+ | Channel | Type | Direction | Rich Media | File Sharing | Bots Supported | Typical Use Case |
 | --- | --- | --- | --- | --- | --- | --- |
-| WhatsApp | Messaging | Inbound  &  Outbound | Yes | Yes | Yes | High-volume  consumer  messaging,  notifications,  support |
-| Facebook  Messenger | Messaging | Inbound  &  Outbound | Yes | Yes | Yes | Consumer  brand  support,  social  engagement |
-| Instagram  Direct | Messaging | Inbound  &  Outbound | Images,  video | Yes | Yes | Brand  engagement,  influencer-adjacent  support |
-| LinkedIn | Messaging | Inbound  &  Outbound | Limited | No | No | B2B  support,  professional  services |
-| Twitter  /  X | Messaging  &  Mentions | Inbound  &  Outbound | Images | No | Limited | Public  brand  presence,  DM  support |
-| Telegram | Messaging | Inbound  &  Outbound | Yes | Yes | Yes | Privacy-conscious  users,  technical  communities |
-| Viber | Messaging | Inbound  &  Outbound | Yes | Yes | Yes | Regional  markets  (Eastern  Europe,  Southeast  Asia) |
-| SMS | Messaging | Inbound  &  Outbound | No  (MMS  limited) | No | Limited | Transactional  alerts,  broad  reach,  low-data  users |
-| Email | Messaging | Inbound  &  Outbound | HTML | Yes | Limited | Formal  support,  detailed  case  handling |
-| YouTube | Comments | Inbound  &  Outbound | No | No | No | Public  comment  moderation,  brand  reputation |
-| Google  Play  Store | Reviews | Inbound  &  Outbound | No | No | No | App  review  management,  public  response |
-| Customer  Widget | Webchat | Inbound  &  Outbound | Yes | Yes | Yes | Website  visitors,  identified  user  sessions | 
+| WhatsApp | Messaging | Inbound & Outbound | Yes | Yes | Yes | High-volume consumer messaging, notifications, support |
+| Facebook Messenger | Messaging | Inbound & Outbound | Yes | Yes | Yes | Consumer brand support, social engagement |
+| Instagram Direct | Messaging | Inbound & Outbound | Images, video | Yes | Yes | Brand engagement, influencer-adjacent support |
+| LinkedIn | Messaging | Inbound & Outbound | Limited | No | No | B2B support, professional services |
+| Twitter / X | Messaging & Mentions | Inbound & Outbound | Images | No | Limited | Public brand presence, DM support |
+| Telegram | Messaging | Inbound & Outbound | Yes | Yes | Yes | Privacy-conscious users, technical communities |
+| Viber | Messaging | Inbound & Outbound | Yes | Yes | Yes | Regional markets (Eastern Europe, Southeast Asia) |
+| SMS | Messaging | Inbound & Outbound | No (MMS limited) | No | Limited | Transactional alerts, broad reach, low-data users |
+| Email | Messaging | Inbound & Outbound | HTML | Yes | Limited | Formal support, detailed case handling |
+| YouTube | Comments | Inbound & Outbound | No | No | No | Public comment moderation, brand reputation |
+| Google Play Store | Reviews | Inbound & Outbound | No | No | No | App review management, public response |
+| Customer Widget | Webchat | Inbound & Outbound | Yes | Yes | Yes | Website visitors, identified user sessions | 
 ---
  
 ### Channel Capability Detail
@@ -90,30 +91,32 @@ These channels involve publicly visible interactions — comments, mentions, and
 ### Message Templates & Outbound Messaging
  
 Some channels — particularly WhatsApp — restrict what businesses can send to customers outside of an active conversation window. These restrictions exist because the channel provider wants to prevent spam and ensure customers have opted in to receive business messages.
- | Channel | Outbound  Restriction | How  to  Handle |
+ | Channel | Outbound Restriction | How to Handle |
 | --- | --- | --- |
-| WhatsApp | Cannot  initiate  conversations  with  free-form  text.  Must  use  pre-approved  message  templates  outside  the  24-hour  customer  service  window. | Submit  templates  for  approval  via  your  WhatsApp  Business  API  provider  before  use. |
-| Facebook  Messenger | Cannot  send  promotional  messages  outside  the  standard  messaging  window. | Use  within  the  24-hour  window  following  customer  contact,  or  use  sponsored  messaging  (Facebook  policy). |
-| Instagram | Similar  window  restrictions  to  Facebook  Messenger. | Respond  within  the  customer-initiated  window. |
-| SMS | No  window  restriction,  but  opt-out  compliance  (e.g.  STOP  commands)  is  mandatory. | Ensure  opt-out  handling  is  configured  on  your  SMS  provider  account. |
-| Email | No  platform  window  restriction,  but  subject  to  anti-spam  regulations  (GDPR,  CAN-SPAM,  etc.). | Maintain  compliant  mailing  lists  and  include  unsubscribe  options. |
-| Telegram,  Viber,  Customer  Widget | No  outbound  restrictions  beyond  normal  usage  policies. | No  additional  action  required. | **Important:** Compliance with channel provider policies and applicable communications law (GDPR, TCPA, CAN-SPAM, and equivalents) is the responsibility of your organisation. CelestaCX provides the technical capability — your legal and compliance team should review outbound messaging practices before go-live. 
+| WhatsApp | Cannot initiate conversations with free-form text. Must use pre-approved message templates outside the 24-hour customer service window. | Submit templates for approval via your WhatsApp Business API provider before use. |
+| Facebook Messenger | Cannot send promotional messages outside the standard messaging window. | Use within the 24-hour window following customer contact, or use sponsored messaging (Facebook policy). |
+| Instagram | Similar window restrictions to Facebook Messenger. | Respond within the customer-initiated window. |
+| SMS | No window restriction, but opt-out compliance (e.g. STOP commands) is mandatory. | Ensure opt-out handling is configured on your SMS provider account. |
+| Email | No platform window restriction, but subject to anti-spam regulations (GDPR, CAN-SPAM, etc.). | Maintain compliant mailing lists and include unsubscribe options. |
+| Telegram, Viber, Customer Widget | No outbound restrictions beyond normal usage policies. | No additional action required. | 
+> **Important:** Compliance with channel provider policies and applicable communications law (GDPR, TCPA, CAN-SPAM, and equivalents) is the responsibility of your organisation. CelestaCX provides the technical capability — your legal and compliance team should review outbound messaging practices before go-live.
+ 
 ---
  
 ### Conversation Windows
  
 Several channels operate on a **conversation window** model — a period of time after the customer's last message during which the business can reply freely. Outside this window, restrictions apply.
- | Channel | Conversation  Window |
+ | Channel | Conversation Window |
 | --- | --- |
-| WhatsApp | 24  hours  from  the  customer's  last  message |
-| Facebook  Messenger | 24  hours  from  the  customer's  last  message |
-| Instagram  Direct | 24  hours  from  the  customer's  last  message |
-| Twitter/X  DMs | No  formal  window  —  standard  DM  rules  apply |
-| Telegram | No  window  —  open  messaging |
-| Viber | No  window  —  open  messaging |
-| SMS | No  window  —  standard  messaging  rules  apply |
-| Email | No  window  —  standard  email  rules  apply |
-| Customer  Widget | Session-based  —  no  window  after  session  ends | 
+| WhatsApp | 24 hours from the customer's last message |
+| Facebook Messenger | 24 hours from the customer's last message |
+| Instagram Direct | 24 hours from the customer's last message |
+| Twitter/X DMs | No formal window — standard DM rules apply |
+| Telegram | No window — open messaging |
+| Viber | No window — open messaging |
+| SMS | No window — standard messaging rules apply |
+| Email | No window — standard email rules apply |
+| Customer Widget | Session-based — no window after session ends | 
 CelestaCX displays the remaining conversation window time in the Agent Desk interaction panel for channels where this applies, so agents can see at a glance whether they are within a free-reply window or need to use a template.
  
 ---

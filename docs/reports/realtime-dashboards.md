@@ -1,9 +1,12 @@
+# Real-Time Dashboards
 CelestaCX's real-time dashboards give supervisors a live view of everything happening in their contact centre — queue health, agent availability, active conversations, bot activity, and AI-powered sentiment signals — all updating continuously throughout the shift.
  
 The real-time layer is embedded directly in the Agent Desk interface, so supervisors do not need to open a separate tool. Dashboards are built on Grafana and refresh automatically, with detailed dashboards updating every 10 seconds.
  
 This page documents every real-time dashboard available to supervisors and agents, what each one shows, how to filter it, and what actions can be taken from within it.
- **Real-time vs historical:** The dashboards on this page show live data for active and current-shift interactions. For completed interactions and trend analysis over time, see [Historical Reports](#) . Some metrics in real-time dashboards — such as Service Level % and AHT — are derived from the historical ETL pipeline and update every 5 minutes rather than in real time. 
+ 
+> **Real-time vs historical:** The dashboards on this page show live data for active and current-shift interactions. For completed interactions and trend analysis over time, see [Historical Reports](#) . Some metrics in real-time dashboards — such as Service Level % and AHT — are derived from the historical ETL pipeline and update every 5 minutes rather than in real time.
+ 
 ---
  
 #### Dashboard Map
@@ -11,8 +14,8 @@ This page documents every real-time dashboard available to supervisors and agent
 CelestaCX provides two tiers of real-time dashboards:
  | Tier | Dashboards | Refresh |
 | --- | --- | --- |
-| Summary | Summary  Dashboard,  Team  Stats  Dashboard | Automatic  (Grafana) |
-| Detailed | Queued  Conversations,  Ongoing  Conversations,  Available  Agents,  My  Past  Conversations | Every  10  seconds | 
+| Summary | Summary Dashboard, Team Stats Dashboard | Automatic (Grafana) |
+| Detailed | Queued Conversations, Ongoing Conversations, Available Agents, My Past Conversations | Every 10 seconds | 
 ---
  
 #### 1. Summary Dashboard
@@ -20,40 +23,42 @@ CelestaCX provides two tiers of real-time dashboards:
 The Summary Dashboard is the default view shown after login. It provides a high-level snapshot of queue health and agent state distribution across the supervisor's assigned teams and queues — the starting point for every shift.
  
 #### Who Sees What
- | Role | What  They  See |
+ | Role | What They See |
 | --- | --- |
-| Supervisor | Must  select  a  Team  first,  then  one  or  more  queues  from  that  team.  Sees  only  teams  they  supervise  —  not  any  team  they  belong  to  as  an  agent. |
-| Agent | Sees  only  the  Queues  dropdown  with  queues  they  are  assigned  to. | A supervisor must have at least one team with at least one agent who has logged in at least once before team and queue data becomes visible on this dashboard. 
+| Supervisor | Must select a Team first, then one or more queues from that team. Sees only teams they supervise — not any team they belong to as an agent. |
+| Agent | Sees only the Queues dropdown with queues they are assigned to. | 
+> A supervisor must have at least one team with at least one agent who has logged in at least once before team and queue data becomes visible on this dashboard.
+ 
 #### Filters
  
 Apply filters in this sequence to scope the data:
- | Filter | What  It  Does |
+ | Filter | What It Does |
 | --- | --- |
-| Team  Name | Selects  the  team  to  monitor.  Drives  which  queues  appear  in  the  Queue  dropdown. |
-| Queue  Name | Filters  queue  stats  to  selected  queue(s).  Supports  multi-select. |
-| MRD  Name | Filters  the  agent  state  pie  chart  to  agents  in  the  selected  MRD. |
-| Bot  Name | Filters  bot  activity  to  a  specific  bot  connector. | 
+| Team Name | Selects the team to monitor. Drives which queues appear in the Queue dropdown. |
+| Queue Name | Filters queue stats to selected queue(s). Supports multi-select. |
+| MRD Name | Filters the agent state pie chart to agents in the selected MRD. |
+| Bot Name | Filters bot activity to a specific bot connector. | 
 #### Panels
  
 **Queue Stats Row** — four headline metrics across selected queues:
- | Metric | What  It  Shows | Data  Source |
+ | Metric | What It Shows | Data Source |
 | --- | --- | --- |
-| Service  Level  % | Percentage  of  conversations  answered  within  the  SL  threshold | Historical  ETL  (updates  every  ~5  min) |
-| Active  with  Agents | Conversations  currently  being  handled  by  agents | Live |
-| Average  Wait  Time | Average  time  conversations  have  spent  queued  before  being  answered  (  HH:MM:SS  ) | Live |
-| Average  Handle  Time  (AHT) | Average  duration  of  closed  tasks  including  wrap-up  (  Total  Duration  ÷  Total  Tasks  ) | Historical  ETL  (updates  every  ~5  min) | 
+| Service Level % | Percentage of conversations answered within the SL threshold | Historical ETL (updates every ~5 min) |
+| Active with Agents | Conversations currently being handled by agents | Live |
+| Average Wait Time | Average time conversations have spent queued before being answered ( HH:MM:SS ) | Live |
+| Average Handle Time (AHT) | Average duration of closed tasks including wrap-up ( Total Duration ÷ Total Tasks ) | Historical ETL (updates every ~5 min) | 
 **Queue Summary Statistics Table** — one row per queue in the selected team:
- | Column | What  It  Shows |
+ | Column | What It Shows |
 | --- | --- |
-| Queue  Name | Name  of  the  queue |
-| MRD  Name | Media  Routing  Domain  associated  with  this  queue |
-| Total  Queued | Conversations  currently  waiting  in  this  queue |
-| Oldest  in  Queue | Longest  current  wait  time  in  the  queue  (  HH:MM:SS  ;  shows  00:00:00  if  empty) |
-| Not  Ready | Agents  in  NOT_READY  state  on  this  queue's  MRD |
-| Ready | Agents  in  READY  state |
-| Active | Agents  in  ACTIVE  state |
-| Pending  Not  Ready | Agents  in  PENDING_NOT_READY  state |
-| Busy | Agents  at  maximum  task  limit | 
+| Queue Name | Name of the queue |
+| MRD Name | Media Routing Domain associated with this queue |
+| Total Queued | Conversations currently waiting in this queue |
+| Oldest in Queue | Longest current wait time in the queue ( HH:MM:SS ; shows 00:00:00 if empty) |
+| Not Ready | Agents in NOT_READY state on this queue's MRD |
+| Ready | Agents in READY state |
+| Active | Agents in ACTIVE state |
+| Pending Not Ready | Agents in PENDING_NOT_READY state |
+| Busy | Agents at maximum task limit | 
 **Agent States Row** — a pie chart showing how many agents are in each MRD state (Not Ready, Ready, Active, Busy, Pending Not Ready), filtered by MRD.
  
 **Bot Stats Row** — number of conversations currently being handled by the bot, filtered by Bot Name. A conversation counts as active with the bot until an agent joins it.
@@ -90,11 +95,11 @@ Lists every conversation currently waiting in a queue — not yet assigned to an
 **Access:** Supervisors only. Agents cannot view this dashboard.
  
 **Filters:** Select Team first, then Queue(s).
- | Column | What  It  Shows |
+ | Column | What It Shows |
 | --- | --- |
-| Customer | Customer  name  (if  identified),  channel  identifier,  and  channel  type  icon |
-| Waiting  Since | How  long  the  conversation  has  been  in  queue  (e.g.  "4  minutes  ago") |
-| Queue  Name | The  queue  where  this  conversation  is  waiting | 
+| Customer | Customer name (if identified), channel identifier, and channel type icon |
+| Waiting Since | How long the conversation has been in queue (e.g. "4 minutes ago") |
+| Queue Name | The queue where this conversation is waiting | 
 **Notes:**
  
 - Shows all queues in the selected team when no specific queue is chosen
@@ -111,18 +116,18 @@ Lists every inbound conversation currently active with an agent, supervisor, or 
 **Filters:**
  | Filter | Description |
 | --- | --- |
-| Answered  by | Toggle  between  Agents  (default)  and  Bots |
-| Team | Filter  to  the  supervisor's  assigned  team |
-| Queue(s) | Filter  by  one  or  more  queues  within  the  selected  team | 
+| Answered by | Toggle between Agents (default) and Bots |
+| Team | Filter to the supervisor's assigned team |
+| Queue(s) | Filter by one or more queues within the selected team | 
 For supervisors with secondary supervisor assignments: by default you see only your assigned agents. Use the team filter to expand the view to other secondary supervisors' agents or all team agents.
- | Column | What  It  Shows |
+ | Column | What It Shows |
 | --- | --- |
-| Direction | Inbound  or  Outbound |
-| Channel | Channel  type  (WhatsApp,  Facebook,  Webchat,  Email,  Voice,  etc.) |
-| Customer | Name  if  identified,  plus  channel  identity |
-| Active  Since | How  long  the  conversation  has  been  active |
-| Agent | Agent  name  and  username  handling  the  conversation |
-| Queue  Name | Queue  the  conversation  was  routed  through | 
+| Direction | Inbound or Outbound |
+| Channel | Channel type (WhatsApp, Facebook, Webchat, Email, Voice, etc.) |
+| Customer | Name if identified, plus channel identity |
+| Active Since | How long the conversation has been active |
+| Agent | Agent name and username handling the conversation |
+| Queue Name | Queue the conversation was routed through | 
 **From this dashboard you can:**
  
 - Click the **Monitor** (eye) icon to enter Silent Monitoring on any conversation
@@ -145,16 +150,18 @@ Displays all agents in the selected team with their current global state and act
 **Access:** Supervisors and Agents. Agents see only their own team's data.
  
 **Filters:** Search by agent name, or filter by Team.
- | Column | What  It  Shows |
+ | Column | What It Shows |
 | --- | --- |
-| Agent | Agent  name  and  current  global  state  (Ready  /  Not  Ready) |
-| Active  Conversations | Number  of  conversations  currently  assigned  to  this  agent |
-| MRD  State | Agent's  state  per  MRD,  shown  as  colour-coded  indicators | 
+| Agent | Agent name and current global state (Ready / Not Ready) |
+| Active Conversations | Number of conversations currently assigned to this agent |
+| MRD State | Agent's state per MRD, shown as colour-coded indicators | 
 **Supervisor actions available from this dashboard:**
- | Agent's  Current  State | Available  Action |
+ | Agent's Current State | Available Action |
 | --- | --- |
-| Not  Ready | Change  to  Ready |
-| Any  state | Force  Log  Out | State changes from this dashboard affect the agent's **global** state only, not individual MRD states. Force logout re-routes all active conversations before completing. 
+| Not Ready | Change to Ready |
+| Any state | Force Log Out | 
+> State changes from this dashboard affect the agent's **global** state only, not individual MRD states. Force logout re-routes all active conversations before completing.
+ 
 **Known limitations:**
  
 - The Reserved MRD state is not currently shown — the Force Logout option appears even for agents in Reserved state
@@ -171,14 +178,14 @@ Allows agents to view and reopen their recently handled conversations for follow
 **Filters:**
  | Filter | Options |
 | --- | --- |
-| Search | By  customer  name |
-| Channel | Filter  by  one  or  more  channel  types |
-| Time  range | Last  24  hours  (default),  Last  3  days,  Last  7  days | | Column | What  It  Shows |
+| Search | By customer name |
+| Channel | Filter by one or more channel types |
+| Time range | Last 24 hours (default), Last 3 days, Last 7 days | | Column | What It Shows |
 | --- | --- |
-| Customer  Name | The  customer  from  the  past  conversation |
-| Channel | Communication  channel  used |
-| Conversation  End  Time | When  the  conversation  was  closed |
-| Action | Opens  the  interaction  history;  enables  sending  a  follow-up  if  supported  by  the  channel | 
+| Customer Name | The customer from the past conversation |
+| Channel | Communication channel used |
+| Conversation End Time | When the conversation was closed |
+| Action | Opens the interaction history; enables sending a follow-up if supported by the channel | 
 Conversations are sorted newest first, with 25 per page and pagination controls.
  
 ---
@@ -198,12 +205,12 @@ For conversations involving a bot or a long agent interaction, the platform gene
 #### KPI Alerts
  
 A rule-based alerting system generates real-time notifications when configured KPI thresholds are breached. Common alert triggers include:
- | Alert | Example  Threshold |
+ | Alert | Example Threshold |
 | --- | --- |
-| Queue  wait  time | Exceeds  SLA  threshold |
-| Agent  Not  Ready  duration | Agent  in  Not  Ready  for  more  than  X  minutes |
-| Customer  sentiment | Drops  to  negative  and  stays  there |
-| Bot  dead-end | Bot  fails  to  resolve  after  N  turns | 
+| Queue wait time | Exceeds SLA threshold |
+| Agent Not Ready duration | Agent in Not Ready for more than X minutes |
+| Customer sentiment | Drops to negative and stays there |
+| Bot dead-end | Bot fails to resolve after N turns | 
 Alerts appear in the supervisor interface so action can be taken immediately — before the situation escalates to a formal hand raise or complaint.
  
 #### Bot-to-Agent Escalation Context
@@ -213,14 +220,14 @@ When the AI detects that a bot is unable to resolve a customer's issue — repea
 ---
  
 #### Quick Reference: Which Dashboard for What
- | I  need  to… | Use  this  dashboard |
+ | I need to… | Use this dashboard |
 | --- | --- |
-| Get  a  shift-start  overview  of  queue  and  agent  health | Summary  Dashboard |
-| See  which  specific  agents  are  idle  or  overloaded | Team  Stats  Dashboard |
-| See  which  conversations  are  waiting  in  queue | Queued  Conversations  Detail |
-| Monitor  a  live  conversation  or  barge  in | Ongoing  Conversations  Detail |
-| Change  an  agent's  state  or  force  logout | Available  Agents  Detail |
-| Follow  up  on  a  past  conversation | My  Past  Conversations  (agent) | 
+| Get a shift-start overview of queue and agent health | Summary Dashboard |
+| See which specific agents are idle or overloaded | Team Stats Dashboard |
+| See which conversations are waiting in queue | Queued Conversations Detail |
+| Monitor a live conversation or barge in | Ongoing Conversations Detail |
+| Change an agent's state or force logout | Available Agents Detail |
+| Follow up on a past conversation | My Past Conversations (agent) | 
 ---
  
 #### What's Next
