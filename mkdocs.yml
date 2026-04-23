@@ -33,12 +33,13 @@ theme:
     - navigation.expand
     - navigation.top
     - navigation.footer
+    - navigation.indexes
     - search.highlight
     - search.suggest
     - search.share
     - content.code.copy
     - content.code.annotate
-    - toc.integrate
+    - toc.follow
 
 extra_css:
   - assets/stylesheets/extra.css
@@ -77,62 +78,63 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Getting Started:
-    - getting-started/index.md
-    - What is CelestaCX?: getting-started/what-is-celestacx.md
-    - Key Concepts & Terminology: getting-started/key-concepts.md
-    - Platform Architecture: getting-started/architecture.md
-    - Release Notes: getting-started/release-notes.md
-  - Deployment & Infrastructure:
-    - deployment/index.md
-    - Planning & Sizing: deployment/planning.md
-    - Kubernetes Setup: deployment/kubernetes.md
-    - Installation Guide: deployment/installation.md
-    - High Availability: deployment/high-availability.md
-    - Security & Certificates: deployment/security-certificates.md
-    - Upgrade Guides: deployment/upgrade.md
-    - Scalability: deployment/scalability.md
-  - Configuration & Administration:
-    - configuration/index.md
-    - Identity & Access Management: configuration/iam.md
-    - Channels & Routing: configuration/channels-routing.md
-    - Agent Teams & Queues: configuration/teams-queues.md
-    - Business Calendars: configuration/business-calendars.md
-    - Forms & Form Builder: configuration/forms.md
-    - Admin Setup Guide: configuration/admin-setup.md
-  - Channels & Integrations:
-    - channels/index.md
-    - Digital Channels Overview: channels/overview.md
-    - WhatsApp: channels/whatsapp.md
-    - Facebook & Instagram: channels/facebook-instagram.md
-    - LinkedIn: channels/linkedin.md
-    - Twitter / X: channels/twitter.md
-    - Telegram: channels/telegram.md
-    - SMS (Twilio & SMPP): channels/sms.md
-    - Email: channels/email.md
-    - YouTube & Google Play: channels/youtube.md
-    - Voice & Video: channels/voice-video.md
-    - Customer Widget (Web Chat): channels/web-chat.md
-    - CRM Connectors: channels/crm-connectors.md
-    - Viber: channels/viber.md
-    - Channel Developer Guide: channels/developer-guide.md
-  - User Guides:
-    - user-guides/index.md
-    - Agent Guide: user-guides/agent.md
-    - Supervisor Guide: user-guides/supervisor.md
-    - Quality Manager Guide: user-guides/quality-manager.md
-    - Evaluator Guide: user-guides/evaluator.md
-    - Unified Admin Reference: user-guides/admin-reference.md
-  - Reports & Analytics:
-    - reports/index.md
-    - Real-Time Dashboards: reports/realtime-dashboards.md
-    - Historical Reports: reports/historical.md
-    - Key Reporting Metrics: reports/metrics.md
-  - Support & Operations:
-    - support/index.md
-    - Troubleshooting Guide: support/troubleshooting.md
-    - Logging & Monitoring: support/logging-monitoring.md
-    - Platform Administration: support/platform-admin.md
-    - Data Platform & ETL: support/data-etl.md
+  - Docs:
+    - Getting Started:
+      - getting-started/index.md
+      - What is CelestaCX?: getting-started/what-is-celestacx.md
+      - Key Concepts & Terminology: getting-started/key-concepts.md
+      - Platform Architecture: getting-started/architecture.md
+      - Release Notes: getting-started/release-notes.md
+    - Deployment & Infrastructure:
+      - deployment/index.md
+      - Planning & Sizing: deployment/planning.md
+      - Kubernetes Setup: deployment/kubernetes.md
+      - Installation Guide: deployment/installation.md
+      - High Availability: deployment/high-availability.md
+      - Security & Certificates: deployment/security-certificates.md
+      - Upgrade Guides: deployment/upgrade.md
+      - Scalability: deployment/scalability.md
+    - Configuration & Administration:
+      - configuration/index.md
+      - Identity & Access Management: configuration/iam.md
+      - Channels & Routing: configuration/channels-routing.md
+      - Agent Teams & Queues: configuration/teams-queues.md
+      - Business Calendars: configuration/business-calendars.md
+      - Forms & Form Builder: configuration/forms.md
+      - Admin Setup Guide: configuration/admin-setup.md
+    - Channels & Integrations:
+      - channels/index.md
+      - Digital Channels Overview: channels/overview.md
+      - WhatsApp: channels/whatsapp.md
+      - Facebook & Instagram: channels/facebook-instagram.md
+      - LinkedIn: channels/linkedin.md
+      - Twitter / X: channels/twitter.md
+      - Telegram: channels/telegram.md
+      - SMS (Twilio & SMPP): channels/sms.md
+      - Email: channels/email.md
+      - YouTube & Google Play: channels/youtube.md
+      - Voice & Video: channels/voice-video.md
+      - Customer Widget (Web Chat): channels/web-chat.md
+      - CRM Connectors: channels/crm-connectors.md
+      - Viber: channels/viber.md
+      - Channel Developer Guide: channels/developer-guide.md
+    - User Guides:
+      - user-guides/index.md
+      - Agent Guide: user-guides/agent.md
+      - Supervisor Guide: user-guides/supervisor.md
+      - Quality Manager Guide: user-guides/quality-manager.md
+      - Evaluator Guide: user-guides/evaluator.md
+      - Unified Admin Reference: user-guides/admin-reference.md
+    - Reports & Analytics:
+      - reports/index.md
+      - Real-Time Dashboards: reports/realtime-dashboards.md
+      - Historical Reports: reports/historical.md
+      - Key Reporting Metrics: reports/metrics.md
+    - Support & Operations:
+      - support/index.md
+      - Troubleshooting Guide: support/troubleshooting.md
+      - Logging & Monitoring: support/logging-monitoring.md
+      - Platform Administration: support/platform-admin.md
+      - Data Platform & ETL: support/data-etl.md
+  - Roadmap: roadmap/roadmap-2026.md
   - Security: security/solution-security.md
-  - Roadmap 2026: roadmap/roadmap-2026.md
