@@ -2,8 +2,6 @@ site_name: CelestaCX Documentation
 site_description: AI-powered omnichannel contact center platform by Octavebytes
 site_author: Octavebytes
 site_url: https://celestacx.github.io/
-repo_name: CelestaCX/celestacx.github.io
-repo_url: https://github.com/CelestaCX/celestacx.github.io
 copyright: "© 2025 Octavebytes. All Rights Reserved."
 
 theme:
