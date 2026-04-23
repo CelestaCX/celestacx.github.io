@@ -134,5 +134,7 @@ nav:
       - Logging & Monitoring: support/logging-monitoring.md
       - Platform Administration: support/platform-admin.md
       - Data Platform & ETL: support/data-etl.md
+    - Roadmap 2026: roadmap/roadmap-2026.md
+    - Solution Security: security/solution-security.md
   - Roadmap: roadmap/roadmap-2026.md
   - Security: security/solution-security.md
