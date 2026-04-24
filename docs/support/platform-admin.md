@@ -185,16 +185,16 @@ bash
 helm repo update
 
 # Check current deployed version
-helm list -n expertflow
+helm list -n celesta
 
 # Upgrade a specific chart to a new version
 helm upgrade <release-name> <chart-name> \
-  -n expertflow \
+  -n celesta \
   --version <target-version> \
   -f values.yaml
 
 # Monitor the rollout
-kubectl rollout status deployment/<deployment-name> -n expertflow
+kubectl rollout status deployment/<deployment-name> -n celesta
 ```
 
 #### Post-Upgrade Validation
@@ -205,13 +205,13 @@ bash
 
 ```
 # Confirm all pods are Running after upgrade
-kubectl get pods -n expertflow | grep -v Running
+kubectl get pods -n celesta | grep -v Running
 
 # Check for new ERROR patterns introduced by the upgrade
-kubectl logs <pod-name> -n expertflow --since=10m | grep ERROR
+kubectl logs <pod-name> -n celesta --since=10m | grep ERROR
 
 # Verify the component version
-kubectl describe pod <pod-name> -n expertflow | grep Image
+kubectl describe pod <pod-name> -n celesta | grep Image
 ```
 
 **End-to-end smoke test after full upgrade:**
@@ -234,10 +234,10 @@ bash
 
 ```
 # Roll back a Helm release to the previous version
-helm rollback <release-name> -n expertflow
+helm rollback <release-name> -n celesta
 
 # Monitor the rollback
-kubectl rollout status deployment/<deployment-name> -n expertflow
+kubectl rollout status deployment/<deployment-name> -n celesta
 
 # If rollback is insufficient, restore from pre-upgrade backup
 # Follow the MongoDB and PostgreSQL restore procedures above
@@ -333,10 +333,10 @@ bash
 
 ```
 # Edit the ActiveMQ ConfigMap with the new credentials
-kubectl edit configmap activemq-config -n expertflow
+kubectl edit configmap activemq-config -n celesta
 
 # Restart the ActiveMQ pod to pick up the new credentials
-kubectl rollout restart deployment/activemq -n expertflow
+kubectl rollout restart deployment/activemq -n celesta
 
 # Update any services that connect to ActiveMQ with the new credentials
 # (typically managed via Helm values — update and redeploy affected services)

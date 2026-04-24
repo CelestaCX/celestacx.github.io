@@ -69,7 +69,7 @@ Before deploying the ETL components, the following must be in place:
 bash
 
 ```
-kubectl create configmap ef-reporting-connector-keystore-cm \
+kubectl create configmap celesta-reporting-connector-keystore-cm \
   --from-file=mykeystore.jks \
   -n <tenant-namespace>
 ```
@@ -87,7 +87,7 @@ Create the `reporting-connector.conf` configuration file for each tenant. Key pa
 | db_port | SQL database port (default: 3306 for MySQL, 1433 for MSSQL) |
 | db_username | Database user with read/write access to the reporting schema |
 | db_password | Database password |
-| service_url | URL of the historical reports service (e.g. http://ef-cx-historical-reports-svc:8081 ) |
+| service_url | URL of the historical reports service (e.g. http://celesta-cx-historical-reports-svc:8081 ) |
 
 #### Step 3: Deploy the Reporting Scheduler
 

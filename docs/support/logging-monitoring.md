@@ -9,7 +9,7 @@ CelestaCX runs on Kubernetes (RKE2) and all application services emit OTLP-forma
 **Prerequisites for this page:**
 
 - `kubectl` configured and authenticated against the target cluster
-- Access to the `expertflow` namespace (or the namespace your deployment uses)
+- Access to the `celesta` namespace (or the namespace your deployment uses)
 - For Grafana and Superset alerting: admin access to those interfaces
 
 ---
@@ -23,8 +23,8 @@ Before viewing logs, identify which pod is responsible for the component you wan
 bash
 
 ```
-# List all running pods in the expertflow namespace
-kubectl get pods -n expertflow
+# List all running pods in the celesta namespace
+kubectl get pods -n celesta
 
 # List pods across all namespaces (useful for external components)
 kubectl get pods -A
@@ -37,14 +37,14 @@ kubectl get pods -A | grep -v Running
 
 | Pod Prefix | Component |
 | --- | --- |
-| ef-ccm-* | Core Conversation Manager — the heart of routing and conversation lifecycle |
-| ef-agent-manager-* | Agent state management and session handling |
-| ef-unified-admin-* | Unified Admin interface backend |
-| ef-cx-router-* | Routing engine — queue and agent matching |
-| ef-cx-otp-manager-* | 2FA OTP manager service |
+| celesta-ccm-* | Core Conversation Manager — the heart of routing and conversation lifecycle |
+| celesta-agent-manager-* | Agent state management and session handling |
+| celesta-unified-admin-* | Unified Admin interface backend |
+| celesta-cx-router-* | Routing engine — queue and agent matching |
+| celesta-cx-otp-manager-* | 2FA OTP manager service |
 | *-connector-* | Individual channel connectors (WhatsApp, email, Facebook, etc.) |
-| ef-media-server-* | Voice media server |
-| ef-cx-analyser-* | ETL pipeline and reporting data processor |
+| celesta-media-server-* | Voice media server |
+| celesta-cx-analyser-* | ETL pipeline and reporting data processor |
 | keycloak-* | Identity and access management |
 | mongo-* | MongoDB (if deployed in-cluster) |
 | redis-* | Redis (if deployed in-cluster) |
@@ -58,16 +58,16 @@ bash
 
 ```
 # Stream live logs
-kubectl logs -f <pod-name> -n expertflow
+kubectl logs -f <pod-name> -n celesta
 
 # View the last 100 lines without streaming
-kubectl logs <pod-name> -n expertflow --tail=100
+kubectl logs <pod-name> -n celesta --tail=100
 
 # View logs from the previous (crashed) container instance
-kubectl logs <pod-name> -n expertflow --previous
+kubectl logs <pod-name> -n celesta --previous
 
 # View logs from the last hour
-kubectl logs <pod-name> -n expertflow --since=1h
+kubectl logs <pod-name> -n celesta --since=1h
 ```
 
 #### Filtering Logs
@@ -78,19 +78,19 @@ bash
 
 ```
 # Filter for audit log events
-kubectl logs <pod-name> -n expertflow | grep "audit_logging"
+kubectl logs <pod-name> -n celesta | grep "audit_logging"
 
 # Filter for tracing events
-kubectl logs <pod-name> -n expertflow | grep "tracing"
+kubectl logs <pod-name> -n celesta | grep "tracing"
 
 # Filter for ERROR level logs only
-kubectl logs <pod-name> -n expertflow | grep "ERROR"
+kubectl logs <pod-name> -n celesta | grep "ERROR"
 
 # Filter for a specific conversation or customer ID
-kubectl logs <pod-name> -n expertflow | grep "<conversation-id>"
+kubectl logs <pod-name> -n celesta | grep "<conversation-id>"
 
 # Combine: stream live errors from the CCM
-kubectl logs -f <ef-ccm-pod-name> -n expertflow | grep "ERROR"
+kubectl logs -f <celesta-ccm-pod-name> -n celesta | grep "ERROR"
 ```
 
 #### Viewing Pod Events
@@ -101,10 +101,10 @@ bash
 
 ```
 # Describe a pod for events and resource information
-kubectl describe pod <pod-name> -n expertflow
+kubectl describe pod <pod-name> -n celesta
 
 # View all recent events in the namespace, sorted by time
-kubectl get events -n expertflow --sort-by='.lastTimestamp'
+kubectl get events -n celesta --sort-by='.lastTimestamp'
 ```
 
 ---
@@ -113,7 +113,7 @@ kubectl get events -n expertflow --sort-by='.lastTimestamp'
 
 Not all logs are equally important. The following services produce the most operationally significant log output and should be checked first when investigating platform issues.
 
-#### CX Router (`ef-cx-router-*`)
+#### CX Router (`celesta-cx-router-*`)
 
 The routing engine is the first place to check when conversations are not being routed correctly. Look for:
 
@@ -124,17 +124,17 @@ The routing engine is the first place to check when conversations are not being 
 bash
 
 ```
-kubectl logs -f <ef-cx-router-pod> -n expertflow | grep -E "ERROR|WARN|routing"
+kubectl logs -f <celesta-cx-router-pod> -n celesta | grep -E "ERROR|WARN|routing"
 ```
 
-#### Core Conversation Manager (`ef-ccm-*`)
+#### Core Conversation Manager (`celesta-ccm-*`)
 
 The CCM manages the full conversation lifecycle. Its logs are the most comprehensive source for diagnosing conversation-level issues — failed channel handoffs, missing events, bot escalation failures.
 
 bash
 
 ```
-kubectl logs -f <ef-ccm-pod> -n expertflow | grep -E "ERROR|conversation|session"
+kubectl logs -f <celesta-ccm-pod> -n celesta | grep -E "ERROR|conversation|session"
 ```
 
 #### Channel Connectors (`*-connector-*`)
@@ -145,30 +145,30 @@ bash
 
 ```
 # Find all connector pods
-kubectl get pods -n expertflow | grep connector
+kubectl get pods -n celesta | grep connector
 
 # Check a specific connector
-kubectl logs -f <whatsapp-connector-pod> -n expertflow | grep -E "ERROR|webhook|token"
+kubectl logs -f <whatsapp-connector-pod> -n celesta | grep -E "ERROR|webhook|token"
 ```
 
-#### Agent Manager (`ef-agent-manager-*`)
+#### Agent Manager (`celesta-agent-manager-*`)
 
 Logs agent state transitions, session establishment, and login events. Check here when agents are experiencing state issues or cannot be seen on dashboards.
 
 bash
 
 ```
-kubectl logs -f <ef-agent-manager-pod> -n expertflow | grep -E "ERROR|state|login"
+kubectl logs -f <celesta-agent-manager-pod> -n celesta | grep -E "ERROR|state|login"
 ```
 
-#### ETL / CX Analyser (`ef-cx-analyser-*`)
+#### ETL / CX Analyser (`celesta-cx-analyser-*`)
 
 The ETL pipeline that feeds historical reports. If reports are not updating, check this pod for pipeline failures or database connection errors.
 
 bash
 
 ```
-kubectl logs -f <ef-cx-analyser-pod> -n expertflow | grep -E "ERROR|pipeline|mongo"
+kubectl logs -f <celesta-cx-analyser-pod> -n celesta | grep -E "ERROR|pipeline|mongo"
 ```
 
 ---
@@ -189,7 +189,7 @@ kubectl get nodes
 kubectl top nodes
 
 # Pod resource utilisation (highest consumers first)
-kubectl top pods -n expertflow --sort-by=memory
+kubectl top pods -n celesta --sort-by=memory
 
 # All pods — quickly identify anything not in Running state
 kubectl get pods -A | grep -v Running
@@ -428,22 +428,22 @@ kubectl get pods -A | grep -v Running
 kubectl top nodes
 
 # Stream live logs from a pod
-kubectl logs -f <pod-name> -n expertflow
+kubectl logs -f <pod-name> -n celesta
 
 # Stream live errors only
-kubectl logs -f <pod-name> -n expertflow | grep ERROR
+kubectl logs -f <pod-name> -n celesta | grep ERROR
 
 # Pod events and resource info
-kubectl describe pod <pod-name> -n expertflow
+kubectl describe pod <pod-name> -n celesta
 
 # Last hour of logs
-kubectl logs <pod-name> -n expertflow --since=1h
+kubectl logs <pod-name> -n celesta --since=1h
 
 # Previous container logs (after crash)
-kubectl logs <pod-name> -n expertflow --previous
+kubectl logs <pod-name> -n celesta --previous
 
 # All namespace events sorted by time
-kubectl get events -n expertflow --sort-by='.lastTimestamp'
+kubectl get events -n celesta --sort-by='.lastTimestamp'
 ```
 
 ---

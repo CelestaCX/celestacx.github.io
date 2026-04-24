@@ -55,7 +55,7 @@ Find the category that matches the area where the issue is occurring, then locat
 | Email channel not configured | 2FA via email requires a working IMAP/SMTP email channel. Confirm the channel is active in Unified Admin and the channelServiceIdentifier matches the sender address. |
 | OTP expired | The default OTP lifetime is 60 seconds. If users are slow to enter it, increase otpExpiry in tenant settings (recommended maximum: 120 seconds). |
 | OTP max attempts exceeded | The user account may be in cooldown after too many failed attempts. Check otpMaxAttempts setting and reset the user's 2FA state in Keycloak if needed. |
-| OTP manager service not running | Check the ef-cx-otp-manager-svc pod status: `kubectl get pods -A |
+| OTP manager service not running | Check the celesta-cx-otp-manager-svc pod status: `kubectl get pods -A |
 
 ---
 
