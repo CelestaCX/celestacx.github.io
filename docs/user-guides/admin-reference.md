@@ -186,11 +186,11 @@ Once configured, the widget is embedded in your customer's website by adding a s
 
 #### 7. Voice Configuration
 
-Voice configuration in CelestaCX covers the EFSwitch (FreeSWITCH-based) voice server, WebRTC browser-based calling, call recording, and AI-powered real-time transcription.
+Voice configuration in CelestaCX covers the CXSwitch (FreeSWITCH-based) voice server, WebRTC browser-based calling, call recording, and AI-powered real-time transcription.
 
 | Task | What It Covers |
 | --- | --- |
-| Accessing CX Voice Components | How to access and navigate the EFSwitch voice server administration interface |
+| Accessing CX Voice Components | How to access and navigate the CXSwitch voice server administration interface |
 | WebRTC Channel Configuration | Configure browser-based voice and video calling via WebRTC — no softphone client required |
 | Media Server Configuration | Set up the media server for call recording storage, processing, and retrieval |
 | Azure Transcription Setup | Configure Microsoft Azure Cognitive Services for real-time speech-to-text during voice calls |

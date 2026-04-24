@@ -390,13 +390,13 @@ Superset alerts must be enabled by an administrator before they can be configure
 
 #### 7. Grafana Dashboards (Voice Monitoring)
 
-For deployments with CX Voice enabled, Grafana provides real-time infrastructure dashboards for the EFSwitch voice server — SIP registration counts, active call counts, call success rates, and media server resource utilisation.
+For deployments with CX Voice enabled, Grafana provides real-time infrastructure dashboards for the CXSwitch voice server — SIP registration counts, active call counts, call success rates, and media server resource utilisation.
 
 Access Grafana at `https://<your-domain>/grafana` using your platform operator credentials.
 
 Key dashboards to monitor for voice deployments:
 
-- **EFSwitch Overview** — SIP registrations, active calls, call rates
+- **CXSwitch Overview** — SIP registrations, active calls, call rates
 - **Media Server** — CPU, memory, active sessions, recording storage
 - **Kubernetes Node Overview** — cluster resource consumption across all nodes
 

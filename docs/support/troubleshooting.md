@@ -209,7 +209,7 @@ Find the category that matches the area where the issue is occurring, then locat
 
 | Likely Cause | Resolution |
 | --- | --- |
-| SIP registration failure | Check EFSwitch SIP registrations. Verify the SIP trunk credentials and that the SIP proxy is reachable from the voice gateway. |
+| SIP registration failure | Check CXSwitch SIP registrations. Verify the SIP trunk credentials and that the SIP proxy is reachable from the voice gateway. |
 | Voice connector pod not running | Check: `kubectl get pods -A |
 | No routing rule for voice MRD | Confirm a routing rule exists for the voice channel directing calls to a queue. |
 | No agents in Ready state for the voice MRD | Verify at least one agent has their Voice MRD channel toggle enabled and is in Ready state. |
@@ -225,7 +225,7 @@ Find the category that matches the area where the issue is occurring, then locat
 | --- | --- |
 | NAT traversal issue | Confirm STUN/TURN server settings in the WebRTC configuration. One-way audio is typically caused by NAT not being correctly traversed. |
 | Firewall blocking UDP media ports | Voice media uses UDP on a range of ports (typically 10000–20000). Confirm these are open between the client and the media server. |
-| Codec mismatch | Check that the SIP trunk and EFSwitch are configured to use a common codec (G.711 is the most compatible). |
+| Codec mismatch | Check that the SIP trunk and CXSwitch are configured to use a common codec (G.711 is the most compatible). |
 | Network bandwidth insufficient | Minimum recommended bandwidth per voice call is 100 Kbps upload and download. Test the agent's connection quality. |
 
 ---
