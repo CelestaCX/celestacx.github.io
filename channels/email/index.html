@@ -1,0 +1,3938 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AI-powered omnichannel contact center platform by Octavebytes">
+      
+      
+        <meta name="author" content="Octavebytes">
+      
+      
+        <link rel="canonical" href="https://celestacx.github.io/channels/email/">
+      
+      
+        <link rel="prev" href="../sms/">
+      
+      
+        <link rel="next" href="../youtube/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Email - CelestaCX Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#email" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CelestaCX Documentation" class="md-header__button md-logo" aria-label="CelestaCX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CelestaCX Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Email
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Docs
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/roadmap-2026/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap 2026
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../security/solution-security/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Solution Security
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CelestaCX Documentation" class="md-nav__button md-logo" aria-label="CelestaCX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    CelestaCX Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/what-is-celestacx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is CelestaCX?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/key-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Concepts & Terminology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../deployment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment & Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deployment & Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning & Sizing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/high-availability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    High Availability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/security-certificates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security & Certificates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/scalability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scalability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../configuration/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration & Administration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuration & Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/iam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity & Access Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/channels-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channels & Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/teams-queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Teams & Queues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/business-calendars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Calendars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/forms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forms & Form Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/admin-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channels & Integrations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Channels & Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Channels Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../whatsapp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WhatsApp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../facebook-instagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facebook & Instagram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linkedin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LinkedIn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../twitter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Twitter / X
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../telegram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMS (Twilio & SMPP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#email_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Email">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-email-works-in-celestacx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Email Works in CelestaCX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dedicated-mailbox-recommendation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dedicated Mailbox Recommendation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oauth-20-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OAuth 2.0 (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-authentication-username-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Authentication (Username + Password)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-email-in-celestacx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Email in CelestaCX
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Email in CelestaCX">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-add-the-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Add the Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-configure-inbound-imap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Configure Inbound (IMAP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-configure-outbound-smtp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Configure Outbound (SMTP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-test-the-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Test the Connection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-create-routing-rules-and-save" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — Create Routing Rules and Save
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-routing-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Routing Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Email Routing Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#catch-all-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catch-All Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-threading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Threading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-acknowledgement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Acknowledgement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-signatures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Signatures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attachments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attachments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inbound-attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inbound Attachments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inbound-attachment-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inbound Attachment Limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outbound-attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outbound Attachments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-forwarding-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Forwarding Mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Email Forwarding Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages-of-forwarding-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages of Forwarding Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-forwarding-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Forwarding Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-and-bcc-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CC and BCC Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CC and BCC Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inbound-cc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inbound CC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-cc-and-bcc-on-replies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent CC and BCC on Replies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spam-unwanted-email-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spam &amp; Unwanted Email Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../youtube/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    YouTube & Google Play
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../voice-video/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Voice & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Widget (Web Chat)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crm-connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../viber/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Viber
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channel Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../user-guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/supervisor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supervisor Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/quality-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Manager Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/evaluator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/admin-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unified Admin Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reports/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports & Analytics
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reports & Analytics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/realtime-dashboards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time Dashboards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Reporting Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../support/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support & Operations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Support & Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/logging-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging & Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/platform-admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Administration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/data-etl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Platform & ETL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/roadmap-2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/solution-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/roadmap-2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/solution-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#email_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Email">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-email-works-in-celestacx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Email Works in CelestaCX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dedicated-mailbox-recommendation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dedicated Mailbox Recommendation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oauth-20-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OAuth 2.0 (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-authentication-username-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Authentication (Username + Password)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-email-in-celestacx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Email in CelestaCX
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Email in CelestaCX">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-add-the-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Add the Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-configure-inbound-imap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Configure Inbound (IMAP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-configure-outbound-smtp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Configure Outbound (SMTP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-test-the-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Test the Connection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-create-routing-rules-and-save" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — Create Routing Rules and Save
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-routing-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Routing Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Email Routing Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#catch-all-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catch-All Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-threading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Threading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-acknowledgement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-Acknowledgement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-signatures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Signatures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attachments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attachments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inbound-attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inbound Attachments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inbound-attachment-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inbound Attachment Limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outbound-attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outbound Attachments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-forwarding-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Forwarding Mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Email Forwarding Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages-of-forwarding-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages of Forwarding Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-forwarding-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Forwarding Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-and-bcc-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CC and BCC Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CC and BCC Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inbound-cc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inbound CC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-cc-and-bcc-on-replies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent CC and BCC on Replies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spam-unwanted-email-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spam &amp; Unwanted Email Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="email">Email<a class="headerlink" href="#email" title="Permanent link">&para;</a></h1>
+<p>Here is the <strong>Email</strong> page:</p>
+<hr />
+<h2 id="email_1">Email<a class="headerlink" href="#email_1" title="Permanent link">&para;</a></h2>
+<p>CelestaCX supports a full email channel, enabling agents to receive, manage, and respond to customer emails from the Agent Desk alongside all other channels. Email remains the preferred channel for formal, complex, or document-heavy interactions — complaints, contracts, regulatory enquiries, and detailed technical support cases. This page covers how to connect an email account to CelestaCX, configure routing, manage threading, and handle attachments.</p>
+<hr />
+<h3 id="how-email-works-in-celestacx">How Email Works in CelestaCX<a class="headerlink" href="#how-email-works-in-celestacx" title="Permanent link">&para;</a></h3>
+<p>CelestaCX connects to email accounts via <strong>IMAP</strong> (for receiving) and <strong>SMTP</strong> (for sending). Incoming emails are fetched from the mailbox at regular intervals, converted into CelestaCX interactions, and routed to the appropriate queue. Agents reply from the Agent Desk and outbound emails are sent via the configured SMTP server.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Customer sends email
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>to your support address
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        ▼
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Email Server (IMAP mailbox)
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  Polled by CelestaCX
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        ▼
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>CelestaCX Email Connector
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>(converts to interaction, extracts metadata)
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        ▼
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Routing Engine → Queue → Agent Desk
+</code></pre></div>
+<p>Replies from agents follow the reverse path — composed in the Agent Desk, sent via SMTP, and delivered to the customer's inbox as a standard email reply.</p>
+<hr />
+<h3 id="supported-features">Supported Features<a class="headerlink" href="#supported-features" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inbound email via IMAP</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Outbound email via SMTP</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTML email composition</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Plain text email composition</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Inbound attachments</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Outbound attachments</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Email threading (conversation view)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>CC and BCC on replies</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Auto-acknowledgement replies</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Email signatures</td>
+<td>Yes — per agent and per queue</td>
+</tr>
+<tr>
+<td>Routing by sender domain</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Routing by subject line keywords</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Routing by recipient address</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Shared mailbox support</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>OAuth 2.0 authentication (Microsoft 365, Google Workspace)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Basic authentication (IMAP/SMTP username + password)</td>
+<td>Yes — where supported by provider</td>
+</tr>
+<tr>
+<td>Email forwarding mode</td>
+<td>Yes — as alternative to direct IMAP connection</td>
+</tr>
+<tr>
+<td>Spam filtering</td>
+<td>Basic — relies on upstream email server filtering</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>Before configuring email in CelestaCX, you need:</p>
+<ul>
+<li>A dedicated <strong>email address</strong> for the support channel (e.g. <a href="#">support@acme.com</a> or <a href="#">helpdesk@acme.com</a>)</li>
+<li>IMAP and SMTP access enabled on the email account</li>
+<li>Authentication credentials — either OAuth 2.0 (recommended for Microsoft 365 and Google Workspace) or username and password</li>
+<li>For Microsoft 365: an Azure AD app registration with Mail.Read and Mail.Send permissions (if using OAuth)</li>
+<li>For Google Workspace: a Google Cloud project with Gmail API enabled and appropriate OAuth scopes (if using OAuth)</li>
+</ul>
+<h4 id="dedicated-mailbox-recommendation">Dedicated Mailbox Recommendation<a class="headerlink" href="#dedicated-mailbox-recommendation" title="Permanent link">&para;</a></h4>
+<p>CelestaCX monitors the entire inbox of the connected mailbox. For this reason, always use a <strong>dedicated mailbox</strong> for each CelestaCX email channel — do not connect a shared or personal mailbox that receives non-support email. Unrelated emails arriving in the mailbox will be converted into interactions and routed to agents.</p>
+<hr />
+<h3 id="authentication-methods">Authentication Methods<a class="headerlink" href="#authentication-methods" title="Permanent link">&para;</a></h3>
+<p>CelestaCX supports two authentication methods for connecting to email accounts:</p>
+<h4 id="oauth-20-recommended">OAuth 2.0 (Recommended)<a class="headerlink" href="#oauth-20-recommended" title="Permanent link">&para;</a></h4>
+<p>OAuth 2.0 is the modern, secure authentication standard used by Microsoft 365 and Google Workspace. It does not require storing a password in CelestaCX — instead, CelestaCX is granted permission to access the mailbox through an authorisation flow.</p>
+<p><strong>Microsoft 365 / Exchange Online:</strong></p>
+<ol>
+<li>Register an application in <strong>Azure Active Directory → App Registrations → New Registration</strong>.</li>
+<li>
+<p>Add the following API permissions under <strong>Microsoft Graph</strong>:</p>
+</li>
+<li>
+<p><code>Mail.Read</code> — to read incoming emails via IMAP</p>
+</li>
+<li><code>Mail.Send</code> — to send emails via SMTP</li>
+<li><code>offline_access</code> — to maintain access without repeated re-authorisation</li>
+<li>Grant admin consent for the permissions.</li>
+<li>Generate a <strong>Client Secret</strong> under <strong>Certificates &amp; Secrets</strong>.</li>
+<li>Note the <strong>Application (Client) ID</strong>, <strong>Directory (Tenant) ID</strong>, and <strong>Client Secret</strong>.</li>
+</ol>
+<p><strong>Google Workspace / Gmail:</strong></p>
+<ol>
+<li>Create a project in the <strong>Google Cloud Console</strong>.</li>
+<li>Enable the <strong>Gmail API</strong>.</li>
+<li>Create OAuth 2.0 credentials under <strong>APIs &amp; Services → Credentials → Create Credentials → OAuth 2.0 Client ID</strong>.</li>
+<li>Set the authorised redirect URI to the CelestaCX OAuth redirect URL (provided on the email channel configuration page).</li>
+<li>Note the <strong>Client ID</strong> and <strong>Client Secret</strong>.</li>
+</ol>
+<h4 id="basic-authentication-username-password">Basic Authentication (Username + Password)<a class="headerlink" href="#basic-authentication-username-password" title="Permanent link">&para;</a></h4>
+<p>Some email providers still support basic authentication using a username (email address) and password or app-specific password. Basic authentication is simpler to configure but less secure — use it only where OAuth 2.0 is not available.</p>
+<blockquote>
+<p><strong>Note:</strong> Microsoft 365 has disabled basic authentication for most account types. If you are connecting a Microsoft 365 mailbox, OAuth 2.0 is required. Google Workspace similarly recommends OAuth 2.0 and may disable basic authentication for accounts with advanced security policies enabled.</p>
+</blockquote>
+<hr />
+<h3 id="configuring-email-in-celestacx">Configuring Email in CelestaCX<a class="headerlink" href="#configuring-email-in-celestacx" title="Permanent link">&para;</a></h3>
+<h4 id="step-1-add-the-channel">Step 1 — Add the Channel<a class="headerlink" href="#step-1-add-the-channel" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Navigate to <strong>Administration → Channels → Add Channel → Email</strong>.</li>
+<li>Enter a display name for this channel (e.g. "Email — Acme Support").</li>
+<li>Enter the <strong>from address</strong> — the email address that will appear in the From field of all outbound emails from this channel (e.g. <a href="#">support@acme.com</a>).</li>
+<li>Enter the <strong>display name</strong> that will appear alongside the from address in the customer's inbox (e.g. "Acme Customer Support").</li>
+</ol>
+<h4 id="step-2-configure-inbound-imap">Step 2 — Configure Inbound (IMAP)<a class="headerlink" href="#step-2-configure-inbound-imap" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IMAP Host</td>
+<td>Your email server's IMAP hostname (e.g. imap.gmail.com , outlook.office365.com )</td>
+</tr>
+<tr>
+<td>IMAP Port</td>
+<td>993 (IMAP over TLS — recommended) or 143 (IMAP with STARTTLS)</td>
+</tr>
+<tr>
+<td>TLS</td>
+<td>Enabled (recommended)</td>
+</tr>
+<tr>
+<td>Authentication Method</td>
+<td>OAuth 2.0 or Basic</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>The email address of the mailbox (for Basic auth)</td>
+</tr>
+<tr>
+<td>Password / App Password</td>
+<td>The account password or app-specific password (for Basic auth)</td>
+</tr>
+<tr>
+<td>OAuth Credentials</td>
+<td>Client ID, Client Secret, Tenant ID (Microsoft) or Client ID, Client Secret (Google) — for OAuth</td>
+</tr>
+<tr>
+<td>Polling Interval</td>
+<td>How frequently CelestaCX checks for new emails (default: 60 seconds)</td>
+</tr>
+<tr>
+<td>Monitored Folder</td>
+<td>The mailbox folder to monitor for incoming emails (default: Inbox)</td>
+</tr>
+<tr>
+<td>Processed Folder</td>
+<td>The folder emails are moved to after being converted to interactions (default: Processed)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="step-3-configure-outbound-smtp">Step 3 — Configure Outbound (SMTP)<a class="headerlink" href="#step-3-configure-outbound-smtp" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SMTP Host</td>
+<td>Your email server's SMTP hostname (e.g. smtp.gmail.com , smtp.office365.com )</td>
+</tr>
+<tr>
+<td>SMTP Port</td>
+<td>587 (SMTP with STARTTLS — recommended) or 465 (SMTP over TLS)</td>
+</tr>
+<tr>
+<td>TLS / STARTTLS</td>
+<td>Enabled (recommended)</td>
+</tr>
+<tr>
+<td>Authentication Method</td>
+<td>OAuth 2.0 or Basic (must match inbound authentication method)</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>The email address used for SMTP authentication</td>
+</tr>
+</tbody>
+</table>
+<h4 id="step-4-test-the-connection">Step 4 — Test the Connection<a class="headerlink" href="#step-4-test-the-connection" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Click <strong>Test Inbound Connection</strong> — CelestaCX will attempt to connect to the IMAP server and list the monitored folder. A success message confirms the connection is working.</li>
+<li>Click <strong>Test Outbound Connection</strong> — CelestaCX will send a test email to the configured from address via SMTP. Check the mailbox to confirm receipt.</li>
+<li>If either test fails, review the error message and verify the credentials and server settings.</li>
+</ol>
+<h4 id="step-5-create-routing-rules-and-save">Step 5 — Create Routing Rules and Save<a class="headerlink" href="#step-5-create-routing-rules-and-save" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Create routing rules for this email channel: <strong>Administration → Routing → Routing Rules → Add Rule</strong> — set the trigger to this email channel and configure conditions based on sender domain, recipient address, or subject keywords as needed.</li>
+<li>Save the channel configuration and set the status to <strong>Active</strong>.</li>
+</ol>
+<hr />
+<h3 id="email-routing-options">Email Routing Options<a class="headerlink" href="#email-routing-options" title="Permanent link">&para;</a></h3>
+<p>CelestaCX can route email interactions based on several attributes extracted from the incoming email:</p>
+<table>
+<thead>
+<tr>
+<th>Routing Attribute</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recipient address</td>
+<td>The To address the email was sent to</td>
+<td>Route emails to billing@acme.com to the Billing queue</td>
+</tr>
+<tr>
+<td>Sender domain</td>
+<td>The domain of the customer's email address</td>
+<td>Route emails from @enterprise-client.com to the Enterprise queue</td>
+</tr>
+<tr>
+<td>Subject keywords</td>
+<td>Words or phrases in the email subject line</td>
+<td>Route emails containing "urgent" or "complaint" to a high-priority queue</td>
+</tr>
+<tr>
+<td>Sender address</td>
+<td>A specific customer email address</td>
+<td>Route emails from a VIP contact to a dedicated queue</td>
+</tr>
+<tr>
+<td>Attachment present</td>
+<td>Whether the email contains an attachment</td>
+<td>Route emails with attachments to a team equipped to handle documents</td>
+</tr>
+</tbody>
+</table>
+<p>Multiple conditions can be combined in a single routing rule. Rules are evaluated in priority order as with all other channel types.</p>
+<h4 id="catch-all-routing">Catch-All Routing<a class="headerlink" href="#catch-all-routing" title="Permanent link">&para;</a></h4>
+<p>Ensure a default routing rule exists to catch any emails that do not match a more specific rule. Without a catch-all rule, unmatched emails will not be routed and will remain in the connector's backlog.</p>
+<hr />
+<h3 id="email-threading">Email Threading<a class="headerlink" href="#email-threading" title="Permanent link">&para;</a></h3>
+<p>CelestaCX maintains email conversations as threaded interactions. When a customer replies to an agent's email, CelestaCX matches the reply to the original interaction using the email's <strong>Message-ID</strong> and <strong>In-Reply-To</strong> headers.</p>
+<p>Threading behaviour:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Customer replies to an agent email</td>
+<td>Reply is appended to the existing interaction thread</td>
+</tr>
+<tr>
+<td>Customer starts a new email (new subject, no reply headers)</td>
+<td>A new interaction is created</td>
+</tr>
+<tr>
+<td>Agent replies from the Agent Desk</td>
+<td>Reply uses the original Message-ID for threading — customer's email client shows it as part of the same conversation</td>
+</tr>
+<tr>
+<td>Customer emails a different address (new recipient)</td>
+<td>A new interaction is created, even if content is related</td>
+</tr>
+<tr>
+<td>Interaction is closed and customer emails again</td>
+<td>A new interaction is created — the previous thread is referenced in interaction history</td>
+</tr>
+</tbody>
+</table>
+<p>Threading relies on standard email headers. Some email clients or forwarding configurations strip these headers, which can cause replies to be treated as new interactions. If threading issues are occurring, check whether email forwarding is stripping headers — see Email Forwarding Mode below.</p>
+<hr />
+<h3 id="auto-acknowledgement">Auto-Acknowledgement<a class="headerlink" href="#auto-acknowledgement" title="Permanent link">&para;</a></h3>
+<p>CelestaCX can send an automatic acknowledgement email to customers when their email is received and converted into an interaction. Auto-acknowledgement reassures customers that their email has been received and sets expectations for response time.</p>
+<p>To configure auto-acknowledgement:</p>
+<ol>
+<li>Navigate to <strong>Administration → Channels → [Channel] → Auto-Acknowledgement</strong>.</li>
+<li>Enable auto-acknowledgement and compose the acknowledgement email body.</li>
+<li>Optionally include the interaction reference number in the acknowledgement using the <code>{{interaction_id}}</code> variable — this allows customers to quote their reference number in follow-up communications.</li>
+<li>Set the From name and address for the acknowledgement (defaults to the channel's configured from address).</li>
+<li>Save.</li>
+</ol>
+<p>Auto-acknowledgement emails are sent immediately upon interaction creation, before the interaction is assigned to an agent.</p>
+<hr />
+<h3 id="email-signatures">Email Signatures<a class="headerlink" href="#email-signatures" title="Permanent link">&para;</a></h3>
+<p>CelestaCX supports email signatures at two levels:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+<th>Configured In</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Queue signature</td>
+<td>A standard signature applied to all emails sent from a specific queue</td>
+<td>Administration → Queues → [Queue] → Email Signature</td>
+</tr>
+<tr>
+<td>Agent signature</td>
+<td>A personal signature that agents can configure for their own replies</td>
+<td>Agent Desk → Profile → Email Signature</td>
+</tr>
+</tbody>
+</table>
+<p>When both a queue signature and an agent signature are configured, the agent signature takes precedence. Agents can preview and edit their signature in the Agent Desk message composer before sending.</p>
+<p>Signatures support plain text and basic HTML formatting — logos and images can be included via HTML image tags referencing publicly accessible URLs.</p>
+<hr />
+<h3 id="attachments">Attachments<a class="headerlink" href="#attachments" title="Permanent link">&para;</a></h3>
+<h4 id="inbound-attachments">Inbound Attachments<a class="headerlink" href="#inbound-attachments" title="Permanent link">&para;</a></h4>
+<p>CelestaCX accepts all standard email attachment types. Received attachments are:</p>
+<ul>
+<li>Displayed in the interaction panel with filename, type, and size</li>
+<li>Accessible for download by the handling agent</li>
+<li>Stored with the interaction record for the duration of the data retention period</li>
+<li>Visible in interaction history after the interaction is closed</li>
+</ul>
+<h4 id="inbound-attachment-limits">Inbound Attachment Limits<a class="headerlink" href="#inbound-attachment-limits" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Limit</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maximum attachment size per email</td>
+<td>25 MB (total across all attachments)</td>
+</tr>
+<tr>
+<td>Maximum number of attachments per email</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<p>Emails with attachments exceeding these limits are still received as interactions, but oversized attachments are truncated and flagged in the interaction panel with a warning.</p>
+<h4 id="outbound-attachments">Outbound Attachments<a class="headerlink" href="#outbound-attachments" title="Permanent link">&para;</a></h4>
+<p>Agents can attach files to outbound emails from the Agent Desk message composer. Attachments can be:</p>
+<ul>
+<li>Uploaded from the agent's local machine</li>
+<li>Selected from the CelestaCX media library (if configured)</li>
+</ul>
+<p>Outbound attachment limits are governed by the receiving email server's limits, which CelestaCX cannot control. As a general guideline, keep outbound attachments under 10 MB to ensure reliable delivery across all email providers.</p>
+<hr />
+<h3 id="email-forwarding-mode">Email Forwarding Mode<a class="headerlink" href="#email-forwarding-mode" title="Permanent link">&para;</a></h3>
+<p>As an alternative to direct IMAP connection, CelestaCX supports <strong>email forwarding mode</strong> — where your email server forwards incoming messages to a CelestaCX-provided inbound address rather than CelestaCX polling your mailbox via IMAP.</p>
+<h4 id="advantages-of-forwarding-mode">Advantages of Forwarding Mode<a class="headerlink" href="#advantages-of-forwarding-mode" title="Permanent link">&para;</a></h4>
+<ul>
+<li>No IMAP credentials required in CelestaCX</li>
+<li>Works with email servers that do not support IMAP or have restricted IMAP access</li>
+<li>Lower polling overhead — interactions are created immediately on receipt rather than at the next poll interval</li>
+<li>Compatible with complex email routing setups where emails arrive via distribution lists or forwarding rules</li>
+</ul>
+<h4 id="configuring-forwarding-mode">Configuring Forwarding Mode<a class="headerlink" href="#configuring-forwarding-mode" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Navigate to <strong>Administration → Channels → Add Channel → Email → Forwarding Mode</strong>.</li>
+<li>CelestaCX provides a unique <strong>inbound email address</strong> for the channel (e.g. <code>channel-abc123@inbound.celestacx.com</code>).</li>
+<li>In your email server or email provider, create a forwarding rule that forwards all emails arriving at your support address to the CelestaCX inbound address.</li>
+<li>Configure outbound (SMTP) settings as normal — forwarding mode only affects inbound receipt.</li>
+<li>Test by sending an email to your support address and confirming it appears as an interaction in CelestaCX.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> Email forwarding mode may affect threading reliability if the forwarding configuration modifies email headers. Test threading behaviour thoroughly before going live with forwarding mode.</p>
+</blockquote>
+<hr />
+<h3 id="cc-and-bcc-handling">CC and BCC Handling<a class="headerlink" href="#cc-and-bcc-handling" title="Permanent link">&para;</a></h3>
+<h4 id="inbound-cc">Inbound CC<a class="headerlink" href="#inbound-cc" title="Permanent link">&para;</a></h4>
+<p>If a customer copies additional recipients on their email, the CC addresses are captured and displayed in the interaction panel. Agents can see who was copied but cannot directly manage the CC recipients' experience.</p>
+<h4 id="agent-cc-and-bcc-on-replies">Agent CC and BCC on Replies<a class="headerlink" href="#agent-cc-and-bcc-on-replies" title="Permanent link">&para;</a></h4>
+<p>When composing a reply in the Agent Desk, agents can:</p>
+<ul>
+<li>Add CC recipients — addresses added to CC receive a copy of the reply</li>
+<li>Add BCC recipients — addresses added to BCC receive a copy of the reply invisibly</li>
+</ul>
+<p>CC and BCC fields are available in the email reply composer. BCC is not visible to the customer or CC recipients.</p>
+<hr />
+<h3 id="spam-unwanted-email-handling">Spam &amp; Unwanted Email Handling<a class="headerlink" href="#spam-unwanted-email-handling" title="Permanent link">&para;</a></h3>
+<p>CelestaCX does not include a built-in spam filter — it relies on upstream filtering by your email server or provider. To prevent spam emails from creating interactions in CelestaCX:</p>
+<ul>
+<li>Ensure spam filtering is enabled and tuned on your email server</li>
+<li>Configure your email server to move spam to a separate folder before CelestaCX polls the inbox</li>
+<li>Set the CelestaCX monitored folder to a folder that receives only legitimate customer email</li>
+</ul>
+<p>If spam emails do arrive as interactions, agents can mark them as spam in the Agent Desk. Marked interactions are closed and the sender address is added to a local suppression list under <strong>Administration → Channels → [Channel] → Suppressed Senders</strong>. Future emails from suppressed senders are not converted into interactions.</p>
+<hr />
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely Cause</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inbound emails not appearing as interactions</td>
+<td>IMAP connection failing or polling interval issue</td>
+<td>Run Test Inbound Connection. Check IMAP credentials and server settings. Verify the monitored folder name matches exactly.</td>
+</tr>
+<tr>
+<td>OAuth authentication failing (Microsoft 365)</td>
+<td>Insufficient API permissions or admin consent not granted</td>
+<td>Verify Mail.Read and Mail.Send permissions are granted with admin consent in Azure AD.</td>
+</tr>
+<tr>
+<td>OAuth authentication failing (Google Workspace)</td>
+<td>OAuth scope not approved or redirect URI mismatch</td>
+<td>Verify Gmail API is enabled and the redirect URI in Google Cloud Console matches the CelestaCX OAuth redirect URL exactly.</td>
+</tr>
+<tr>
+<td>Outbound emails not delivered</td>
+<td>SMTP authentication failing or port blocked</td>
+<td>Run Test Outbound Connection. Check SMTP credentials, port, and TLS settings. Confirm port 587 or 465 is not blocked by your network.</td>
+</tr>
+<tr>
+<td>Email replies creating new interactions instead of threading</td>
+<td>Reply headers stripped by forwarding or email client</td>
+<td>Check whether email forwarding is stripping Message-ID and In-Reply-To headers. Consider switching to forwarding mode or reviewing forwarding rules.</td>
+</tr>
+<tr>
+<td>Auto-acknowledgement not sending</td>
+<td>SMTP connection issue or auto-acknowledgement disabled</td>
+<td>Verify SMTP connection is working and auto-acknowledgement is enabled under Administration → Channels → [Channel] → Auto-Acknowledgement.</td>
+</tr>
+<tr>
+<td>Attachments missing from received interactions</td>
+<td>Attachment exceeds size limit</td>
+<td>Check attachment size against the 25 MB limit. Oversized attachments are flagged in the interaction panel.</td>
+</tr>
+<tr>
+<td>Emails from a specific sender not creating interactions</td>
+<td>Sender is on the suppression list</td>
+<td>Check Administration → Channels → [Channel] → Suppressed Senders and remove the sender if suppression was applied in error.</td>
+</tr>
+</tbody>
+</table>
+<p>For persistent issues, check connector logs under <strong>Platform Administration → Logs → Channel Connectors</strong> or refer to the <a href="#">Troubleshooting Guide</a>.</p>
+<hr />
+<p><em>What's next: Proceed to</em><a href="#"><em>YouTube &amp; Google Play Store</em></a><em>to configure comment monitoring and response on those platforms.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../sms/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SMS (Twilio &amp; SMPP)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                SMS (Twilio & SMPP)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../youtube/" class="md-footer__link md-footer__link--next" aria-label="Next: YouTube &amp; Google Play">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                YouTube & Google Play
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2025 Octavebytes. All Rights Reserved.
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/octavebytes/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/octavebytes" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/channel/UCA0Le6ELahBzAf-I7jOBuRQ" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://octavebytes.com" target="_blank" rel="noopener" title="octavebytes.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.indexes", "search.highlight", "search.suggest", "search.share", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

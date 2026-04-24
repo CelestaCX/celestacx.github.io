@@ -1,0 +1,4154 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AI-powered omnichannel contact center platform by Octavebytes">
+      
+      
+        <meta name="author" content="Octavebytes">
+      
+      
+        <link rel="canonical" href="https://celestacx.github.io/deployment/high-availability/">
+      
+      
+        <link rel="prev" href="../installation/">
+      
+      
+        <link rel="next" href="../security-certificates/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>High Availability - CelestaCX Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#high-availability" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CelestaCX Documentation" class="md-header__button md-logo" aria-label="CelestaCX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CelestaCX Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              High Availability
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Docs
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/roadmap-2026/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap 2026
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../security/solution-security/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Solution Security
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CelestaCX Documentation" class="md-nav__button md-logo" aria-label="CelestaCX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    CelestaCX Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/what-is-celestacx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is CelestaCX?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/key-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Concepts & Terminology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment & Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deployment & Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning & Sizing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    High Availability
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    High Availability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#do-you-need-high-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do You Need High Availability?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-youre-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You're Building
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before You Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-prepare-all-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 1 — Prepare All Nodes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 1 — Prepare All Nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additional-steps-for-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Steps for HA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-11-set-unique-hostnames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1.1 — Set Unique Hostnames
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-12-configure-etchosts-on-all-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1.2 — Configure /etc/hosts on All Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-13-open-additional-ports-for-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1.3 — Open Additional Ports for HA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-14-install-rke2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1.4 — Install RKE2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-configure-the-load-balancer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 2 — Configure the Load Balancer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2 — Configure the Load Balancer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-21-install-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.1 — Install NGINX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-22-configure-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.2 — Configure NGINX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-23-test-and-start-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.3 — Test and Start NGINX
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-initialize-the-first-control-plane-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 3 — Initialize the First Control Plane Node
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3 — Initialize the First Control Plane Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-31-configure-the-first-control-plane-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.1 — Configure the First Control Plane Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-32-start-rke2-on-the-first-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.2 — Start RKE2 on the First Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-33-get-the-cluster-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.3 — Get the Cluster Token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-34-set-up-kubectl-on-the-first-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.4 — Set Up kubectl on the First Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-join-the-remaining-control-plane-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 4 — Join the Remaining Control Plane Nodes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 4 — Join the Remaining Control Plane Nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-41-configure-the-second-control-plane-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4.1 — Configure the Second Control Plane Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-42-configure-the-third-control-plane-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4.2 — Configure the Third Control Plane Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-43-verify-all-control-plane-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4.3 — Verify All Control Plane Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-5-prevent-celestacx-from-running-on-control-plane-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 5 — Prevent CelestaCX from Running on Control Plane Nodes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-6-join-worker-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 6 — Join Worker Nodes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 6 — Join Worker Nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-61-configure-each-worker-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6.1 — Configure Each Worker Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-62-start-rke2-agent-on-each-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6.2 — Start RKE2 Agent on Each Worker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-63-verify-all-workers-joined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6.3 — Verify All Workers Joined
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-7-install-helm-and-nginx-ingress-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 7 — Install Helm and NGINX Ingress Controller
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 7 — Install Helm and NGINX Ingress Controller">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-71-install-helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7.1 — Install Helm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-72-install-nginx-ingress-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7.2 — Install NGINX Ingress Controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-8-verify-your-ha-cluster-is-ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 8 — Verify Your HA Cluster is Ready
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-failover-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding Failover Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-failover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Failover
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etcd-backup-and-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ETCD Backup and Restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's Next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-certificates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security & Certificates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scalability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scalability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../configuration/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration & Administration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuration & Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/iam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity & Access Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/channels-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channels & Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/teams-queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Teams & Queues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/business-calendars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Calendars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/forms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forms & Form Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/admin-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../channels/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channels & Integrations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Channels & Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Channels Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/whatsapp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WhatsApp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/facebook-instagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facebook & Instagram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/linkedin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LinkedIn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/twitter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Twitter / X
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/telegram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/sms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMS (Twilio & SMPP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/email/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/youtube/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    YouTube & Google Play
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/voice-video/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Voice & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/web-chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Widget (Web Chat)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/crm-connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/viber/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Viber
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/developer-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channel Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../user-guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/supervisor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supervisor Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/quality-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Manager Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/evaluator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/admin-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unified Admin Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reports/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports & Analytics
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reports & Analytics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/realtime-dashboards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time Dashboards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Reporting Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../support/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support & Operations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Support & Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/logging-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging & Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/platform-admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Administration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/data-etl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Platform & ETL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/roadmap-2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/solution-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/roadmap-2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/solution-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#do-you-need-high-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do You Need High Availability?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-youre-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You're Building
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before You Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-prepare-all-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 1 — Prepare All Nodes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 1 — Prepare All Nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#additional-steps-for-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Steps for HA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-11-set-unique-hostnames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1.1 — Set Unique Hostnames
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-12-configure-etchosts-on-all-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1.2 — Configure /etc/hosts on All Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-13-open-additional-ports-for-ha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1.3 — Open Additional Ports for HA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-14-install-rke2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1.4 — Install RKE2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-configure-the-load-balancer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 2 — Configure the Load Balancer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2 — Configure the Load Balancer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-21-install-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.1 — Install NGINX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-22-configure-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.2 — Configure NGINX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-23-test-and-start-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.3 — Test and Start NGINX
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-initialize-the-first-control-plane-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 3 — Initialize the First Control Plane Node
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3 — Initialize the First Control Plane Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-31-configure-the-first-control-plane-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.1 — Configure the First Control Plane Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-32-start-rke2-on-the-first-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.2 — Start RKE2 on the First Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-33-get-the-cluster-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.3 — Get the Cluster Token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-34-set-up-kubectl-on-the-first-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.4 — Set Up kubectl on the First Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-join-the-remaining-control-plane-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 4 — Join the Remaining Control Plane Nodes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 4 — Join the Remaining Control Plane Nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-41-configure-the-second-control-plane-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4.1 — Configure the Second Control Plane Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-42-configure-the-third-control-plane-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4.2 — Configure the Third Control Plane Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-43-verify-all-control-plane-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4.3 — Verify All Control Plane Nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-5-prevent-celestacx-from-running-on-control-plane-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 5 — Prevent CelestaCX from Running on Control Plane Nodes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-6-join-worker-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 6 — Join Worker Nodes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 6 — Join Worker Nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-61-configure-each-worker-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6.1 — Configure Each Worker Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-62-start-rke2-agent-on-each-worker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6.2 — Start RKE2 Agent on Each Worker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-63-verify-all-workers-joined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6.3 — Verify All Workers Joined
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-7-install-helm-and-nginx-ingress-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 7 — Install Helm and NGINX Ingress Controller
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 7 — Install Helm and NGINX Ingress Controller">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-71-install-helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7.1 — Install Helm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-72-install-nginx-ingress-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7.2 — Install NGINX Ingress Controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-8-verify-your-ha-cluster-is-ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 8 — Verify Your HA Cluster is Ready
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-failover-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding Failover Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-failover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Failover
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etcd-backup-and-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ETCD Backup and Restore
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's Next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="high-availability">High Availability<a class="headerlink" href="#high-availability" title="Permanent link">&para;</a></h1>
+<p>High Availability (HA) ensures CelestaCX continues operating even when infrastructure components fail. In an HA deployment, no single server failure can take your contact center offline — the system automatically recovers by shifting workloads to healthy nodes.</p>
+<p>This page is a complete guide to deploying CelestaCX with HA. We'll walk through the entire process from preparing multiple Kubernetes nodes to configuring an external load balancer and verifying failover works correctly.</p>
+<hr />
+<h3 id="do-you-need-high-availability">Do You Need High Availability?<a class="headerlink" href="#do-you-need-high-availability" title="Permanent link">&para;</a></h3>
+<p>Not every deployment requires HA. Use this table to decide:</p>
+<table>
+<thead>
+<tr>
+<th>Your Situation</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Development, testing, or proof-of-concept</td>
+<td>❌ Skip HA — use the single-node setup from Kubernetes Setup →</td>
+</tr>
+<tr>
+<td>Production with planned maintenance windows acceptable</td>
+<td>⚠️ Multi-node (this page) without full HA may be sufficient</td>
+</tr>
+<tr>
+<td>Production with zero acceptable downtime</td>
+<td>✅ Full HA required — follow this entire page</td>
+</tr>
+<tr>
+<td>CCaaS / multi-tenant serving multiple customers</td>
+<td>✅ Full HA strongly recommended</td>
+</tr>
+<tr>
+<td>Regulated industries (banking, healthcare, government)</td>
+<td>✅ Full HA required</td>
+</tr>
+</tbody>
+</table>
+<p><strong>HA adds infrastructure complexity and cost.</strong> You need at least <strong>6 servers</strong> — 3 control plane nodes, 3 worker nodes, plus 1 load balancer. Your team must be comfortable managing a multi-node Kubernetes cluster. If you're unsure, start with a single-node deployment and plan to migrate to HA later once you've gained operational experience.</p>
+<hr />
+<h3 id="what-youre-building">What You're Building<a class="headerlink" href="#what-youre-building" title="Permanent link">&para;</a></h3>
+<p>Here's the complete HA architecture you'll have by the end of this page:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                    │   NGINX Load        │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                    │   Balancer          │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                    │   (192.168.1.100)   │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                    └──────────┬──────────┘
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                               │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>           ┌───────────────────┼───────────────────┐
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>           │                   │                   │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>           ▼                   ▼                   ▼
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    ┌──────────┐        ┌──────────┐        ┌──────────┐
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    │ Control  │        │ Control  │        │ Control  │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    │ Plane 1  │        │ Plane 2  │        │ Plane 3  │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    │  (etcd)  │◄──────►│  (etcd)  │◄──────►│  (etcd)  │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    └──────────┘        └──────────┘        └──────────┘
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>           │                   │                   │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>           └───────────────────┼───────────────────┘
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                               │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>           ┌───────────────────┼───────────────────┐
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>           │                   │                   │
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>           ▼                   ▼                   ▼
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    ┌──────────┐        ┌──────────┐        ┌──────────┐
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    │ Worker 1 │        │ Worker 2 │        │ Worker 3 │
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    │ CelestaCX│        │ CelestaCX│        │ CelestaCX│
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    │ Services │        │ Services │        │ Services │
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    └──────────┘        └──────────┘        └──────────┘
+</code></pre></div>
+<p><strong>Key components:</strong></p>
+<ul>
+<li><strong>3 control plane nodes</strong> — Run Kubernetes itself (API server, etcd database, scheduler). Must be an odd number for quorum voting.</li>
+<li><strong>3+ worker nodes</strong> — Run CelestaCX services. Losing one worker causes pods to move to remaining workers automatically.</li>
+<li><strong>1 load balancer</strong> — Routes all traffic to healthy control plane nodes. If one control plane node fails, traffic automatically goes to the others.</li>
+</ul>
+<hr />
+<h3 id="hardware-requirements">Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Quantity</th>
+<th>CPU</th>
+<th>RAM</th>
+<th>Storage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control plane nodes</td>
+<td>3</td>
+<td>4 vCPU each</td>
+<td>8 GB each</td>
+<td>100 GB SSD each</td>
+</tr>
+<tr>
+<td>Worker nodes</td>
+<td>3–8 (based on your sizing tier)</td>
+<td>Per your sizing plan →</td>
+<td>Per your sizing plan</td>
+<td>Per your sizing plan</td>
+</tr>
+<tr>
+<td>Load balancer</td>
+<td>1</td>
+<td>2 vCPU</td>
+<td>4 GB</td>
+<td>20 GB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total minimum:</strong> 7 servers (3 control plane + 3 worker + 1 load balancer)</p>
+<blockquote>
+<p>💡 <strong>Operating system:</strong> All nodes must run <strong>Ubuntu 20.04+</strong> or <strong>RHEL 8.4+</strong></p>
+</blockquote>
+<hr />
+<h3 id="before-you-start">Before You Start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><em>(Add a blue Info Panel macro around the following)</em>
+✅ <strong>Prerequisites checklist:</strong>
+- You have <strong>7 servers</strong> provisioned with the hardware specs above
+- All servers are running Ubuntu 20.04+ or RHEL 8.4+
+- All servers have <strong>static IP addresses</strong> assigned
+- You have <strong>root/sudo access</strong> to all servers
+- All servers can communicate with each other on the network
+- You have your <strong>FQDN</strong> ready — e.g. <code>celestacx.yourcompany.com</code>
+- DNS is configured to point your FQDN to the <strong>load balancer IP</strong></p>
+</blockquote>
+<hr />
+<h3 id="part-1-prepare-all-nodes">Part 1 — Prepare All Nodes<a class="headerlink" href="#part-1-prepare-all-nodes" title="Permanent link">&para;</a></h3>
+<p>Before building the HA cluster, all nodes need basic preparation. Most of these steps are identical to the single-node setup.</p>
+<p>📖 <strong>Follow the Kubernetes Setup page first</strong></p>
+<p>Go to <a href="https://octavebytes-docs.atlassian.net/wiki/x/AQAdC">Kubernetes Setup →</a> and complete <strong>Steps 1.1 through 1.4</strong> (Update System, Disable Swap, Configure Firewall) on <strong>every server</strong> in your HA cluster — all 3 control plane nodes and all worker nodes.</p>
+<p>Come back to this page once those steps are complete on all nodes.</p>
+<hr />
+<h4 id="additional-steps-for-ha">Additional Steps for HA<a class="headerlink" href="#additional-steps-for-ha" title="Permanent link">&para;</a></h4>
+<p>Once you've completed the basic preparation from the Kubernetes Setup page, complete these additional steps on each node:</p>
+<hr />
+<h4 id="step-11-set-unique-hostnames">Step 1.1 — Set Unique Hostnames<a class="headerlink" href="#step-11-set-unique-hostnames" title="Permanent link">&para;</a></h4>
+<p>Give each node a unique, descriptive hostname so you can identify them easily.</p>
+<p><strong>On control plane node 1:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo hostnamectl set-hostname cx-control-01
+</code></pre></div>
+<p><strong>On control plane node 2:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo hostnamectl set-hostname cx-control-02
+</code></pre></div>
+<p><strong>On control plane node 3:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo hostnamectl set-hostname cx-control-03
+</code></pre></div>
+<p><strong>On worker nodes:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo hostnamectl set-hostname cx-worker-01
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo hostnamectl set-hostname cx-worker-02
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>sudo hostnamectl set-hostname cx-worker-03
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a># ... and so on for additional workers
+</code></pre></div>
+<hr />
+<h4 id="step-12-configure-etchosts-on-all-nodes">Step 1.2 — Configure /etc/hosts on All Nodes<a class="headerlink" href="#step-12-configure-etchosts-on-all-nodes" title="Permanent link">&para;</a></h4>
+<p>On <strong>every node</strong> (control plane and workers), edit the hosts file:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo nano /etc/hosts
+</code></pre></div>
+<p>Add entries for <strong>all servers in your cluster</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a># Control plane nodes
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>192.168.1.10  cx-control-01
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>192.168.1.11  cx-control-02
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>192.168.1.12  cx-control-03
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a># Worker nodes
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>192.168.1.20  cx-worker-01
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>192.168.1.21  cx-worker-02
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>192.168.1.22  cx-worker-03
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a># Load balancer
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>192.168.1.100  cx-loadbalancer
+</code></pre></div></p>
+<p>Replace the IP addresses with your actual server IPs. Save and exit.</p>
+<blockquote>
+<p>💡 <strong>Why this matters:</strong> This allows nodes to communicate with each other using hostnames instead of IPs, which makes troubleshooting and log reading much easier.</p>
+</blockquote>
+<hr />
+<h4 id="step-13-open-additional-ports-for-ha">Step 1.3 — Open Additional Ports for HA<a class="headerlink" href="#step-13-open-additional-ports-for-ha" title="Permanent link">&para;</a></h4>
+<p>HA requires additional firewall ports beyond the single-node setup.</p>
+<p>For <strong>Ubuntu with UFW</strong>, run on all nodes:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a># RKE2 node registration (required for HA)
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>sudo ufw allow 9345/tcp
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a># etcd communication (control plane nodes only)
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>sudo ufw allow 2379:2380/tcp
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a># CNI networking between nodes
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>sudo ufw allow 8472/udp
+</code></pre></div>
+<p>For <strong>RHEL with firewalld</strong>, run on all nodes:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo firewall-cmd --permanent --add-port=9345/tcp
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo firewall-cmd --permanent --add-port=2379-2380/tcp
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>sudo firewall-cmd --permanent --add-port=8472/udp
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>sudo firewall-cmd --reload
+</code></pre></div>
+<hr />
+<h4 id="step-14-install-rke2">Step 1.4 — Install RKE2<a class="headerlink" href="#step-14-install-rke2" title="Permanent link">&para;</a></h4>
+<p>Run this on <strong>all control plane nodes and all worker nodes</strong> (not the load balancer):</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>curl -sfL https://get.rke2.io | sudo sh -
+</code></pre></div>
+<p>This downloads and installs RKE2. It takes 1–2 minutes per node.</p>
+<p><strong>Do not start RKE2 yet.</strong> Installation and starting are separate steps. We'll start RKE2 in the correct order in Part 3.</p>
+<hr />
+<p><strong>Once all nodes are prepared, proceed to Part 2 below.</strong></p>
+<h3 id="part-2-configure-the-load-balancer">Part 2 — Configure the Load Balancer<a class="headerlink" href="#part-2-configure-the-load-balancer" title="Permanent link">&para;</a></h3>
+<p>The load balancer sits in front of your control plane nodes and distributes traffic across all three. If one control plane node fails, the load balancer automatically stops sending traffic to it.</p>
+<p>We're using <strong>NGINX</strong> as a TCP load balancer.</p>
+<hr />
+<h4 id="step-21-install-nginx">Step 2.1 — Install NGINX<a class="headerlink" href="#step-21-install-nginx" title="Permanent link">&para;</a></h4>
+<p>On your <strong>dedicated load balancer server</strong>, run:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo apt update
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sudo apt install nginx -y
+</code></pre></div>
+<hr />
+<h4 id="step-22-configure-nginx">Step 2.2 — Configure NGINX<a class="headerlink" href="#step-22-configure-nginx" title="Permanent link">&para;</a></h4>
+<p>Edit the NGINX configuration file:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo nano /etc/nginx/nginx.conf
+</code></pre></div>
+<p><strong>Replace the entire contents</strong> with the following configuration, updating the IP addresses to match your control plane and worker nodes:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>events {}
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>stream {
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>  # RKE2 node registration port
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>  upstream rke2_api {
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    least_conn;
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    server 192.168.1.10:9345;   # cx-control-01
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    server 192.168.1.11:9345;   # cx-control-02
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    server 192.168.1.12:9345;   # cx-control-03
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>  }
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>  # Kubernetes API server
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>  upstream k8s_api {
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    least_conn;
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>    server 192.168.1.10:6443;   # cx-control-01
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>    server 192.168.1.11:6443;   # cx-control-02
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>    server 192.168.1.12:6443;   # cx-control-03
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>  }
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>  # HTTPS traffic to CelestaCX
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>  upstream https_ingress {
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>    least_conn;
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>    server 192.168.1.20:443;    # cx-worker-01
+<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>    server 192.168.1.21:443;    # cx-worker-02
+<a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>    server 192.168.1.22:443;    # cx-worker-03
+<a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>  }
+<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>
+<a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>  # HTTP traffic to CelestaCX
+<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>  upstream http_ingress {
+<a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>    least_conn;
+<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>    server 192.168.1.20:80;     # cx-worker-01
+<a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>    server 192.168.1.21:80;     # cx-worker-02
+<a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>    server 192.168.1.22:80;     # cx-worker-03
+<a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a>  }
+<a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a>
+<a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a>  server {
+<a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a>    listen 9345;
+<a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a>    proxy_pass rke2_api;
+<a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a>  }
+<a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a>
+<a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a>  server {
+<a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a>    listen 6443;
+<a id="__codelineno-12-43" name="__codelineno-12-43" href="#__codelineno-12-43"></a>    proxy_pass k8s_api;
+<a id="__codelineno-12-44" name="__codelineno-12-44" href="#__codelineno-12-44"></a>  }
+<a id="__codelineno-12-45" name="__codelineno-12-45" href="#__codelineno-12-45"></a>
+<a id="__codelineno-12-46" name="__codelineno-12-46" href="#__codelineno-12-46"></a>  server {
+<a id="__codelineno-12-47" name="__codelineno-12-47" href="#__codelineno-12-47"></a>    listen 443;
+<a id="__codelineno-12-48" name="__codelineno-12-48" href="#__codelineno-12-48"></a>    proxy_pass https_ingress;
+<a id="__codelineno-12-49" name="__codelineno-12-49" href="#__codelineno-12-49"></a>  }
+<a id="__codelineno-12-50" name="__codelineno-12-50" href="#__codelineno-12-50"></a>
+<a id="__codelineno-12-51" name="__codelineno-12-51" href="#__codelineno-12-51"></a>  server {
+<a id="__codelineno-12-52" name="__codelineno-12-52" href="#__codelineno-12-52"></a>    listen 80;
+<a id="__codelineno-12-53" name="__codelineno-12-53" href="#__codelineno-12-53"></a>    proxy_pass http_ingress;
+<a id="__codelineno-12-54" name="__codelineno-12-54" href="#__codelineno-12-54"></a>  }
+<a id="__codelineno-12-55" name="__codelineno-12-55" href="#__codelineno-12-55"></a>}
+</code></pre></div>
+<p>Save and exit.</p>
+<hr />
+<h4 id="step-23-test-and-start-nginx">Step 2.3 — Test and Start NGINX<a class="headerlink" href="#step-23-test-and-start-nginx" title="Permanent link">&para;</a></h4>
+<p><strong>Test the configuration for syntax errors:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo nginx -t
+</code></pre></div>
+<p>You should see:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>nginx: configuration file /etc/nginx/nginx.conf test is successful
+</code></pre></div></p>
+<p><strong>Enable and start NGINX:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sudo systemctl enable nginx
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>sudo systemctl restart nginx
+</code></pre></div>
+<p><strong>Verify NGINX is running:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo systemctl status nginx
+</code></pre></div>
+<p>You should see <strong>Active: active (running)</strong> in green.</p>
+<hr />
+<h3 id="part-3-initialize-the-first-control-plane-node">Part 3 — Initialize the First Control Plane Node<a class="headerlink" href="#part-3-initialize-the-first-control-plane-node" title="Permanent link">&para;</a></h3>
+<p>Now that the load balancer is ready, we'll start building the Kubernetes cluster by initializing the first control plane node.</p>
+<hr />
+<h4 id="step-31-configure-the-first-control-plane-node">Step 3.1 — Configure the First Control Plane Node<a class="headerlink" href="#step-31-configure-the-first-control-plane-node" title="Permanent link">&para;</a></h4>
+<p>On <strong>cx-control-01</strong> (your first control plane node), create the RKE2 configuration:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo mkdir -p /etc/rancher/rke2
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>sudo nano /etc/rancher/rke2/config.yaml
+</code></pre></div>
+<p>Paste the following, replacing the FQDN and IPs with your own:</p>
+<p>yaml</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>tls-san:
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>  - celestacx.yourcompany.com      # Your FQDN
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>  - 192.168.1.100                  # Load balancer IP
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>  - 192.168.1.10                   # This node&#39;s IP
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>  - 127.0.0.1
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>write-kubeconfig-mode: &quot;0644&quot;
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>cluster-init: true                 # Initializes the etcd cluster
+</code></pre></div>
+<p><strong>What this does:</strong></p>
+<ul>
+<li><code>tls-san</code> — Allows access to Kubernetes via the FQDN and load balancer IP</li>
+<li><code>cluster-init: true</code> — Tells this node to start a new etcd cluster (only use on the first node)</li>
+</ul>
+<p>Save and exit.</p>
+<hr />
+<h4 id="step-32-start-rke2-on-the-first-node">Step 3.2 — Start RKE2 on the First Node<a class="headerlink" href="#step-32-start-rke2-on-the-first-node" title="Permanent link">&para;</a></h4>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo systemctl enable rke2-server.service
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>sudo systemctl start rke2-server.service
+</code></pre></div>
+<p>This takes <strong>3–5 minutes</strong> as Kubernetes initializes. Watch the progress:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo journalctl -u rke2-server -f
+</code></pre></div>
+<p>Wait until you see messages like "Node is ready". Press Ctrl+C to stop watching.</p>
+<hr />
+<h4 id="step-33-get-the-cluster-token">Step 3.3 — Get the Cluster Token<a class="headerlink" href="#step-33-get-the-cluster-token" title="Permanent link">&para;</a></h4>
+<p>This token is needed to join the other nodes to the cluster:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo cat /var/lib/rancher/rke2/server/node-token
+</code></pre></div>
+<p><strong>Copy the entire token.</strong> It will look something like:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>K10abc123def456ghi789jkl012mno345pqr678stu901vwx234yz::server:abc123def456
+</code></pre></div></p>
+<p>Save this somewhere safe — you'll need it in the next steps.</p>
+<hr />
+<h4 id="step-34-set-up-kubectl-on-the-first-node">Step 3.4 — Set Up kubectl on the First Node<a class="headerlink" href="#step-34-set-up-kubectl-on-the-first-node" title="Permanent link">&para;</a></h4>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>export PATH=$PATH:/var/lib/rancher/rke2/bin
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>echo &#39;export PATH=$PATH:/var/lib/rancher/rke2/bin&#39; &gt;&gt; ~/.bashrc
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>echo &#39;export KUBECONFIG=/etc/rancher/rke2/rke2.yaml&#39; &gt;&gt; ~/.bashrc
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>source ~/.bashrc
+</code></pre></div>
+<p><strong>Verify kubectl works:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kubectl get nodes
+</code></pre></div>
+<p>You should see your first control plane node listed with status <strong>Ready</strong>.</p>
+<hr />
+<h3 id="part-4-join-the-remaining-control-plane-nodes">Part 4 — Join the Remaining Control Plane Nodes<a class="headerlink" href="#part-4-join-the-remaining-control-plane-nodes" title="Permanent link">&para;</a></h3>
+<p>Now we'll add the second and third control plane nodes to form a highly available etcd cluster.</p>
+<hr />
+<h4 id="step-41-configure-the-second-control-plane-node">Step 4.1 — Configure the Second Control Plane Node<a class="headerlink" href="#step-41-configure-the-second-control-plane-node" title="Permanent link">&para;</a></h4>
+<p>On <strong>cx-control-02</strong>, create the RKE2 configuration:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>sudo mkdir -p /etc/rancher/rke2
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>sudo nano /etc/rancher/rke2/config.yaml
+</code></pre></div>
+<p>Paste the following, replacing IPs and the token with your actual values:</p>
+<p>yaml</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>tls-san:
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>  - celestacx.yourcompany.com
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>  - 192.168.1.100                  # Load balancer IP
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>  - 192.168.1.11                   # This node&#39;s IP
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>  - 127.0.0.1
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>server: https://192.168.1.100:9345 # Load balancer address
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>token: &lt;PASTE_YOUR_CLUSTER_TOKEN_HERE&gt;
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>write-kubeconfig-mode: &quot;0644&quot;
+</code></pre></div>
+<p>Save and exit.</p>
+<p><strong>Start RKE2:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>sudo systemctl enable rke2-server.service
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>sudo systemctl start rke2-server.service
+</code></pre></div>
+<hr />
+<h4 id="step-42-configure-the-third-control-plane-node">Step 4.2 — Configure the Third Control Plane Node<a class="headerlink" href="#step-42-configure-the-third-control-plane-node" title="Permanent link">&para;</a></h4>
+<p>On <strong>cx-control-03</strong>, repeat the same process:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>sudo mkdir -p /etc/rancher/rke2
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>sudo nano /etc/rancher/rke2/config.yaml
+</code></pre></div>
+<p>yaml</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>tls-san:
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>  - celestacx.yourcompany.com
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>  - 192.168.1.100
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>  - 192.168.1.12                   # This node&#39;s IP
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>  - 127.0.0.1
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>server: https://192.168.1.100:9345
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>token: &lt;PASTE_YOUR_CLUSTER_TOKEN_HERE&gt;
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>write-kubeconfig-mode: &quot;0644&quot;
+</code></pre></div>
+<p>Save and exit.</p>
+<p><strong>Start RKE2:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>sudo systemctl enable rke2-server.service
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>sudo systemctl start rke2-server.service
+</code></pre></div>
+<hr />
+<h4 id="step-43-verify-all-control-plane-nodes">Step 4.3 — Verify All Control Plane Nodes<a class="headerlink" href="#step-43-verify-all-control-plane-nodes" title="Permanent link">&para;</a></h4>
+<p>From <strong>cx-control-01</strong>, verify all three control plane nodes joined:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>kubectl get nodes
+</code></pre></div>
+<p>You should see:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>NAME           STATUS   ROLES                       AGE   VERSION
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>cx-control-01  Ready    control-plane,etcd,master   10m   v1.28.x
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>cx-control-02  Ready    control-plane,etcd,master   2m    v1.28.x
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>cx-control-03  Ready    control-plane,etcd,master   1m    v1.28.x
+</code></pre></div></p>
+<p>All three should show <strong>Ready</strong> status.</p>
+<hr />
+<h3 id="part-5-prevent-celestacx-from-running-on-control-plane-nodes">Part 5 — Prevent CelestaCX from Running on Control Plane Nodes<a class="headerlink" href="#part-5-prevent-celestacx-from-running-on-control-plane-nodes" title="Permanent link">&para;</a></h3>
+<p>Control plane nodes should ONLY run Kubernetes itself, not CelestaCX services. We use "taints" to prevent workload scheduling on these nodes.</p>
+<p>From <strong>cx-control-01</strong>, run:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>kubectl taint node cx-control-01 \
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>  node-role.kubernetes.io/control-plane=:NoSchedule
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>kubectl taint node cx-control-02 \
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>  node-role.kubernetes.io/control-plane=:NoSchedule
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>kubectl taint node cx-control-03 \
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>  node-role.kubernetes.io/control-plane=:NoSchedule
+</code></pre></div>
+<hr />
+<h3 id="part-6-join-worker-nodes">Part 6 — Join Worker Nodes<a class="headerlink" href="#part-6-join-worker-nodes" title="Permanent link">&para;</a></h3>
+<p>Worker nodes run the actual CelestaCX services. Add them now.</p>
+<hr />
+<h4 id="step-61-configure-each-worker-node">Step 6.1 — Configure Each Worker Node<a class="headerlink" href="#step-61-configure-each-worker-node" title="Permanent link">&para;</a></h4>
+<p>On <strong>each worker node</strong> (cx-worker-01, cx-worker-02, cx-worker-03, etc.), create the configuration:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>sudo mkdir -p /etc/rancher/rke2
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>sudo nano /etc/rancher/rke2/config.yaml
+</code></pre></div>
+<p>Paste the following (same config for all workers, just update the IP comment):</p>
+<p>yaml</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>server: https://192.168.1.100:9345    # Load balancer IP
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>token: &lt;PASTE_YOUR_CLUSTER_TOKEN_HERE&gt;
+</code></pre></div>
+<p>Save and exit.</p>
+<hr />
+<h4 id="step-62-start-rke2-agent-on-each-worker">Step 6.2 — Start RKE2 Agent on Each Worker<a class="headerlink" href="#step-62-start-rke2-agent-on-each-worker" title="Permanent link">&para;</a></h4>
+<p>On <strong>each worker node</strong>, run:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>curl -sfL https://get.rke2.io | INSTALL_RKE2_TYPE=&quot;agent&quot; sudo sh -
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>sudo systemctl enable rke2-agent.service
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>sudo systemctl start rke2-agent.service
+</code></pre></div>
+<hr />
+<h4 id="step-63-verify-all-workers-joined">Step 6.3 — Verify All Workers Joined<a class="headerlink" href="#step-63-verify-all-workers-joined" title="Permanent link">&para;</a></h4>
+<p>From <strong>cx-control-01</strong>, check all nodes:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>kubectl get nodes
+</code></pre></div>
+<p>You should now see:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>NAME           STATUS   ROLES                       AGE   VERSION
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>cx-control-01  Ready    control-plane,etcd,master   15m   v1.28.x
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>cx-control-02  Ready    control-plane,etcd,master   7m    v1.28.x
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>cx-control-03  Ready    control-plane,etcd,master   6m    v1.28.x
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>cx-worker-01   Ready    worker                      2m    v1.28.x
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>cx-worker-02   Ready    worker                      2m    v1.28.x
+<a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>cx-worker-03   Ready    worker                      2m    v1.28.x
+</code></pre></div></p>
+<p>All nodes should show <strong>Ready</strong>.</p>
+<hr />
+<h3 id="part-7-install-helm-and-nginx-ingress-controller">Part 7 — Install Helm and NGINX Ingress Controller<a class="headerlink" href="#part-7-install-helm-and-nginx-ingress-controller" title="Permanent link">&para;</a></h3>
+<p>These are the final pieces before CelestaCX can be installed.</p>
+<hr />
+<h4 id="step-71-install-helm">Step 7.1 — Install Helm<a class="headerlink" href="#step-71-install-helm" title="Permanent link">&para;</a></h4>
+<p>On <strong>cx-control-01</strong>, install Helm:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+</code></pre></div>
+<p><strong>Verify:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>helm version
+</code></pre></div>
+<hr />
+<h4 id="step-72-install-nginx-ingress-controller">Step 7.2 — Install NGINX Ingress Controller<a class="headerlink" href="#step-72-install-nginx-ingress-controller" title="Permanent link">&para;</a></h4>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>helm repo update
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>helm install ingress-nginx ingress-nginx/ingress-nginx \
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>  --namespace ingress-nginx \
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>  --create-namespace \
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>  --set controller.service.type=NodePort \
+<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>  --set controller.service.nodePorts.http=80 \
+<a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a>  --set controller.service.nodePorts.https=443
+</code></pre></div>
+<p><strong>Verify:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>kubectl get pods -n ingress-nginx
+</code></pre></div>
+<p>Wait until the ingress-nginx-controller pod shows <strong>Running</strong>.</p>
+<hr />
+<h3 id="part-8-verify-your-ha-cluster-is-ready">Part 8 — Verify Your HA Cluster is Ready<a class="headerlink" href="#part-8-verify-your-ha-cluster-is-ready" title="Permanent link">&para;</a></h3>
+<p>Before proceeding to CelestaCX installation, run all these checks:</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a># All nodes are Ready
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>kubectl get nodes
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a># All system pods are Running
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>kubectl get pods -n kube-system
+<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>
+<a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a># Ingress controller is Running
+<a id="__codelineno-43-8" name="__codelineno-43-8" href="#__codelineno-43-8"></a>kubectl get pods -n ingress-nginx
+<a id="__codelineno-43-9" name="__codelineno-43-9" href="#__codelineno-43-9"></a>
+<a id="__codelineno-43-10" name="__codelineno-43-10" href="#__codelineno-43-10"></a># Helm is working
+<a id="__codelineno-43-11" name="__codelineno-43-11" href="#__codelineno-43-11"></a>helm list -A
+</code></pre></div>
+<blockquote>
+<p><em>(Add a blue Info Panel macro around the following)</em>
+✅ <strong>HA cluster is ready when:</strong>
+- All 6+ nodes show status <code>Ready</code>
+- All kube-system pods show <code>Running</code> or <code>Completed</code>
+- ingress-nginx-controller shows <code>Running</code>
+- NGINX load balancer is running and healthy</p>
+</blockquote>
+<hr />
+<h3 id="understanding-failover-behaviour">Understanding Failover Behaviour<a class="headerlink" href="#understanding-failover-behaviour" title="Permanent link">&para;</a></h3>
+<p>Now that your HA cluster is running, here's what happens when components fail:</p>
+<table>
+<thead>
+<tr>
+<th>Failure Scenario</th>
+<th>What Happens</th>
+<th>User Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One worker node fails</td>
+<td>Kubernetes reschedules pods to remaining workers within ~60 seconds</td>
+<td>Active conversations may pause 1–2 minutes while pods restart</td>
+</tr>
+<tr>
+<td>One control plane node fails (2 of 3 remain)</td>
+<td>etcd maintains quorum — cluster continues normally</td>
+<td>No impact — operations continue</td>
+</tr>
+<tr>
+<td>Two control plane nodes fail (only 1 remains)</td>
+<td>etcd loses quorum — API becomes read-only</td>
+<td>New changes blocked but existing services keep running</td>
+</tr>
+<tr>
+<td>Load balancer fails</td>
+<td>Traffic cannot reach cluster</td>
+<td>Full outage — consider load balancer redundancy</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>Active conversations resume after failover.</strong> CelestaCX stores conversation state in MongoDB. When pods restart on a new node, agents can reconnect and continue conversations. Messages sent during the ~60-second failover window are queued and delivered once service resumes.</p>
+</blockquote>
+<hr />
+<h3 id="testing-failover">Testing Failover<a class="headerlink" href="#testing-failover" title="Permanent link">&para;</a></h3>
+<p>Once CelestaCX is installed, test that failover works:</p>
+<p><strong>Test 1 — Worker node failure:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a># Gracefully drain a worker node
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>kubectl cordon cx-worker-02
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>kubectl drain cx-worker-02 --ignore-daemonsets --delete-emptydir-data
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a># Verify pods moved to other workers
+<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>kubectl get pods -n celestacx -o wide
+<a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a>
+<a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a># Restore the node
+<a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a>kubectl uncordon cx-worker-02
+</code></pre></div>
+<p><strong>Test 2 — Control plane node failure:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a># On cx-control-02, stop RKE2
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>sudo systemctl stop rke2-server.service
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a># From cx-control-01, verify cluster still works
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>kubectl get nodes
+<a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a>kubectl get pods -n celestacx
+<a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>
+<a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a># Restart the stopped node
+<a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a># (On cx-control-02)
+<a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a>sudo systemctl start rke2-server.service
+</code></pre></div>
+<hr />
+<h3 id="etcd-backup-and-restore">ETCD Backup and Restore<a class="headerlink" href="#etcd-backup-and-restore" title="Permanent link">&para;</a></h3>
+<p>In an HA deployment, etcd stores the entire cluster state. <strong>Regular backups are mandatory.</strong></p>
+<p><strong>Create a manual backup:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>sudo rke2 etcd-snapshot save \
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>  --name celestacx-backup-$(date +%Y%m%d)
+</code></pre></div>
+<p><strong>List backups:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>sudo rke2 etcd-snapshot list
+</code></pre></div>
+<p><strong>Restore from backup</strong> (run on cx-control-01 only):</p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>sudo rke2 etcd-snapshot restore \
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>  --cluster-reset \
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>  --cluster-reset-restore-path=/var/lib/rancher/rke2/server/db/snapshots/&lt;SNAPSHOT_NAME&gt;
+</code></pre></div>
+<p><strong>Automate daily backups:</strong></p>
+<p>bash</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a># Add to crontab on all control plane nodes (run: crontab -e)
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>0 2 * * * /usr/local/bin/rke2 etcd-snapshot save \
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>  --name celestacx-backup-$(date +\%Y\%m\%d) &gt;&gt; \
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a>  /var/log/etcd-backup.log 2&gt;&amp;1
+</code></pre></div>
+<p><strong>Store backups externally.</strong> Copy etcd snapshots to a location outside the cluster (NFS, S3, or another server) daily. If the entire cluster fails, backups on the cluster nodes themselves are inaccessible.</p>
+<hr />
+<h3 id="whats-next">What's Next<a class="headerlink" href="#whats-next" title="Permanent link">&para;</a></h3>
+<p>Your HA Kubernetes cluster is complete. Proceed to:</p>
+<p>👉 <a href="#">CelestaCX Installation Guide →</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation Guide">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Installation Guide
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../security-certificates/" class="md-footer__link md-footer__link--next" aria-label="Next: Security &amp; Certificates">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Security & Certificates
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2025 Octavebytes. All Rights Reserved.
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/octavebytes/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/octavebytes" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/channel/UCA0Le6ELahBzAf-I7jOBuRQ" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://octavebytes.com" target="_blank" rel="noopener" title="octavebytes.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.indexes", "search.highlight", "search.suggest", "search.share", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

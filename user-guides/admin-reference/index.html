@@ -1,0 +1,3915 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AI-powered omnichannel contact center platform by Octavebytes">
+      
+      
+        <meta name="author" content="Octavebytes">
+      
+      
+        <link rel="canonical" href="https://celestacx.github.io/user-guides/admin-reference/">
+      
+      
+        <link rel="prev" href="../evaluator/">
+      
+      
+        <link rel="next" href="../../reports/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Unified Admin Reference - CelestaCX Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unified-admin-reference-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CelestaCX Documentation" class="md-header__button md-logo" aria-label="CelestaCX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CelestaCX Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Unified Admin Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Docs
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/roadmap-2026/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap 2026
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../security/solution-security/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Solution Security
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CelestaCX Documentation" class="md-nav__button md-logo" aria-label="CelestaCX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    CelestaCX Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/what-is-celestacx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is CelestaCX?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/key-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Concepts & Terminology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../deployment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment & Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deployment & Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning & Sizing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/high-availability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    High Availability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/security-certificates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security & Certificates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/scalability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scalability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../configuration/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration & Administration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuration & Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/iam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity & Access Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/channels-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channels & Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/teams-queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Teams & Queues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/business-calendars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Calendars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/forms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forms & Form Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/admin-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../channels/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channels & Integrations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Channels & Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Channels Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/whatsapp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WhatsApp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/facebook-instagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facebook & Instagram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/linkedin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LinkedIn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/twitter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Twitter / X
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/telegram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/sms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMS (Twilio & SMPP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/email/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/youtube/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    YouTube & Google Play
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/voice-video/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Voice & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/web-chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Widget (Web Chat)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/crm-connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/viber/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Viber
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../channels/developer-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channel Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supervisor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supervisor Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quality-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Manager Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unified Admin Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unified Admin Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-should-use-this-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Who Should Use This Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section Index
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-initial-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Initial Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-identity-access-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Identity &amp; Access Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#role-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Role Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-routing-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Routing Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing Foundation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing Strategies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customer-interaction-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customer Interaction Profiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-agent-desk-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Agent Desk Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reason-code-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reason Code Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-digital-channel-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Digital Channel Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channel-configuration-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Channel Configuration Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channel-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Channel Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-customer-widget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Customer Widget
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-voice-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Voice Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-outbound-campaigns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Outbound &amp; Campaigns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#campaign-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Campaign Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-ai-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. AI Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-features-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI Features Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-reporting-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Reporting &amp; Analytics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-system-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. System Operations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-checklist-for-new-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Checklist for New Deployments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-unified-admin-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference: Unified Admin Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reports/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports & Analytics
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reports & Analytics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/realtime-dashboards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time Dashboards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Reporting Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../support/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support & Operations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Support & Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/logging-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging & Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/platform-admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Administration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/data-etl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Platform & ETL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/roadmap-2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/solution-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/roadmap-2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/solution-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-should-use-this-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Who Should Use This Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section Index
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-initial-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Initial Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-identity-access-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Identity &amp; Access Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#role-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Role Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-routing-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Routing Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing Foundation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routing-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing Strategies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customer-interaction-profiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customer Interaction Profiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-agent-desk-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Agent Desk Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reason-code-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reason Code Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-digital-channel-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Digital Channel Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channel-configuration-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Channel Configuration Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channel-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Channel Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-customer-widget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Customer Widget
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-voice-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Voice Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-outbound-campaigns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Outbound &amp; Campaigns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#campaign-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Campaign Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-ai-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. AI Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-features-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI Features Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-reporting-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Reporting &amp; Analytics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-system-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. System Operations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-checklist-for-new-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Checklist for New Deployments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference-unified-admin-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference: Unified Admin Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="unified-admin-reference-guide">Unified Admin Reference Guide<a class="headerlink" href="#unified-admin-reference-guide" title="Permanent link">&para;</a></h1>
+<h4 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h4>
+<p>This guide is the complete reference for CelestaCX administrators — the people responsible for configuring and maintaining the platform once it is deployed. It covers the full administrative surface of the Unified Admin interface, from initial tenant setup and user management through to routing configuration, channel onboarding, agent desk customisation, reporting, and day-to-day system operations.</p>
+<p>Unified Admin is the primary web interface for all platform configuration. Some advanced tasks — particularly at the infrastructure level — require direct access to Kubernetes or the IAM system, and are cross-referenced to the <a href="#">Deployment &amp; Infrastructure</a> section where relevant.</p>
+<p><strong>This guide is structured by administrative domain.</strong> Use the section index below to jump directly to what you need, or work through it in sequence if you are configuring a new tenant from scratch.</p>
+<hr />
+<h4 id="who-should-use-this-guide">Who Should Use This Guide<a class="headerlink" href="#who-should-use-this-guide" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>I am…</th>
+<th>Most Relevant Sections</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A reseller setting up a new customer tenant</td>
+<td>Initial Setup → Identity &amp; Security → Routing → Channels</td>
+</tr>
+<tr>
+<td>A customer admin managing day-to-day operations</td>
+<td>Users &amp; Teams → Agent Desk → Outbound &amp; Campaigns</td>
+</tr>
+<tr>
+<td>An IT admin responsible for security and compliance</td>
+<td>Identity &amp; Security → System Operations</td>
+</tr>
+<tr>
+<td>A supervisor with limited admin access</td>
+<td>Agent Desk Configuration → Routing Configuration (read)</td>
+</tr>
+<tr>
+<td>An admin enabling AI features</td>
+<td>AI Configuration</td>
+</tr>
+<tr>
+<td>An admin managing reporting infrastructure</td>
+<td>Reporting &amp; Analytics</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="section-index">Section Index<a class="headerlink" href="#section-index" title="Permanent link">&para;</a></h4>
+<ol>
+<li><a href="#">Initial Setup</a></li>
+<li><a href="#">Identity &amp; Access Management</a></li>
+<li><a href="#">Routing Configuration</a></li>
+<li><a href="#">Agent Desk Configuration</a></li>
+<li><a href="#">Digital Channel Configuration</a></li>
+<li><a href="#">Customer Widget</a></li>
+<li><a href="#">Voice Configuration</a></li>
+<li><a href="#">Outbound &amp; Campaigns</a></li>
+<li><a href="#">AI Configuration</a></li>
+<li><a href="#">Reporting &amp; Analytics</a></li>
+<li><a href="#">System Operations</a></li>
+</ol>
+<hr />
+<h4 id="1-initial-setup">1. Initial Setup<a class="headerlink" href="#1-initial-setup" title="Permanent link">&para;</a></h4>
+<p>These are the first tasks to complete when configuring a new CelestaCX tenant. Complete them in the order listed to avoid dependency issues — for example, channels cannot be configured until users and routing foundations are in place.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Channel and Connector Setup</td>
+<td>High-level steps for onboarding a new channel and registering its connector in Unified Admin</td>
+</tr>
+<tr>
+<td>User Management</td>
+<td>Creating, editing, and deactivating users; assigning roles and adding users to teams</td>
+</tr>
+<tr>
+<td>Adding Languages and Timezones</td>
+<td>Configure the supported languages and timezone settings used across the platform and agent desk</td>
+</tr>
+<tr>
+<td>Infrastructure Sizing Guidelines</td>
+<td>Recommended resource sizing for different deployment scales — refer to this before expanding an existing deployment</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Before you begin:</strong> Ensure the platform is fully deployed and the IAM realm has been imported. See the <a href="#">Deployment &amp; Infrastructure</a> section if the platform is not yet running.</p>
+</blockquote>
+<hr />
+<h4 id="2-identity-access-management">2. Identity &amp; Access Management<a class="headerlink" href="#2-identity-access-management" title="Permanent link">&para;</a></h4>
+<p>CelestaCX uses Keycloak as its identity provider. IAM configuration controls who can log in, what roles they hold, how authentication works, and how secrets are managed across the platform.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IAM (Keycloak) Configuration</td>
+<td>Import realm files, create system users, assign roles (Agent, Supervisor, Admin), and configure team membership</td>
+</tr>
+<tr>
+<td>Two-Factor Authentication (2FA) — Overview</td>
+<td>Business overview of 2FA — when to enable it and how it affects the login experience</td>
+</tr>
+<tr>
+<td>2FA Email Configuration</td>
+<td>Step-by-step setup for OTP delivery via email, including tenant settings API configuration</td>
+</tr>
+<tr>
+<td>2FA Service Technical Reference</td>
+<td>OTP flow internals, token lifetime, max attempts, cooldown logic, and advanced parameters</td>
+</tr>
+<tr>
+<td>Encryption at Rest</td>
+<td>Configure encryption for data stored in MongoDB, file storage, and backups</td>
+</tr>
+<tr>
+<td>Configuring User Inactivity Logout</td>
+<td>Automatically log out users who have been inactive for a configurable timeout period</td>
+</tr>
+<tr>
+<td>Vault Configuration</td>
+<td>Set up HashiCorp Vault for centralised secrets management across platform services</td>
+</tr>
+<tr>
+<td>Vault Dynamic Credentials — ActiveMQ</td>
+<td>Issue short-lived, auto-rotating credentials for ActiveMQ via Vault</td>
+</tr>
+<tr>
+<td>Vault Dynamic Credentials — MongoDB</td>
+<td>Issue short-lived, auto-rotating credentials for MongoDB via Vault</td>
+</tr>
+<tr>
+<td>Vault Dynamic Credentials — Redis</td>
+<td>Issue short-lived, auto-rotating credentials for Redis via Vault</td>
+</tr>
+</tbody>
+</table>
+<h4 id="role-summary">Role Summary<a class="headerlink" href="#role-summary" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Assigned In</th>
+<th>Can Access</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent</td>
+<td>Keycloak + Unified Admin (team)</td>
+<td>Agent Desk only</td>
+</tr>
+<tr>
+<td>Supervisor</td>
+<td>Keycloak + Unified Admin (team)</td>
+<td>Agent Desk + Supervisor dashboards + limited Unified Admin</td>
+</tr>
+<tr>
+<td>Admin</td>
+<td>Keycloak</td>
+<td>Full Unified Admin</td>
+</tr>
+<tr>
+<td>Quality Manager</td>
+<td>Keycloak</td>
+<td>QM module + reports</td>
+</tr>
+<tr>
+<td>Evaluator</td>
+<td>Keycloak</td>
+<td>QM evaluation workspace only</td>
+</tr>
+<tr>
+<td>Routing Manager</td>
+<td>Keycloak</td>
+<td>Routing configuration in Unified Admin</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Important:</strong> Agents and Supervisors must be assigned to a team in Unified Admin in addition to having their role set in Keycloak. Role changes in Keycloak require the affected user to re-login before taking effect.</p>
+</blockquote>
+<hr />
+<h4 id="3-routing-configuration">3. Routing Configuration<a class="headerlink" href="#3-routing-configuration" title="Permanent link">&para;</a></h4>
+<p>Routing is the engine that connects customer conversations to the right agent. This section covers the full routing model — from the foundational Media Routing Domain structure through to precision queue configuration.</p>
+<h4 id="routing-foundation">Routing Foundation<a class="headerlink" href="#routing-foundation" title="Permanent link">&para;</a></h4>
+<p><strong>Media Routing Domains (MRDs)</strong> are the starting point for all routing configuration. An MRD defines a logical grouping of a particular media type — for example, all chat interactions, or all voice interactions. Queues are created within MRDs, and agents are made eligible for queues based on their MRD assignments.</p>
+<p>You must define your MRDs before creating queues. Queues must exist before agents can be mapped to them.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Media Routing Domains (MRD) Overview</td>
+<td>How MRDs logically separate media types and channel groups; creating and naming MRDs</td>
+</tr>
+<tr>
+<td>Routing Attributes and Precision Queues</td>
+<td>Define agent skills and attributes (e.g. language, product expertise) used for attribute-based routing</td>
+</tr>
+<tr>
+<td>Agent and Queue Mapping</td>
+<td>How agents are assigned to queues and how those assignments affect which conversations they receive</td>
+</tr>
+</tbody>
+</table>
+<h4 id="routing-strategies">Routing Strategies<a class="headerlink" href="#routing-strategies" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Precision Routing</td>
+<td>Configure multi-attribute routing rules that match customers to agents based on skill combinations</td>
+</tr>
+<tr>
+<td>Priority Routing</td>
+<td>Set priority levels across queues so higher-priority interactions are routed first when agents handle multiple queue types</td>
+</tr>
+<tr>
+<td>Queue Priority</td>
+<td>Configure per-queue priority weights to control ordering within a set of queues</td>
+</tr>
+<tr>
+<td>Queue Wait Time and Position</td>
+<td>How estimated wait time and queue position are calculated and optionally communicated to the customer</td>
+</tr>
+<tr>
+<td>Routing Strategy: Pull Mode</td>
+<td>Configure pull-based routing — agents see a list of waiting interactions and choose which to handle, rather than being pushed conversations automatically</td>
+</tr>
+</tbody>
+</table>
+<h4 id="customer-interaction-profiles">Customer Interaction Profiles<a class="headerlink" href="#customer-interaction-profiles" title="Permanent link">&para;</a></h4>
+<p>Customer Interaction Profiles allow you to create named customer profiles that drive personalised routing and priority decisions. For example, a VIP customer profile can be configured to route to a dedicated premium queue or a specific agent group.</p>
+<hr />
+<h4 id="4-agent-desk-configuration">4. Agent Desk Configuration<a class="headerlink" href="#4-agent-desk-configuration" title="Permanent link">&para;</a></h4>
+<p>These settings control what agents see and can do in the Agent Desk interface — from message formatting and file sharing through to how agent states are tracked and what wrap-up options are available.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Configure Agent Desk Settings</td>
+<td>Global Agent Desk settings — message formatting options, file sharing permissions, notification behaviour, and UI preferences</td>
+</tr>
+<tr>
+<td>Configuring Reason Codes</td>
+<td>Define the Not Ready and logout reason codes agents see when stepping away — these appear in adherence reports</td>
+</tr>
+<tr>
+<td>Configuring Wrap-up Forms</td>
+<td>Create wrap-up forms and assign them to specific channels or queues; configure wrap-up timers</td>
+</tr>
+<tr>
+<td>Form Builder User Guide</td>
+<td>Use the drag-and-drop Form Builder to design wrap-up forms, survey forms, and custom interaction forms without writing code</td>
+</tr>
+<tr>
+<td>Auto-Sync State Logic</td>
+<td>How agent state is automatically synchronised between CelestaCX and Cisco UCCE/UCCX in integrated deployments</td>
+</tr>
+<tr>
+<td>Customer and Agent SLA Implementation</td>
+<td>Technical details of how customer-facing and agent-side SLA thresholds are calculated, tracked, and flagged</td>
+</tr>
+</tbody>
+</table>
+<h4 id="reason-code-best-practices">Reason Code Best Practices<a class="headerlink" href="#reason-code-best-practices" title="Permanent link">&para;</a></h4>
+<p>Reason codes directly affect the quality of your adherence and availability reporting. Keep them specific enough to be meaningful but not so granular that agents lose time choosing. A typical set:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Not Ready — Scheduled</td>
+<td>Break, Lunch, Meeting, Training</td>
+</tr>
+<tr>
+<td>Not Ready — Unscheduled</td>
+<td>Technical Issue, Bathroom, Coaching Session</td>
+</tr>
+<tr>
+<td>Logout</td>
+<td>End of Shift, System Restart</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="5-digital-channel-configuration">5. Digital Channel Configuration<a class="headerlink" href="#5-digital-channel-configuration" title="Permanent link">&para;</a></h4>
+<p>Each digital channel requires its own connector configuration. Channels are connected to CelestaCX via a connector service that handles authentication, message translation, and webhook management with the upstream provider.</p>
+<h4 id="channel-configuration-reference">Channel Configuration Reference<a class="headerlink" href="#channel-configuration-reference" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Guide</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WhatsApp (Meta Cloud API)</td>
+<td>WhatsApp Cloud API Configuration</td>
+<td>Requires a Meta Business Account and approved WhatsApp Business number</td>
+</tr>
+<tr>
+<td>WhatsApp (360dialog)</td>
+<td>360-Connector Configuration Guide</td>
+<td>For deployments using 360dialog as the WhatsApp BSP</td>
+</tr>
+<tr>
+<td>Facebook Messenger</td>
+<td>Facebook Channel Configuration Guide</td>
+<td>Requires a Facebook Page and Meta app with Messenger permissions</td>
+</tr>
+<tr>
+<td>Instagram</td>
+<td>Instagram Connector Configuration &amp; Deployment</td>
+<td>Requires a connected Instagram Business account via Meta</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Email Channel Configuration (IMAP/SMTP)</td>
+<td>Works with any standard IMAP/SMTP email provider</td>
+</tr>
+<tr>
+<td>Viber</td>
+<td>Viber Connector Configuration &amp; Deployment</td>
+<td>Requires a Viber Business account</td>
+</tr>
+<tr>
+<td>SMS (Twilio)</td>
+<td>Twilio SMS/MMS Connector Configuration</td>
+<td>Requires a Twilio account with an active phone number</td>
+</tr>
+<tr>
+<td>SMS (SMPP)</td>
+<td>SMPP Configuration Guide</td>
+<td>For direct SMPP connections to SMS gateways</td>
+</tr>
+<tr>
+<td>Twitter / X</td>
+<td>Twitter Configuration Guide</td>
+<td>See limitations guide before configuring — API restrictions apply</td>
+</tr>
+<tr>
+<td>YouTube</td>
+<td>Google Play Store / YouTube Configuration</td>
+<td>See limitations guide — comment moderation only, not full messaging</td>
+</tr>
+<tr>
+<td>LinkedIn</td>
+<td>LinkedIn Configuration Guide</td>
+<td>Requires LinkedIn account onboarding first</td>
+</tr>
+</tbody>
+</table>
+<h4 id="channel-limitations">Channel Limitations<a class="headerlink" href="#channel-limitations" title="Permanent link">&para;</a></h4>
+<p>Some channels have known constraints that affect what CelestaCX can do with them. Before configuring Twitter/X, YouTube, or LinkedIn channels, review the corresponding limitations guide for that channel. These are referenced in the <a href="#">Channels &amp; Integrations</a> section.</p>
+<hr />
+<h4 id="6-customer-widget">6. Customer Widget<a class="headerlink" href="#6-customer-widget" title="Permanent link">&para;</a></h4>
+<p>The Customer Widget is the embeddable web chat interface that appears on your customer's website or web application. It is the primary digital touchpoint for web-based customer interactions.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Configuring the Customer Widget</td>
+<td>Customise the widget's appearance, behaviour, greeting messages, and pre-chat form; generate the embed code for deployment</td>
+</tr>
+<tr>
+<td>Customer Widget Features &amp; Capabilities</td>
+<td>Full feature reference — supported media types, language options, offline behaviour, mobile responsiveness, and bot handoff</td>
+</tr>
+</tbody>
+</table>
+<h4 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">&para;</a></h4>
+<p>Once configured, the widget is embedded in your customer's website by adding a small JavaScript snippet to their page. The snippet is generated by Unified Admin and is unique to your tenant and channel configuration. No server-side code is required on the customer's end.</p>
+<hr />
+<h4 id="7-voice-configuration">7. Voice Configuration<a class="headerlink" href="#7-voice-configuration" title="Permanent link">&para;</a></h4>
+<p>Voice configuration in CelestaCX covers the CXSwitch (FreeSWITCH-based) voice server, WebRTC browser-based calling, call recording, and AI-powered real-time transcription.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accessing CX Voice Components</td>
+<td>How to access and navigate the CXSwitch voice server administration interface</td>
+</tr>
+<tr>
+<td>WebRTC Channel Configuration</td>
+<td>Configure browser-based voice and video calling via WebRTC — no softphone client required</td>
+</tr>
+<tr>
+<td>Media Server Configuration</td>
+<td>Set up the media server for call recording storage, processing, and retrieval</td>
+</tr>
+<tr>
+<td>Azure Transcription Setup</td>
+<td>Configure Microsoft Azure Cognitive Services for real-time speech-to-text during voice calls</td>
+</tr>
+<tr>
+<td>Google Transcription Setup</td>
+<td>Configure Google Speech-to-Text for real-time speech-to-text during voice calls</td>
+</tr>
+<tr>
+<td>Voice Channel Limitations</td>
+<td>Known constraints in voice channel configuration and recommended workarounds</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Transcription prerequisite:</strong> Real-time transcription requires an active subscription to either Azure Cognitive Services or Google Speech-to-Text, plus the corresponding API credentials configured in the media server settings.</p>
+</blockquote>
+<hr />
+<h4 id="8-outbound-campaigns">8. Outbound &amp; Campaigns<a class="headerlink" href="#8-outbound-campaigns" title="Permanent link">&para;</a></h4>
+<p>CelestaCX supports outbound dialling campaigns for proactive customer outreach. Campaigns are managed through Unified Admin and executed via the voice channel.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Managing Outbound Campaigns</td>
+<td>Create, schedule, configure, start, pause, and stop outbound dialling campaigns; manage contact lists and dispositions</td>
+</tr>
+<tr>
+<td>Do Not Contact (DNC) Lists</td>
+<td>Upload and manage DNC lists to ensure compliance with local regulations; configure automatic DNC checking before dialling</td>
+</tr>
+</tbody>
+</table>
+<h4 id="campaign-types">Campaign Types<a class="headerlink" href="#campaign-types" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Preview</td>
+<td>Agent sees the customer record before the call is dialled and chooses when to initiate</td>
+</tr>
+<tr>
+<td>Progressive</td>
+<td>System dials automatically when an agent becomes available — one call per agent at a time</td>
+</tr>
+<tr>
+<td>Predictive</td>
+<td>System dials multiple numbers simultaneously and connects answered calls to available agents — highest efficiency, requires careful management</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="9-ai-configuration">9. AI Configuration<a class="headerlink" href="#9-ai-configuration" title="Permanent link">&para;</a></h4>
+<p>CelestaCX's AI features are configured by the administrator and made available to agents, supervisors, and the QM module based on the configuration applied.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI-Powered Customer Experience</td>
+<td>Enable and configure the full AI feature set — Agent Co-Pilot (response suggestions, knowledge surfacing, sentiment), Supervisor AI Assistance, and AI-driven quality management auto-scoring</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ai-features-overview">AI Features Overview<a class="headerlink" href="#ai-features-overview" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Who Benefits</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent Co-Pilot</td>
+<td>Agents</td>
+<td>Suggests responses, surfaces knowledge articles, summarises conversation history, flags sentiment changes</td>
+</tr>
+<tr>
+<td>Supervisor AI Assistance</td>
+<td>Supervisors</td>
+<td>Surfaces real-time context, sentiment signals, and coaching prompts for active conversations</td>
+</tr>
+<tr>
+<td>AI-Driven QM Scoring</td>
+<td>Quality Managers</td>
+<td>Automatically scores 100% of closed interactions using the configured evaluation form</td>
+</tr>
+</tbody>
+</table>
+<p>AI features require configuration of the underlying AI service connection (API keys and endpoints). Contact your CelestaCX partner for details on the AI service integration for your deployment.</p>
+<hr />
+<h4 id="10-reporting-analytics">10. Reporting &amp; Analytics<a class="headerlink" href="#10-reporting-analytics" title="Permanent link">&para;</a></h4>
+<p>CelestaCX uses Apache Superset as its reporting and analytics layer. Initial configuration of Superset is performed by the administrator; ongoing report management is accessible to supervisors and quality managers through their respective interfaces.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reports Configuration (Superset)</td>
+<td>Connect Superset to the CelestaCX data platform; import the standard report bundle; configure database connections</td>
+</tr>
+<tr>
+<td>Superset Reports (Import &amp; SSL)</td>
+<td>Import custom or updated report definitions; configure SSL for secure Superset connections</td>
+</tr>
+<tr>
+<td>Superset Alerts &amp; Reports Enablement</td>
+<td>Enable scheduled report delivery by email and configure alert thresholds</td>
+</tr>
+<tr>
+<td>Deleting Reports from Superset</td>
+<td>Safely remove custom or duplicate reports from the Superset instance</td>
+</tr>
+<tr>
+<td>Monitoring Tenant License Consumption</td>
+<td>Monitor how many licensed agent seats and interactions are being consumed per tenant; enforce limits where needed</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Reports &amp; Analytics</strong> is covered in full depth in its own dedicated section of this documentation. See <a href="#">Reports &amp; Analytics</a> for field-level reference material on all report types, metrics definitions, and dashboard guides.</p>
+</blockquote>
+<hr />
+<h4 id="11-system-operations">11. System Operations<a class="headerlink" href="#11-system-operations" title="Permanent link">&para;</a></h4>
+<p>These are the operational and maintenance tasks that arise over the lifetime of a running CelestaCX deployment — migrations, certificate renewals, credential rotations, and log access.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Archival Configuration</td>
+<td>Configure interaction archival — set retention policies, storage targets, and triggers for moving older interactions to long-term storage</td>
+</tr>
+<tr>
+<td>Migrate IAM Users</td>
+<td>Move users between Keycloak instances or realms while preserving role assignments and group memberships</td>
+</tr>
+<tr>
+<td>Migrate Keycloak Groups to CX Teams</td>
+<td>Convert legacy Keycloak group-based team structures to the CelestaCX Teams model</td>
+</tr>
+<tr>
+<td>Extending RKE2 SSL Certificate Expiry</td>
+<td>Renew or extend SSL certificates on the RKE2 Kubernetes cluster before they expire</td>
+</tr>
+<tr>
+<td>Change Default ActiveMQ Passwords</td>
+<td>Rotate the default ActiveMQ credentials via Kubernetes ConfigMap — must be done before going live</td>
+</tr>
+<tr>
+<td>Accessing Kubernetes Logs</td>
+<td>How to access pod-level and component-level logs in the RKE2 cluster for troubleshooting</td>
+</tr>
+<tr>
+<td>MongoDB Slow Query Logs</td>
+<td>Enable and read MongoDB slow query logging to diagnose performance issues</td>
+</tr>
+<tr>
+<td>Redis Slowlogs</td>
+<td>Use the Redis SLOWLOG command to identify and investigate slow Redis commands</td>
+</tr>
+</tbody>
+</table>
+<h4 id="operational-checklist-for-new-deployments">Operational Checklist for New Deployments<a class="headerlink" href="#operational-checklist-for-new-deployments" title="Permanent link">&para;</a></h4>
+<p>Before handing a new tenant over to the customer admin, confirm the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>☐ Default ActiveMQ passwords changed
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>☐ IAM realm imported and admin user password set
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>☐ All users created, roles assigned, and team membership confirmed
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>☐ MRDs and queues created
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>☐ At least one channel configured and tested end-to-end
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>☐ Agent Desk settings reviewed and wrap-up forms assigned
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>☐ SSL certificates valid and expiry dates noted
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>☐ Vault configured (if secrets management is in scope)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>☐ Superset reports imported and accessible to supervisors
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>☐ Archival policy configured
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>☐ License consumption monitoring enabled
+</code></pre></div>
+<hr />
+<h4 id="quick-reference-unified-admin-navigation">Quick Reference: Unified Admin Navigation<a class="headerlink" href="#quick-reference-unified-admin-navigation" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>I need to…</th>
+<th>Go to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create or edit a user</td>
+<td>Users → User Management</td>
+</tr>
+<tr>
+<td>Add a user to a team</td>
+<td>Teams → select team → Add Member</td>
+</tr>
+<tr>
+<td>Create a queue</td>
+<td>Routing → Queues → New Queue</td>
+</tr>
+<tr>
+<td>Add an agent to a queue</td>
+<td>Routing → Agent-Queue Mapping</td>
+</tr>
+<tr>
+<td>Configure a channel</td>
+<td>Channels → select channel type → Configure</td>
+</tr>
+<tr>
+<td>Set up wrap-up codes</td>
+<td>Agent Desk → Wrap-up Forms</td>
+</tr>
+<tr>
+<td>Configure reason codes</td>
+<td>Agent Desk → Reason Codes</td>
+</tr>
+<tr>
+<td>Set up a campaign</td>
+<td>Outbound → Campaigns → New Campaign</td>
+</tr>
+<tr>
+<td>Manage DNC lists</td>
+<td>Outbound → DNC Lists</td>
+</tr>
+<tr>
+<td>Access Superset reports</td>
+<td>Reports → Open Superset</td>
+</tr>
+<tr>
+<td>Monitor license usage</td>
+<td>System → License Consumption</td>
+</tr>
+<tr>
+<td>Check Keycloak</td>
+<td>Navigate to https://<your-domain>/auth</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../evaluator/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Evaluator Guide">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Evaluator Guide
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../reports/" class="md-footer__link md-footer__link--next" aria-label="Next: Reports &amp;amp; Analytics">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Reports &amp; Analytics
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2025 Octavebytes. All Rights Reserved.
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/octavebytes/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/octavebytes" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/channel/UCA0Le6ELahBzAf-I7jOBuRQ" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://octavebytes.com" target="_blank" rel="noopener" title="octavebytes.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.indexes", "search.highlight", "search.suggest", "search.share", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

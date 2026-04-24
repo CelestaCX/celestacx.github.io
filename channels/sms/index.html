@@ -1,0 +1,3709 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AI-powered omnichannel contact center platform by Octavebytes">
+      
+      
+        <meta name="author" content="Octavebytes">
+      
+      
+        <link rel="canonical" href="https://celestacx.github.io/channels/sms/">
+      
+      
+        <link rel="prev" href="../telegram/">
+      
+      
+        <link rel="next" href="../email/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>SMS (Twilio & SMPP) - CelestaCX Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sms-twilio-smpp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CelestaCX Documentation" class="md-header__button md-logo" aria-label="CelestaCX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CelestaCX Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SMS (Twilio & SMPP)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../getting-started/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Docs
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../roadmap/roadmap-2026/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap 2026
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../security/solution-security/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Solution Security
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CelestaCX Documentation" class="md-nav__button md-logo" aria-label="CelestaCX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    CelestaCX Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/what-is-celestacx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is CelestaCX?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/key-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Concepts & Terminology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../deployment/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment & Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deployment & Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning & Sizing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/high-availability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    High Availability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/security-certificates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security & Certificates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/scalability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scalability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../configuration/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration & Administration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuration & Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/iam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity & Access Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/channels-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channels & Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/teams-queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Teams & Queues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/business-calendars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Calendars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/forms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forms & Form Builder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/admin-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admin Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channels & Integrations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Channels & Integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Digital Channels Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../whatsapp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WhatsApp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../facebook-instagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facebook & Instagram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linkedin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LinkedIn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../twitter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Twitter / X
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../telegram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMS (Twilio & SMPP)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMS (Twilio & SMPP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sms-twilio-smpp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMS (Twilio &amp; SMPP)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SMS (Twilio &amp; SMPP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-sms-works-in-celestacx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How SMS Works in CelestaCX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#twilio-vs-smpp-choosing-the-right-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Twilio vs. SMPP — Choosing the Right Method
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sms-number-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMS Number Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sms-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMS Compliance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-sms-via-twilio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring SMS via Twilio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring SMS via Twilio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-twilio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting Up Twilio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-twilio-connector-in-celestacx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the Twilio Connector in CelestaCX
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-sms-via-smpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring SMS via SMPP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring SMS via SMPP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smpp-connection-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMPP Connection Modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-smpp-connector-in-celestacx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the SMPP Connector in CelestaCX
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opt-out-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opt-Out Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opt-Out Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recognised-opt-out-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recognised Opt-Out Keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recognised-opt-in-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recognised Opt-In Keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-opt-out-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing Opt-Out Lists
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#character-limits-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Character Limits &amp; Encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-sms-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple SMS Numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#twilio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Twilio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMPP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../email/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../youtube/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    YouTube & Google Play
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../voice-video/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Voice & Video
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Widget (Web Chat)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crm-connectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM Connectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../viber/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Viber
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developer-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Channel Developer Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../user-guides/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guides
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/supervisor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supervisor Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/quality-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Manager Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/evaluator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluator Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guides/admin-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unified Admin Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reports/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports & Analytics
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reports & Analytics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/realtime-dashboards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time Dashboards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Reporting Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../support/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support & Operations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Support & Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/logging-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging & Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/platform-admin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform Administration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/data-etl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Platform & ETL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/roadmap-2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/solution-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/roadmap-2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/solution-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sms-twilio-smpp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMS (Twilio &amp; SMPP)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SMS (Twilio &amp; SMPP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-sms-works-in-celestacx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How SMS Works in CelestaCX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#twilio-vs-smpp-choosing-the-right-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Twilio vs. SMPP — Choosing the Right Method
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sms-number-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMS Number Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sms-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMS Compliance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-sms-via-twilio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring SMS via Twilio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring SMS via Twilio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-twilio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting Up Twilio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-twilio-connector-in-celestacx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the Twilio Connector in CelestaCX
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-sms-via-smpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring SMS via SMPP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring SMS via SMPP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smpp-connection-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMPP Connection Modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-smpp-connector-in-celestacx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the SMPP Connector in CelestaCX
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opt-out-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opt-Out Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opt-Out Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recognised-opt-out-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recognised Opt-Out Keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recognised-opt-in-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recognised Opt-In Keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-opt-out-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing Opt-Out Lists
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#character-limits-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Character Limits &amp; Encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-sms-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple SMS Numbers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#twilio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Twilio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMPP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sms-twilio-smpp">SMS (Twilio &amp; SMPP)<a class="headerlink" href="#sms-twilio-smpp" title="Permanent link">&para;</a></h1>
+<p>Here is the <strong>SMS (Twilio &amp; SMPP)</strong> page:</p>
+<hr />
+<h2 id="sms-twilio-smpp_1">SMS (Twilio &amp; SMPP)<a class="headerlink" href="#sms-twilio-smpp_1" title="Permanent link">&para;</a></h2>
+<p>CelestaCX supports two-way SMS messaging through two integration methods: <strong>Twilio</strong> (a cloud-based SMS provider) and <strong>SMPP</strong> (Short Message Peer-to-Peer, a direct protocol connection to an SMS aggregator or mobile network operator). This page covers both methods, how to choose between them, and how to configure each in CelestaCX.</p>
+<hr />
+<h3 id="how-sms-works-in-celestacx">How SMS Works in CelestaCX<a class="headerlink" href="#how-sms-works-in-celestacx" title="Permanent link">&para;</a></h3>
+<p>Regardless of the connection method, SMS interactions follow the same path through CelestaCX once they are received:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Customer sends SMS
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>to your number
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        ▼
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>SMS Provider (Twilio or SMPP aggregator)
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  Webhook / SMPP delivery
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        ▼
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>CelestaCX Channel Connector
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        ▼
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Routing Engine → Queue → Agent Desk
+</code></pre></div>
+<p>Agents respond from the Agent Desk. Replies are delivered back through the same provider to the customer's mobile number.</p>
+<hr />
+<h3 id="twilio-vs-smpp-choosing-the-right-method">Twilio vs. SMPP — Choosing the Right Method<a class="headerlink" href="#twilio-vs-smpp-choosing-the-right-method" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Consideration</th>
+<th>Twilio</th>
+<th>SMPP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Setup complexity</td>
+<td>Low — cloud-based, API-driven, minimal infrastructure</td>
+<td>Higher — requires SMPP server configuration and network connectivity</td>
+</tr>
+<tr>
+<td>Infrastructure required</td>
+<td>None — fully managed by Twilio</td>
+<td>SMPP relay or aggregator server required</td>
+</tr>
+<tr>
+<td>Number provisioning</td>
+<td>Self-service via Twilio console</td>
+<td>Via your SMPP aggregator or MNO</td>
+</tr>
+<tr>
+<td>Global coverage</td>
+<td>Extensive — 180+ countries</td>
+<td>Depends on aggregator agreements</td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td>Moderate — suitable for most contact centre volumes</td>
+<td>High — better for very large send volumes</td>
+</tr>
+<tr>
+<td>Cost model</td>
+<td>Per-message pricing via Twilio</td>
+<td>Typically negotiated rate with aggregator</td>
+</tr>
+<tr>
+<td>Alphanumeric sender IDs</td>
+<td>Supported in eligible countries</td>
+<td>Supported — depends on aggregator</td>
+</tr>
+<tr>
+<td>Short codes</td>
+<td>Supported</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Long codes</td>
+<td>Supported</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Most deployments — straightforward setup, good global reach</td>
+<td>High-volume operations, existing SMPP infrastructure, specific MNO relationships</td>
+</tr>
+</tbody>
+</table>
+<p>For most CelestaCX deployments, <strong>Twilio is the recommended starting point</strong> due to its ease of setup, self-service number provisioning, and comprehensive API. SMPP is better suited to operations with existing SMS infrastructure, very high throughput requirements, or specific regional aggregator relationships.</p>
+<hr />
+<h3 id="sms-number-types">SMS Number Types<a class="headerlink" href="#sms-number-types" title="Permanent link">&para;</a></h3>
+<p>Before configuring either connection method, understand the number type you will use:</p>
+<table>
+<thead>
+<tr>
+<th>Number Type</th>
+<th>Description</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Long Code</td>
+<td>Standard 10-digit (or international equivalent) phone number</td>
+<td>Two-way conversational SMS, lower volumes</td>
+</tr>
+<tr>
+<td>Short Code</td>
+<td>5–6 digit number — requires carrier approval (US/Canada)</td>
+<td>High-volume campaigns, transactional alerts</td>
+</tr>
+<tr>
+<td>Alphanumeric Sender ID</td>
+<td>A name instead of a number (e.g. "AcmeSupport") — outbound only, not available in all countries</td>
+<td>Branded notifications, one-way alerts</td>
+</tr>
+<tr>
+<td>Toll-Free Number</td>
+<td>A toll-free number enabled for SMS (US/Canada)</td>
+<td>Two-way SMS, moderate volumes, consumer-friendly</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Important:</strong> Two-way SMS (inbound and outbound) requires a long code, short code, or toll-free number. Alphanumeric sender IDs are outbound only — customers cannot reply to them. Ensure your number type matches your use case before provisioning.</p>
+</blockquote>
+<hr />
+<h3 id="sms-compliance">SMS Compliance<a class="headerlink" href="#sms-compliance" title="Permanent link">&para;</a></h3>
+<p>SMS messaging is subject to significant legal and regulatory requirements that vary by country. Before going live with any SMS channel, ensure your operation complies with the relevant regulations for each country you will be messaging.</p>
+<p>Key compliance areas:</p>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opt-in consent</td>
+<td>Customers must have explicitly consented to receive SMS messages from your organisation. The nature of the required consent varies by country and message type.</td>
+</tr>
+<tr>
+<td>Opt-out handling</td>
+<td>Customers must be able to opt out by replying STOP (or local equivalent). Opt-out requests must be honoured immediately. CelestaCX handles inbound STOP messages automatically — see Opt-Out Handling below.</td>
+</tr>
+<tr>
+<td>Sender identification</td>
+<td>Messages must clearly identify the sending organisation.</td>
+</tr>
+<tr>
+<td>Time restrictions</td>
+<td>Many jurisdictions restrict the hours during which marketing SMS can be sent.</td>
+</tr>
+<tr>
+<td>Do Not Contact lists</td>
+<td>Opted-out numbers must be maintained on a suppression list and excluded from future sends.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>CelestaCX provides the technical capability to send and receive SMS — compliance with applicable regulations is the responsibility of your organisation. Engage your legal team before launching SMS communications.</p>
+</blockquote>
+<hr />
+<h3 id="configuring-sms-via-twilio">Configuring SMS via Twilio<a class="headerlink" href="#configuring-sms-via-twilio" title="Permanent link">&para;</a></h3>
+<h4 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h4>
+<p>Before configuring the Twilio connector in CelestaCX:</p>
+<ul>
+<li>A <strong>Twilio account</strong> — sign up at <a href="http://twilio.com">http://twilio.com</a></li>
+<li>A <strong>Twilio phone number</strong> with SMS capability provisioned in your Twilio console</li>
+<li>Your Twilio <strong>Account SID</strong> and <strong>Auth Token</strong> from the Twilio console dashboard</li>
+<li>If using a Messaging Service (recommended for production): a <strong>Messaging Service SID</strong></li>
+</ul>
+<h4 id="setting-up-twilio">Setting Up Twilio<a class="headerlink" href="#setting-up-twilio" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Log in to your Twilio console at <a href="http://console.twilio.com">http://console.twilio.com</a> .</li>
+<li>Provision an SMS-capable phone number under <strong>Phone Numbers → Manage → Buy a Number</strong>.</li>
+<li>Note your <strong>Account SID</strong> and <strong>Auth Token</strong> from the console dashboard.</li>
+<li>Optionally, create a <strong>Messaging Service</strong> under <strong>Messaging → Services → Create Messaging Service</strong>. Messaging Services provide additional features including number pooling, sticky sender (routing replies back through the same number), and compliance tools. For production deployments, using a Messaging Service is recommended over a single number.</li>
+</ol>
+<h4 id="configuring-the-twilio-connector-in-celestacx">Configuring the Twilio Connector in CelestaCX<a class="headerlink" href="#configuring-the-twilio-connector-in-celestacx" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Navigate to <strong>Administration → Channels → Add Channel → SMS → Twilio</strong>.</li>
+<li>Enter a display name for this channel (e.g. "SMS — Acme Support UK").</li>
+<li>Enter the following credentials:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Account SID</td>
+<td>From your Twilio console dashboard</td>
+</tr>
+<tr>
+<td>Auth Token</td>
+<td>From your Twilio console dashboard</td>
+</tr>
+<tr>
+<td>Phone Number or Messaging Service SID</td>
+<td>The Twilio phone number (E.164 format, e.g. +441234567890) or Messaging Service SID (MGXXXXXXXX)</td>
+</tr>
+<tr>
+<td>Webhook Verify Token</td>
+<td>A string you define for webhook request validation</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Copy the <strong>CelestaCX Webhook URL</strong> from the configuration page.</li>
+<li>
+<p>In the Twilio console, configure the webhook URL for your phone number or Messaging Service:</p>
+</li>
+<li>
+<p>For a single number: <strong>Phone Numbers → Manage → Active Numbers → [Number] → Messaging → A Message Comes In → Webhook</strong> — paste the CelestaCX Webhook URL.</p>
+</li>
+<li>For a Messaging Service: <strong>Messaging → Services → [Service] → Integration → Incoming Messages → Send a Webhook</strong> — paste the CelestaCX Webhook URL.</li>
+<li>Set the HTTP method to <strong>POST</strong>.</li>
+<li>Click <strong>Test Connection</strong> in CelestaCX to verify credentials and webhook delivery.</li>
+<li>Create a routing rule for SMS interactions: <strong>Administration → Routing → Routing Rules → Add Rule</strong> — set the trigger to this SMS channel.</li>
+<li>Save and set the channel status to <strong>Active</strong>.</li>
+</ol>
+<hr />
+<h3 id="configuring-sms-via-smpp">Configuring SMS via SMPP<a class="headerlink" href="#configuring-sms-via-smpp" title="Permanent link">&para;</a></h3>
+<h4 id="prerequisites_1">Prerequisites<a class="headerlink" href="#prerequisites_1" title="Permanent link">&para;</a></h4>
+<p>Before configuring the SMPP connector in CelestaCX:</p>
+<ul>
+<li>An active account with an <strong>SMPP aggregator</strong> or direct connection to a mobile network operator</li>
+<li>
+<p>SMPP connection credentials from your aggregator:</p>
+</li>
+<li>
+<p>SMPP server hostname or IP address</p>
+</li>
+<li>SMPP server port</li>
+<li>System ID (username)</li>
+<li>Password</li>
+<li>System Type (if required by your aggregator)</li>
+<li>A <strong>source address</strong> (sender number or alphanumeric ID) provisioned by your aggregator</li>
+<li>Network access from the CelestaCX deployment to the SMPP server on the required port (typically 2775 or 2776)</li>
+</ul>
+<h4 id="smpp-connection-modes">SMPP Connection Modes<a class="headerlink" href="#smpp-connection-modes" title="Permanent link">&para;</a></h4>
+<p>CelestaCX supports the following SMPP bind modes:</p>
+<table>
+<thead>
+<tr>
+<th>Bind Mode</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transceiver (TRX)</td>
+<td>Single connection for both sending and receiving messages. Recommended for most deployments.</td>
+</tr>
+<tr>
+<td>Transmitter (TX) + Receiver (RX)</td>
+<td>Separate connections for sending and receiving. Required by some aggregators.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="configuring-the-smpp-connector-in-celestacx">Configuring the SMPP Connector in CelestaCX<a class="headerlink" href="#configuring-the-smpp-connector-in-celestacx" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Navigate to <strong>Administration → Channels → Add Channel → SMS → SMPP</strong>.</li>
+<li>Enter a display name for this channel (e.g. "SMS — SMPP Enterprise").</li>
+<li>Enter the SMPP connection details:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SMPP Host</td>
+<td>Hostname or IP address of your aggregator's SMPP server</td>
+</tr>
+<tr>
+<td>SMPP Port</td>
+<td>Port number — typically 2775 (standard) or 2776 (TLS)</td>
+</tr>
+<tr>
+<td>System ID</td>
+<td>Your SMPP username provided by the aggregator</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>Your SMPP password provided by the aggregator</td>
+</tr>
+<tr>
+<td>System Type</td>
+<td>Optional — provided by aggregator if required</td>
+</tr>
+<tr>
+<td>Bind Mode</td>
+<td>Transceiver, or Transmitter + Receiver</td>
+</tr>
+<tr>
+<td>Source Address</td>
+<td>The sender number or alphanumeric ID for outbound messages</td>
+</tr>
+<tr>
+<td>Source Address TON</td>
+<td>Type of Number for the source address (0 = Unknown, 1 = International, 5 = Alphanumeric)</td>
+</tr>
+<tr>
+<td>Source Address NPI</td>
+<td>Numbering Plan Indicator (typically 0 = Unknown or 1 = ISDN/E.164)</td>
+</tr>
+<tr>
+<td>TLS Enabled</td>
+<td>Toggle on if connecting via TLS (port 2776 or as specified by aggregator)</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Configure connection resilience settings:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enquire Link Interval</td>
+<td>How frequently CelestaCX sends keepalive signals to maintain the SMPP connection (seconds)</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Reconnect Interval</td>
+<td>How long to wait before attempting to reconnect after a connection drop (seconds)</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Max Reconnect Attempts</td>
+<td>Number of reconnection attempts before raising an alert</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Click <strong>Test Connection</strong> to verify CelestaCX can establish an SMPP bind with your aggregator's server.</li>
+<li>Create a routing rule for SMS interactions from this connector.</li>
+<li>Save and set the channel status to <strong>Active</strong>.</li>
+</ol>
+<hr />
+<h3 id="opt-out-handling">Opt-Out Handling<a class="headerlink" href="#opt-out-handling" title="Permanent link">&para;</a></h3>
+<p>CelestaCX automatically handles inbound opt-out messages for SMS. When a customer replies with a recognised opt-out keyword, CelestaCX:</p>
+<ol>
+<li>Records the opt-out against the customer's number in the platform.</li>
+<li>Prevents further outbound SMS to that number from CelestaCX.</li>
+<li>Sends an automatic confirmation reply (configurable) acknowledging the opt-out.</li>
+<li>Logs the opt-out event in the interaction record.</li>
+</ol>
+<h4 id="recognised-opt-out-keywords">Recognised Opt-Out Keywords<a class="headerlink" href="#recognised-opt-out-keywords" title="Permanent link">&para;</a></h4>
+<p>CelestaCX recognises the following opt-out keywords by default (case-insensitive):</p>
+<p><code>STOP</code>, <code>STOPALL</code>, <code>UNSUBSCRIBE</code>, <code>CANCEL</code>, <code>END</code>, <code>QUIT</code></p>
+<h4 id="recognised-opt-in-keywords">Recognised Opt-In Keywords<a class="headerlink" href="#recognised-opt-in-keywords" title="Permanent link">&para;</a></h4>
+<p>Customers can re-subscribe after opting out by sending:</p>
+<p><code>START</code>, <code>YES</code>, <code>UNSTOP</code></p>
+<h4 id="managing-opt-out-lists">Managing Opt-Out Lists<a class="headerlink" href="#managing-opt-out-lists" title="Permanent link">&para;</a></h4>
+<p>The opt-out list is accessible under <strong>Administration → Channels → [Channel] → Opt-Out List</strong>. From here, administrators can:</p>
+<ul>
+<li>View all opted-out numbers with opt-out timestamp and triggering keyword</li>
+<li>Manually add numbers to the opt-out list</li>
+<li>Manually remove numbers from the opt-out list (e.g. following a documented customer request to re-subscribe)</li>
+<li>Export the opt-out list as CSV for compliance reporting</li>
+</ul>
+<blockquote>
+<p><strong>Important:</strong> Removing a number from the opt-out list should only be done following a documented, explicit opt-in from the customer. Sending SMS to opted-out numbers without renewed consent may violate applicable law.</p>
+</blockquote>
+<hr />
+<h3 id="character-limits-encoding">Character Limits &amp; Encoding<a class="headerlink" href="#character-limits-encoding" title="Permanent link">&para;</a></h3>
+<p>Standard SMS messages are limited to 160 characters (GSM-7 encoding) or 70 characters (Unicode/UCS-2, used for non-Latin scripts such as Arabic, Chinese, or Cyrillic). CelestaCX handles encoding automatically based on message content.</p>
+<p>Messages exceeding the single-message character limit are sent as <strong>concatenated SMS</strong> (multiple SMS parts joined together by the receiving handset). Each part counts as a separate message for billing purposes.</p>
+<table>
+<thead>
+<tr>
+<th>Encoding</th>
+<th>Single SMS Limit</th>
+<th>Concatenated Part Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GSM-7 (Latin characters)</td>
+<td>160 characters</td>
+<td>153 characters per part</td>
+</tr>
+<tr>
+<td>Unicode / UCS-2 (non-Latin)</td>
+<td>70 characters</td>
+<td>67 characters per part</td>
+</tr>
+</tbody>
+</table>
+<p>The Agent Desk message composer displays a character count and part count indicator to help agents stay within efficient message lengths.</p>
+<hr />
+<h3 id="multiple-sms-numbers">Multiple SMS Numbers<a class="headerlink" href="#multiple-sms-numbers" title="Permanent link">&para;</a></h3>
+<p>CelestaCX supports multiple SMS numbers or SMPP connections within a single deployment. Each number or connection is configured as a separate channel connector with its own routing rules.</p>
+<p>Common multi-number scenarios:</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Separate numbers for different brands</td>
+<td>One connector per number, each with its own routing rules</td>
+</tr>
+<tr>
+<td>Separate numbers for different regions</td>
+<td>One connector per number, routed to region-specific queues</td>
+</tr>
+<tr>
+<td>High-volume: number pool via Twilio Messaging Service</td>
+<td>Single Twilio connector using a Messaging Service with multiple pooled numbers</td>
+</tr>
+<tr>
+<td>Mixed Twilio + SMPP</td>
+<td>Separate connectors for each — no conflict, routed independently</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
+<h4 id="twilio">Twilio<a class="headerlink" href="#twilio" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely Cause</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inbound SMS not appearing in CelestaCX</td>
+<td>Webhook URL not configured in Twilio console</td>
+<td>Verify webhook URL is set on the number or Messaging Service in Twilio console.</td>
+</tr>
+<tr>
+<td>"Authentication Failed" error</td>
+<td>Incorrect Account SID or Auth Token</td>
+<td>Re-enter credentials from the Twilio console dashboard.</td>
+</tr>
+<tr>
+<td>Outbound messages not delivered</td>
+<td>Number not SMS-enabled or Twilio account suspended</td>
+<td>Check number capabilities in Twilio console. Verify account status.</td>
+</tr>
+<tr>
+<td>STOP replies not being honoured</td>
+<td>Twilio opt-out handling conflict</td>
+<td>Ensure Twilio's built-in opt-out management is disabled if CelestaCX is handling opt-outs — duplicate handling can cause conflicts.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="smpp">SMPP<a class="headerlink" href="#smpp" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely Cause</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SMPP bind failing</td>
+<td>Incorrect credentials or network connectivity issue</td>
+<td>Verify System ID, password, host, and port. Confirm network access from CelestaCX to SMPP server on the configured port.</td>
+</tr>
+<tr>
+<td>Connection drops frequently</td>
+<td>Enquire Link interval too long for aggregator's timeout</td>
+<td>Reduce Enquire Link interval to 20 seconds or as recommended by your aggregator.</td>
+</tr>
+<tr>
+<td>Inbound messages not arriving</td>
+<td>Receiver bind not established</td>
+<td>If using Transmitter + Receiver mode, confirm both binds are active in connector status.</td>
+</tr>
+<tr>
+<td>Outbound messages queued but not sent</td>
+<td>Transmitter bind dropped</td>
+<td>Check connector status for bind state. Reconnection will be attempted automatically — verify after reconnect interval.</td>
+</tr>
+<tr>
+<td>Messages delivered but with wrong sender ID</td>
+<td>Source address or TON/NPI misconfigured</td>
+<td>Verify Source Address, TON, and NPI values with your aggregator.</td>
+</tr>
+</tbody>
+</table>
+<p>For persistent issues, check connector logs under <strong>Platform Administration → Logs → Channel Connectors</strong> or refer to the <a href="#">Troubleshooting Guide</a>.</p>
+<hr />
+<p><em>What's next: Proceed to</em><a href="#"><em>Email</em></a><em>to configure the email channel.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../telegram/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Telegram">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Telegram
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../email/" class="md-footer__link md-footer__link--next" aria-label="Next: Email">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Email
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2025 Octavebytes. All Rights Reserved.
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/octavebytes/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/octavebytes" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/channel/UCA0Le6ELahBzAf-I7jOBuRQ" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://octavebytes.com" target="_blank" rel="noopener" title="octavebytes.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.indexes", "search.highlight", "search.suggest", "search.share", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
